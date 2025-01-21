@@ -1,0 +1,89 @@
+# Unity generated files
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+UIElementsSchema/
+MemoryCaptures/
+
+# Crash logs
+*.stacktrace
+
+# VS/VSCode files
+.vscode/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+.vs/
+
+# Unity Asset meta files
+*.pidb.meta
+*.pdb.meta
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# JetBrains Rider
+.idea/
+*.iml
+*.ipr
+
+# User-specific settings
+UserSettings/
+
+# Auto-generated plugins
+*.dll
+*.dll.mdb
+
+# Built data
+*.apk
+*.aab
+*.ipa
+*.exe
+*.app
+*.msi
+
+# Cache files
+Cache/
+.cache/
+logs/
+
+# Prevent tracking sensitive data
+ProjectSettings/EditorBuildSettings.asset
+ProjectSettings/UnityConnectSettings.asset
+
+# Unity Version Control
+.glb/
+.hidden/
+
+# Avoid package-specific files
+Packages/*/node_modules/
+
+# Editor / tool files:
+**/*.picttable
+**/.gradle
+**/.DS_Store
+**/Thumbs.db
+**/*.orig
+**/*.orig.meta
+**/*.bak
+**/*.bak.meta
+**/*~
+!**/Packages/com.unity*/**~
+**/*.tmp
+**/*.rej
+\#*#
+**/*.swp
+**/.idea
+**/*.sublime-workspace
+**/xcuserdata
