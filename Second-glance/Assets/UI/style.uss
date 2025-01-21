@@ -1,9 +1,9 @@
 .button {
     width: 100px;
     height: 40px;
-    background-color:rgb(0, 229, 255);
-    color: #ffffff;
-    font-family: 'Arial';
+    background-color: rgb(5, 102, 57);
+    color: rgb(255, 255, 255);
+    font-family: "Arial";
     font-weight: bold;
     font-size: 16px;
     border-radius: 5px;
@@ -11,4 +11,30 @@
     cursor: pointer;
 }
 
+.howtoStyle {
+    flex-grow: 1;
+    height: 356px;
+    align-self: center;
+    width: 300px;
+    background-color: rgba(23, 44, 43, 0.87);
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
 
+.startQuitContainerStyle {
+    flex-grow: 1;
+    flex-direction: row;
+    width: 246px;
+    align-self: center;
+}
+
+.howButtonstyle {
+    width: 118px;
+    align-self: center;
+}

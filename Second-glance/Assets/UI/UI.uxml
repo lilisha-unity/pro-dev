@@ -1,8 +1,11 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/style.uss?fileID=7433441132597879392&amp;guid=10c9bd921284649c9a6e2d4899a28504&amp;type=3#style" />
-    <engine:VisualElement style="flex-grow: 1; flex-direction: row; width: 84px;">
+    <engine:VisualElement class="howtoStyle">
+        <engine:ScrollView name="ScrollView" touch-scroll-type="Clamped" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="AlwaysVisible" style="height: 309px;" />
+    </engine:VisualElement>
+    <engine:VisualElement name="start-quit-container" class="startQuitContainerStyle">
         <engine:Button text="Start" name="start" class="button" />
-        <engine:Button text="How to play?" name="how" class="button" />
         <engine:Button text="Quit" name="quit" class="button" />
     </engine:VisualElement>
+    <engine:Button text="How to play?" name="how" class="button howButtonstyle" />
 </engine:UXML>
