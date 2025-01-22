@@ -1,41 +1,52 @@
-.button {
-    width: 100px;
-    height: 40px;
-    background-color: rgb(5, 102, 57);
-    color: rgb(255, 255, 255);
-    font-family: "Arial";
-    font-weight: bold;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 0;
-    cursor: pointer;
-}
-
 .mainContainerStyle {
+    flex-grow: 1;
+    flex-direction: column;
+    width: 320px;
+    height: 600px;
+    align-self: center;
+}
+.topContainerStyle {
     flex-grow: 1;
     align-self: center;
     width: 300px;
-    height: 500px;
-    background-color: rgba(23, 44, 43, 0.87);
+    height: 450px;
+    background-color: rgb(23, 55, 34);
     margin-top: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
     margin-left: 10px;
-    padding-top: 5px;
-    padding-right: 5px;
-    padding-bottom: 5px;
-    padding-left: 5px;
+}
+
+.bottomContainerStyle {
+    flex-grow: 1;
+    align-self: center;
+    width: 300px;
+    height: 120px;
 }
 
 .startQuitContainerStyle {
     flex-grow: 1;
     flex-direction: row;
-    width: 246px;
     align-self: center;
+}
+
+.textStyle {
+    font-family: "Arial";
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+}
+
+.button {
+    width: 100px;
+    height: 40px;
+    background-color: rgb(5, 102, 57);
+    font-weight: bold;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
 }
 
 .howButtonstyle {
     width: 118px;
     align-self: center;
-    margin-top: 13px;
 }

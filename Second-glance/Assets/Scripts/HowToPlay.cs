@@ -7,7 +7,7 @@ public class HowToPlay : MonoBehaviour
     private Button startButton;
     private Button quitButton;
     private Button buttonHowToPlay;
-    private VisualElement mainContainer;
+    private VisualElement topContainer;
 
     private void OnEnable()
     {
@@ -22,16 +22,16 @@ public class HowToPlay : MonoBehaviour
 
         buttonHowToPlay.RegisterCallback<ClickEvent>(ShowHowToPlay);
 
-        mainContainer = uiDocument.rootVisualElement.Q("main-container");
+        topContainer = uiDocument.rootVisualElement.Q("top-container");
     }
 
     private void ShowHowToPlay(ClickEvent evt)
     {
-        mainContainer.Clear();
-        string howToPlayText = "1. Select <b>Play</b> to begin.\n" +
+        topContainer.Clear();
+        string howToPlayText = "1. Select <b>Start</b> to begin.\n" +
             "2. The card will change automatically after a few seconds to show a new object.\n" +
             "3. If the object on the card has appeared before, select the card to score points.\n" +
-            "4. If it’s a new object, don’t click—just wait for the next card.\n" +
+            "4. If it’s a new object, don’t click — just wait for the next card.\n" +
             "5. Gain points for clicking on repeated objects.\n" +
             "6. Lost points for clicking on new objects or missing repeated ones.\n" +
             "7. As the game continues, the card changes more quickly, making it harder to remember past objects!\n" +
@@ -39,27 +39,26 @@ public class HowToPlay : MonoBehaviour
 
         // Create a ScrollView
         var scrollView = new ScrollView(ScrollViewMode.Vertical);
-        scrollView.style.width = 300;
-        scrollView.style.height = 500;
         scrollView.verticalScrollerVisibility = ScrollerVisibility.Auto;
         // Create a Label
         var label = new Label(howToPlayText);
         label.style.whiteSpace = WhiteSpace.Normal;
-        label.style.color = Color.white;
-        label.style.fontSize = 18;
+
+        // Add a class selector to the Label
+        label.AddToClassList("textStyle");
         // Add the Label to the ScrollView
         scrollView.Add(label);
         // Add the ScrollView to the container
-        mainContainer.Add(scrollView);
+        topContainer.Add(scrollView);
 
     }
 
     private void LoadGameScene()
     {
-        mainContainer.Clear();
+        topContainer.Clear();
         // Create a Label
         var label = new Label("Loading Game Scene...");
         // Add the Label to the container
-        mainContainer.Add(label);
+        topContainer.Add(label);
     }
 }
