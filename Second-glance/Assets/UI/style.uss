@@ -11,11 +11,11 @@
     cursor: pointer;
 }
 
-.howtoStyle {
+.mainContainerStyle {
     flex-grow: 1;
-    height: 356px;
     align-self: center;
     width: 300px;
+    height: 500px;
     background-color: rgba(23, 44, 43, 0.87);
     margin-top: 10px;
     margin-right: 10px;
@@ -37,4 +37,5 @@
 .howButtonstyle {
     width: 118px;
     align-self: center;
+    margin-top: 13px;
 }
