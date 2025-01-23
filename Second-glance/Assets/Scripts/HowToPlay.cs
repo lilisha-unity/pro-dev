@@ -57,8 +57,9 @@ public class HowToPlay : MonoBehaviour
     {
         topContainer.Clear();
         // Create a Label
-        var label = new Label("Loading Game Scene...");
+        var labelStart = new Label("Loading Game Scene...");
+        labelStart.AddToClassList("textStyle");
         // Add the Label to the container
-        topContainer.Add(label);
+        topContainer.Add(labelStart);
     }
 }
