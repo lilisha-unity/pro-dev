@@ -1,4 +1,4 @@
-.mainContainerStyle {
+.main-container {
     flex-grow: 1;
     flex-direction: column;
     width: 100%;
@@ -9,7 +9,7 @@
     background-color: rgb(28, 27, 27);
 }
 
-.topContainerStyle {
+.top-container {
     flex-grow: 1;
     align-self: center;
     width: 95%;
@@ -27,7 +27,7 @@
     padding: 20px;
 }
 
-.bottomContainerStyle {
+.bottom-container {
     flex-grow: 1;
     flex-direction: column;
     align-self: center;
@@ -35,7 +35,7 @@
     height: 20%;
 }
 
-.startQuitContainerStyle {
+.start-quit-container {
     flex-grow: 1;
     flex-direction: row;
     align-self: center;
@@ -43,7 +43,7 @@
     flex-shrink: 0;
 }
 
-.textStyle {
+.text-basic {
     font-size: 18px;
     color: rgb(255, 255, 255);
     -unity-font-definition: url("project://database/Library/unity%20default%20resources?fileID=10102&guid=0000000000000000e000000000000000&type=0#LegacyRuntime");
@@ -62,7 +62,7 @@
 }
 
 
-.howContainerStyle {
+.how-container {
     flex-grow: 1;
     position: relative;
     height: 50px;
@@ -70,7 +70,7 @@
     align-self: center;
 }
 
-.howButtonStyle {
+.how-button {
     width: 200px;
     align-self: center;
     font-size: 14px;

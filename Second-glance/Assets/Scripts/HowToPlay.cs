@@ -45,7 +45,7 @@ public class HowToPlay : MonoBehaviour
         label.style.whiteSpace = WhiteSpace.Normal;
 
         // Add a class selector to the Label
-        label.AddToClassList("textStyle");
+        label.AddToClassList("text-basic");
         // Add the Label to the ScrollView
         scrollView.Add(label);
         // Add the ScrollView to the top-container
@@ -58,7 +58,7 @@ public class HowToPlay : MonoBehaviour
         topContainer.Clear();
         // Create a Label
         var labelStart = new Label("Loading Game Scene...");
-        labelStart.AddToClassList("textStyle");
+        labelStart.AddToClassList("text-basic");
         // Add the Label to the container
         topContainer.Add(labelStart);
     }
