@@ -48,7 +48,7 @@ public class HowToPlay : MonoBehaviour
         label.AddToClassList("textStyle");
         // Add the Label to the ScrollView
         scrollView.Add(label);
-        // Add the ScrollView to the container
+        // Add the ScrollView to the top-container
         topContainer.Add(scrollView);
 
     }
