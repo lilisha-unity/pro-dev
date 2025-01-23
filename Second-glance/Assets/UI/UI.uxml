@@ -4,10 +4,12 @@
         <engine:VisualElement name="top-container" class="topContainerStyle" />
         <engine:VisualElement name="bottom-container" class="bottomContainerStyle">
             <engine:VisualElement name="start-quit-container" class="startQuitContainerStyle">
-                <engine:Button text="Start" name="start" class="button textStyle" />
-                <engine:Button text="Quit" name="quit" class="button textStyle" />
+                <engine:Button text="START" name="start" class="button textStyle" />
+                <engine:Button text="QUIT" name="quit" class="button textStyle" />
             </engine:VisualElement>
-            <engine:Button text="How to play?" name="how" class="button howButtonstyle textStyle" />
+            <engine:VisualElement name="how-container" class="howContainerStyle">
+                <engine:Button text="HOW TO PLAY" name="how" selectable="true" class="button textStyle howButtonStyle" />
+            </engine:VisualElement>
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>
