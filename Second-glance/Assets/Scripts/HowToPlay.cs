@@ -56,10 +56,21 @@ public class HowToPlay : MonoBehaviour
     private void LoadGameScene()
     {
         topContainer.Clear();
-        // Create a Label
-        var labelStart = new Label("Loading Game Scene...");
-        labelStart.AddToClassList("text-basic");
-        // Add the Label to the container
-        topContainer.Add(labelStart);
+        // Create a VisualElement
+        var imageContainer = new VisualElement();
+        // Add a class selector to the VisualElement
+        imageContainer.AddToClassList("image-container");
+        // Add background image to the VisualElement
+        imageContainer.style.backgroundImage = new StyleBackground(Resources.Load<Texture2D>("white-little-dog"));
+        // Add the VisualElement to the top-container
+        topContainer.Add(imageContainer);
+
+        //Create a progress bar
+        var progressBar = new ProgressBar();
+        progressBar.value = 0.5f;
+        // Add a class selector to the ProgressBar
+        progressBar.AddToClassList("progress-bar");
+        // Add the ProgressBar to the top-container
+        topContainer.Add(progressBar);
     }
 }

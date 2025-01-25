@@ -25,6 +25,7 @@
     border-left-width: 2px;
     border-color: rgb(18, 71, 71);
     padding: 20px;
+    flex-direction: column;
 }
 
 .bottom-container {
@@ -74,4 +75,16 @@
     width: 160px;
     align-self: center;
     font-size: 14px;
+}
+
+.image-container {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    /*background-image: url("project://database/Assets/Resources/colorful-flowers.png");*/
+}
+
+.progress-bar {
+
 }
