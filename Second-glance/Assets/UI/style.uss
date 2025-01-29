@@ -62,7 +62,6 @@
     background-color: rgb(18, 71, 71);
 }
 
-
 .how-container {
     flex-grow: 1;
     position: relative;
@@ -82,9 +81,24 @@
     height: 100%;
     background-size: cover;
     background-position: center;
-    /*background-image: url("project://database/Assets/Resources/colorful-flowers.png");*/
 }
 
-.progress-bar {
+.unity-progress-bar__background
+{
+    background-color: rgb(28, 27, 27);
+    border-color: rgb(18, 71, 71);
+}
 
+.unity-progress-bar__progress {
+    background-color: rgb(212, 37, 37);
+    
+}
+
+.unity-progress-bar__title {
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+}
+
+.unity-progress-bar__container {
+    border-color: red;
 }

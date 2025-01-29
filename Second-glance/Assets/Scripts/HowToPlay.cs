@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UIElements;
+using System.Collections;
 
 public class HowToPlay : MonoBehaviour
 {
@@ -60,17 +61,31 @@ public class HowToPlay : MonoBehaviour
         var imageContainer = new VisualElement();
         // Add a class selector to the VisualElement
         imageContainer.AddToClassList("image-container");
-        // Add background image to the VisualElement
-        imageContainer.style.backgroundImage = new StyleBackground(Resources.Load<Texture2D>("white-little-dog"));
         // Add the VisualElement to the top-container
         topContainer.Add(imageContainer);
 
-        //Create a progress bar
-        var progressBar = new ProgressBar();
-        progressBar.value = 0.5f;
+        // Create and initialize a progress bar
+        var progressBar = new ProgressBar { value = 0.5f };
         // Add a class selector to the ProgressBar
         progressBar.AddToClassList("progress-bar");
         // Add the ProgressBar to the top-container
         topContainer.Add(progressBar);
+
+        // Load all sprites from the Resources folder
+        var sprites = Resources.LoadAll<Sprite>("Sprites");
+
+        // Start a coroutine to change the sprite 
+        StartCoroutine(ChangeSprite(imageContainer, sprites));
+    }
+
+    private float spriteChangeInterval = 2f;
+
+    private IEnumerator ChangeSprite(VisualElement imageContainer, Sprite[] sprites)
+    {
+        foreach (var sprite in sprites)
+        {
+            imageContainer.style.backgroundImage = new StyleBackground(sprite);
+            yield return new WaitForSeconds(spriteChangeInterval);
+        }
     }
 }

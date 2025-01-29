@@ -41,6 +41,6 @@ MonoBehaviour:
   m_AtlasBlitShader: {fileID: 9101, guid: 0000000000000000f000000000000000, type: 0}
   m_RuntimeShader: {fileID: 9100, guid: 0000000000000000f000000000000000, type: 0}
   m_RuntimeWorldShader: {fileID: 9102, guid: 0000000000000000f000000000000000, type: 0}
-  m_ICUDataAsset: {fileID: 0}
+  m_ICUDataAsset: {fileID: 4900000, guid: 27924c779e9ac4c91b6239cb44cd0232, type: 3}
   forceGammaRendering: 0
   textSettings: {fileID: 0}
