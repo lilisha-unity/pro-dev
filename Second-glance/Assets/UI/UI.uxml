@@ -2,8 +2,10 @@
     <Style src="project://database/Assets/UI/style.uss?fileID=7433441132597879392&amp;guid=10c9bd921284649c9a6e2d4899a28504&amp;type=3#style" />
     <engine:VisualElement name="main-container" class="main-container" style="-unity-text-generator: advanced;">
         <engine:VisualElement name="top-container" class="top-container">
-            <engine:VisualElement class="image-container" style="background-image: resource(&apos;colorful-flowers&apos;);" />
-            <engine:ProgressBar value="30" title="my-progress" low-value="0" high-value="100" />
+            <engine:VisualElement class="image-container" style="background-image: none;">
+                <engine:Label text="Second Glance" style="height: 261px; width: 409px; display: flex; color: rgb(27, 250, 27); -unity-text-align: middle-center; -unity-font-style: bold; font-size: 50px;" />
+            </engine:VisualElement>
+            <engine:ProgressBar value="30" title="my-progress" low-value="0" high-value="100" style="display: none;" />
         </engine:VisualElement>
         <engine:VisualElement name="bottom-container" class="bottom-container">
             <engine:VisualElement name="start-quit-container" class="start-quit-container">

@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections;
+using System.Collections.Generic;
 
 public class HowToPlay : MonoBehaviour
 {
-
     private Button startButton;
     private Button quitButton;
     private Button buttonHowToPlay;
@@ -20,7 +20,6 @@ public class HowToPlay : MonoBehaviour
 
         startButton.RegisterCallback<ClickEvent>(evt => LoadGameScene());
         quitButton.RegisterCallback<ClickEvent>(evt => Application.Quit());
-
         buttonHowToPlay.RegisterCallback<ClickEvent>(ShowHowToPlay);
 
         topContainer = uiDocument.rootVisualElement.Q("top-container");
@@ -29,6 +28,7 @@ public class HowToPlay : MonoBehaviour
     private void ShowHowToPlay(ClickEvent evt)
     {
         topContainer.Clear();
+
         string howToPlayText = "1. Select <b>Start</b> to begin.\n" +
             "2. The card will change automatically after a few seconds to show a new object.\n" +
             "3. If the object on the card has appeared before, select the card to score points.\n" +
@@ -38,43 +38,34 @@ public class HowToPlay : MonoBehaviour
             "7. As the game continues, the card changes more quickly, making it harder to remember past objects!\n" +
             "8. The game ends when you run out of lives.";
 
-        // Create a ScrollView
-        var scrollView = new ScrollView(ScrollViewMode.Vertical);
-        scrollView.verticalScrollerVisibility = ScrollerVisibility.Auto;
-        // Create a Label
-        var label = new Label(howToPlayText);
-        label.style.whiteSpace = WhiteSpace.Normal;
+        var scrollView = new ScrollView(ScrollViewMode.Vertical)
+        {
+            verticalScrollerVisibility = ScrollerVisibility.Auto
+        };
 
-        // Add a class selector to the Label
+        var label = new Label(howToPlayText)
+        {
+            style = { whiteSpace = WhiteSpace.Normal }
+        };
+
         label.AddToClassList("text-basic");
-        // Add the Label to the ScrollView
         scrollView.Add(label);
-        // Add the ScrollView to the top-container
         topContainer.Add(scrollView);
-
     }
 
     private void LoadGameScene()
     {
         topContainer.Clear();
-        // Create a VisualElement
+
         var imageContainer = new VisualElement();
-        // Add a class selector to the VisualElement
         imageContainer.AddToClassList("image-container");
-        // Add the VisualElement to the top-container
         topContainer.Add(imageContainer);
 
-        // Create and initialize a progress bar
         var progressBar = new ProgressBar { value = 0.5f };
-        // Add a class selector to the ProgressBar
         progressBar.AddToClassList("progress-bar");
-        // Add the ProgressBar to the top-container
         topContainer.Add(progressBar);
 
-        // Load all sprites from the Resources folder
         var sprites = Resources.LoadAll<Sprite>("Sprites");
-
-        // Start a coroutine to change the sprite 
         StartCoroutine(ChangeSprite(imageContainer, sprites));
     }
 
@@ -82,9 +73,42 @@ public class HowToPlay : MonoBehaviour
 
     private IEnumerator ChangeSprite(VisualElement imageContainer, Sprite[] sprites)
     {
-        foreach (var sprite in sprites)
+        Dictionary<int, int> imageUsage = new Dictionary<int, int>();
+        for (int i = 1; i <= 21; i++)
         {
-            imageContainer.style.backgroundImage = new StyleBackground(sprite);
+            imageUsage[i] = 0;
+        }
+
+        var random = new System.Random();
+
+        while (true)
+        {
+            var availableImages = new List<int>();
+            foreach (var kvp in imageUsage)
+            {
+                if (kvp.Value < 2)
+                {
+                    availableImages.Add(kvp.Key);
+                }
+            }
+
+            if (availableImages.Count == 0)
+            {
+                yield break;
+            }
+
+            int randomIndex = random.Next(availableImages.Count);
+            int selectedImageNumber = availableImages[randomIndex];
+
+            var sprite = System.Array.Find(sprites, s => s.name.StartsWith(selectedImageNumber.ToString()));
+            Debug.Log($"Selected Image: {selectedImageNumber}, Usage: {imageUsage[selectedImageNumber]}");
+
+            if (sprite != null)
+            {
+                imageContainer.style.backgroundImage = new StyleBackground(sprite);
+                imageUsage[selectedImageNumber]++;
+            }
+
             yield return new WaitForSeconds(spriteChangeInterval);
         }
     }
