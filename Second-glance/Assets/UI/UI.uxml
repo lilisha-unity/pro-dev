@@ -3,7 +3,7 @@
     <engine:VisualElement name="main-container" class="main-container" style="-unity-text-generator: advanced;">
         <engine:VisualElement name="top-container" class="top-container">
             <engine:VisualElement class="image-container" style="background-image: none;">
-                <engine:Label text="Second Glance" style="height: 261px; width: 409px; display: flex; color: rgb(27, 250, 27); -unity-text-align: middle-center; -unity-font-style: bold; font-size: 50px;" />
+                <engine:Label text="Second Glance" class="game-name" />
             </engine:VisualElement>
             <engine:ProgressBar value="30" title="my-progress" low-value="0" high-value="100" style="display: none;" />
         </engine:VisualElement>
