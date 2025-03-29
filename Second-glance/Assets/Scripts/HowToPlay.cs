@@ -61,12 +61,18 @@ public class HowToPlay : MonoBehaviour
         imageContainer.AddToClassList("image-container");
         topContainer.Add(imageContainer);
 
-        var progressBar = new ProgressBar { value = 0.5f };
-        progressBar.AddToClassList("progress-bar");
-        topContainer.Add(progressBar);
-
         var sprites = Resources.LoadAll<Sprite>("Sprites");
         StartCoroutine(ChangeSprite(imageContainer, sprites));
+
+        var progressBar = new ProgressBar();
+        progressBar.name = "progress-bar";
+        progressBar.style.visibility = Visibility.Visible;
+        progressBar.style.position = Position.Absolute;
+        progressBar.style.bottom = 0;
+        progressBar.style.left = 0;
+        progressBar.style.right = 0;
+        progressBar.value = 30; // Set initial value to 30
+        topContainer.Add(progressBar);
     }
 
     private float spriteChangeInterval = 2f;
