@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
 public class HowToPlay : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class HowToPlay : MonoBehaviour
     private Button quitButton;
     private Button buttonHowToPlay;
     private VisualElement topContainer;
+
+    private float spriteChangeInterval = 2f;
 
     private void OnEnable()
     {
@@ -29,14 +32,17 @@ public class HowToPlay : MonoBehaviour
     {
         topContainer.Clear();
 
-        string howToPlayText = "1. Select <b>Start</b> to begin.\n" +
-            "2. The card will change automatically after a few seconds to show a new object.\n" +
-            "3. If the object on the card has appeared before, select the card to score points.\n" +
-            "4. If it’s a new object, don’t click — just wait for the next card.\n" +
-            "5. Gain points for clicking on repeated objects.\n" +
-            "6. Lost points for clicking on new objects or missing repeated ones.\n" +
-            "7. As the game continues, the card changes more quickly, making it harder to remember past objects!\n" +
-            "8. The game ends when you run out of lives.";
+        // Load the text from the file
+        string howToPlayText = File.ReadAllText("Assets/Resources/Files/HowToPlay.txt");
+
+        // string howToPlayText = "1. Select <b>Start</b> to begin.\n" +
+        //     "2. The card will change automatically after a few seconds to show a new object.\n" +
+        //     "3. If the object on the card has appeared before, select the card to score points.\n" +
+        //     "4. If it’s a new object, don’t click — just wait for the next card.\n" +
+        //     "5. Gain points for clicking on repeated objects.\n" +
+        //     "6. Lost points for clicking on new objects or missing repeated ones.\n" +
+        //     "7. As the game continues, the card changes more quickly, making it harder to remember past objects!\n" +
+        //     "8. The game ends when you run out of lives.";
 
         var scrollView = new ScrollView(ScrollViewMode.Vertical)
         {
@@ -59,6 +65,11 @@ public class HowToPlay : MonoBehaviour
 
         var imageContainer = new VisualElement();
         imageContainer.AddToClassList("image-container");
+
+        // Set the image container to fit the screen size
+        imageContainer.style.width = Length.Percent(100);
+        imageContainer.style.height = Length.Percent(100);
+
         topContainer.Add(imageContainer);
 
         var sprites = Resources.LoadAll<Sprite>("Sprites");
@@ -75,12 +86,10 @@ public class HowToPlay : MonoBehaviour
         topContainer.Add(progressBar);
     }
 
-    private float spriteChangeInterval = 2f;
-
     private IEnumerator ChangeSprite(VisualElement imageContainer, Sprite[] sprites)
     {
         Dictionary<int, int> imageUsage = new Dictionary<int, int>();
-        for (int i = 1; i <= 21; i++)
+        for (int i = 1; i <= 22; i++)
         {
             imageUsage[i] = 0;
         }
@@ -107,7 +116,7 @@ public class HowToPlay : MonoBehaviour
             int selectedImageNumber = availableImages[randomIndex];
 
             var sprite = System.Array.Find(sprites, s => s.name.StartsWith(selectedImageNumber.ToString()));
-            Debug.Log($"Selected Image: {selectedImageNumber}, Usage: {imageUsage[selectedImageNumber]}");
+            Debug.Log($"Selected Image File: {sprite.name}, Usage: {imageUsage[selectedImageNumber]}");
 
             if (sprite != null)
             {

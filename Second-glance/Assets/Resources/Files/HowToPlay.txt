@@ -1,0 +1,8 @@
+1. Select <b>Start</b> to begin.
+2. The card will change automatically after a few seconds to show a new object.
+3. If the object on the card has appeared before, select the card to score points.
+4. If it’s a new object, don’t click — just wait for the next card.
+5. Gain points for clicking on repeated objects.
+6. Lost points for clicking on new objects or missing repeated ones.
+7. As the game continues, the card changes more quickly, making it harder to remember past objects!
+8. The game ends when you run out of lives.
