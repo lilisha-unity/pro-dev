@@ -3,6 +3,7 @@ using UnityEngine.UIElements;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using JetBrains.Annotations;
 
 public class HowToPlay : MonoBehaviour
 {
@@ -34,15 +35,6 @@ public class HowToPlay : MonoBehaviour
 
         // Load the text from the file
         string howToPlayText = File.ReadAllText("Assets/Resources/Files/HowToPlay.txt");
-
-        // string howToPlayText = "1. Select <b>Start</b> to begin.\n" +
-        //     "2. The card will change automatically after a few seconds to show a new object.\n" +
-        //     "3. If the object on the card has appeared before, select the card to score points.\n" +
-        //     "4. If it’s a new object, don’t click — just wait for the next card.\n" +
-        //     "5. Gain points for clicking on repeated objects.\n" +
-        //     "6. Lost points for clicking on new objects or missing repeated ones.\n" +
-        //     "7. As the game continues, the card changes more quickly, making it harder to remember past objects!\n" +
-        //     "8. The game ends when you run out of lives.";
 
         var scrollView = new ScrollView(ScrollViewMode.Vertical)
         {
@@ -109,7 +101,13 @@ public class HowToPlay : MonoBehaviour
 
             if (availableImages.Count == 0)
             {
+               
+                // All images have been used twice. Display game over on the screen.
+                GameOver();
+                // Stop the coroutine
+                StopCoroutine(ChangeSprite(imageContainer, sprites));
                 yield break;
+
             }
 
             int randomIndex = random.Next(availableImages.Count);
@@ -126,5 +124,19 @@ public class HowToPlay : MonoBehaviour
 
             yield return new WaitForSeconds(spriteChangeInterval);
         }
+
+    }
+    private void GameOver()
+    {
+        topContainer.Clear();
+        var gameOverLabel = new Label("Game Over");
+        gameOverLabel.AddToClassList("game-over");
+        topContainer.Add(gameOverLabel);
+    }
+    private void OnDisable()
+    {
+        startButton.UnregisterCallback<ClickEvent>(evt => LoadGameScene());
+        quitButton.UnregisterCallback<ClickEvent>(evt => Application.Quit());
+        buttonHowToPlay.UnregisterCallback<ClickEvent>(ShowHowToPlay);
     }
 }

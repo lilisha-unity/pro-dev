@@ -110,3 +110,13 @@
     -unity-font-style: bold;
     font-size: 50px;
 }
+
+.game-over {
+    height: 261px;
+    width: 409px;
+    display: flex;
+    color: rgb(255, 0, 0);
+    -unity-text-align: middle-center;
+    -unity-font-style: bold;
+    font-size: 50px;
+}
