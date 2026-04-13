@@ -1,0 +1,14 @@
+{
+    "asset": "efcd4376dcdeb46eca05667f2fad9413",
+    "fileName": "019d8860-df51-7878-a888-5cf217cfda50.wav",
+    "prompt": "A short, clean UI button click sound, high-pitched, satisfying.",
+    "negativePrompt": "",
+    "model": "5de0686a-fb27-40e5-9df0-28ae810d70ca",
+    "modelName": "ElevenLabs Sound Effects V2",
+    "customSeed": -1,
+    "w3CTraceId": "c930f7893fd5e308afc8f83117675e8a",
+    "feedback": 0,
+    "duration": 1.0,
+    "autoTrim": false,
+    "hasReference": false
+}

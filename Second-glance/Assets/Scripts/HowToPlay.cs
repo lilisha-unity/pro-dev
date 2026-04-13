@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
+[RequireComponent(typeof(AudioSource))]
 public class HowToPlay : MonoBehaviour
 {
     private Button startButton;
@@ -24,6 +25,12 @@ public class HowToPlay : MonoBehaviour
     private EventCallback<ClickEvent> quitAction;
     private EventCallback<ClickEvent> howAction;
 
+    [Header("Audio")]
+    private AudioSource audioSource;
+    private AudioClip clickSound;
+    private AudioClip correctSound;
+    private AudioClip penaltySound;
+
     private void OnEnable()
     {
         var uiDocument = GetComponent<UIDocument>();
@@ -32,15 +39,34 @@ public class HowToPlay : MonoBehaviour
         quitButton = uiDocument.rootVisualElement.Q("quit") as Button;
         buttonHowToPlay = uiDocument.rootVisualElement.Q("how") as Button;
 
-        startAction = evt => LoadGameScene();
-        quitAction = evt => Application.Quit();
-        howAction = ShowHowToPlay;
+        startAction = evt => { PlaySound(clickSound); LoadGameScene(); };
+        quitAction = evt => { PlaySound(clickSound); Application.Quit(); };
+        howAction = evt => { PlaySound(clickSound); ShowHowToPlay(evt); };
 
         startButton.RegisterCallback(startAction);
         quitButton.RegisterCallback(quitAction);
         buttonHowToPlay.RegisterCallback(howAction);
 
         topContainer = uiDocument.rootVisualElement.Q("top-container");
+
+        // Audio Setup
+        audioSource = GetComponent<AudioSource>();
+        LoadAudioAssets();
+    }
+
+    private void LoadAudioAssets()
+    {
+        clickSound = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/click.wav");
+        correctSound = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/correct.wav");
+        penaltySound = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/penalty.wav");
+    }
+
+    private void PlaySound(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip);
+        }
     }
 
     private void ShowHowToPlay(ClickEvent evt)
@@ -112,11 +138,13 @@ public class HowToPlay : MonoBehaviour
         if (isRepeat)
         {
             score += 10;
+            PlaySound(correctSound);
             Debug.Log("Correct! Score: " + score);
         }
         else
         {
             lives--;
+            PlaySound(penaltySound);
             Debug.Log("Wrong! Life lost. Lives: " + lives);
         }
 
@@ -181,6 +209,7 @@ public class HowToPlay : MonoBehaviour
             if (isRepeat && !clickedThisTurn)
             {
                 lives--;
+                PlaySound(penaltySound);
                 Debug.Log("Missed a repeat! Lives: " + lives);
                 UpdateStats();
                 if (lives <= 0)

@@ -1,0 +1,14 @@
+{
+    "asset": "aa7fae88b9cc14574b286c0f7b3824ce",
+    "fileName": "019d8860-034a-79cb-a69a-24ced886d704.wav",
+    "prompt": "A short, positive, sparkly chime or 'ding' sound for a correct match.",
+    "negativePrompt": "",
+    "model": "5de0686a-fb27-40e5-9df0-28ae810d70ca",
+    "modelName": "ElevenLabs Sound Effects V2",
+    "customSeed": -1,
+    "w3CTraceId": "d45f69724264fd6dbb3991d1ae2b1cc2",
+    "feedback": 0,
+    "duration": 1.0,
+    "autoTrim": false,
+    "hasReference": false
+}
