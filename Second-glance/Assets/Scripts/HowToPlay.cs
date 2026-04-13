@@ -30,6 +30,7 @@ public class HowToPlay : MonoBehaviour
     private AudioClip clickSound;
     private AudioClip correctSound;
     private AudioClip penaltySound;
+    private AudioClip backgroundMusic;
 
     private void OnEnable()
     {
@@ -52,6 +53,7 @@ public class HowToPlay : MonoBehaviour
         // Audio Setup
         audioSource = GetComponent<AudioSource>();
         LoadAudioAssets();
+        PlayBackgroundMusic();
     }
 
     private void LoadAudioAssets()
@@ -59,6 +61,18 @@ public class HowToPlay : MonoBehaviour
         clickSound = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/click.wav");
         correctSound = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/correct.wav");
         penaltySound = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/penalty.wav");
+        backgroundMusic = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/background_music.wav");
+    }
+
+    private void PlayBackgroundMusic()
+    {
+        if (audioSource != null && backgroundMusic != null)
+        {
+            audioSource.clip = backgroundMusic;
+            audioSource.loop = true;
+            audioSource.volume = 0.5f; // Keep music volume balanced
+            audioSource.Play();
+        }
     }
 
     private void PlaySound(AudioClip clip)
@@ -247,5 +261,10 @@ public class HowToPlay : MonoBehaviour
         if (startButton != null) startButton.UnregisterCallback(startAction);
         if (quitButton != null) quitButton.UnregisterCallback(quitAction);
         if (buttonHowToPlay != null) buttonHowToPlay.UnregisterCallback(howAction);
+        
+        if (audioSource != null)
+        {
+            audioSource.Stop();
+        }
     }
 }

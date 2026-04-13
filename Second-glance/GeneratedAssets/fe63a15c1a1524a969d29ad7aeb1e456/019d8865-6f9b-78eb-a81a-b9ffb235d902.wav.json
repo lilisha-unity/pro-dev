@@ -1,0 +1,14 @@
+{
+    "asset": "fe63a15c1a1524a969d29ad7aeb1e456",
+    "fileName": "019d8865-6f9b-78eb-a81a-b9ffb235d902.wav",
+    "prompt": "A slightly mysterious, ambient, lo-fi electronic background track for a memory game. Rhythmic but chill, seamless loop.",
+    "negativePrompt": "",
+    "model": "7df9b85a-1695-49f7-89bf-988208d5a3bc",
+    "modelName": "Meta MusicGen",
+    "customSeed": -1,
+    "w3CTraceId": "95693cc3d1e7ff592181fe28b5baa1be",
+    "feedback": 0,
+    "duration": 10.0,
+    "autoTrim": false,
+    "hasReference": false
+}
