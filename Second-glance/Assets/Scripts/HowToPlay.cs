@@ -3,7 +3,6 @@ using UnityEngine.UIElements;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using JetBrains.Annotations;
 
 public class HowToPlay : MonoBehaviour
 {
@@ -11,8 +10,19 @@ public class HowToPlay : MonoBehaviour
     private Button quitButton;
     private Button buttonHowToPlay;
     private VisualElement topContainer;
+    private Label scoreLabel;
+    private Label livesLabel;
 
     private float spriteChangeInterval = 2f;
+    private int score = 0;
+    private int lives = 3;
+    private HashSet<int> seenImages = new HashSet<int>();
+    private bool clickedThisTurn = false;
+    private int currentImageNumber = -1;
+
+    private EventCallback<ClickEvent> startAction;
+    private EventCallback<ClickEvent> quitAction;
+    private EventCallback<ClickEvent> howAction;
 
     private void OnEnable()
     {
@@ -22,15 +32,20 @@ public class HowToPlay : MonoBehaviour
         quitButton = uiDocument.rootVisualElement.Q("quit") as Button;
         buttonHowToPlay = uiDocument.rootVisualElement.Q("how") as Button;
 
-        startButton.RegisterCallback<ClickEvent>(evt => LoadGameScene());
-        quitButton.RegisterCallback<ClickEvent>(evt => Application.Quit());
-        buttonHowToPlay.RegisterCallback<ClickEvent>(ShowHowToPlay);
+        startAction = evt => LoadGameScene();
+        quitAction = evt => Application.Quit();
+        howAction = ShowHowToPlay;
+
+        startButton.RegisterCallback(startAction);
+        quitButton.RegisterCallback(quitAction);
+        buttonHowToPlay.RegisterCallback(howAction);
 
         topContainer = uiDocument.rootVisualElement.Q("top-container");
     }
 
     private void ShowHowToPlay(ClickEvent evt)
     {
+        StopAllCoroutines();
         topContainer.Clear();
 
         // Load the text from the file
@@ -53,15 +68,28 @@ public class HowToPlay : MonoBehaviour
 
     private void LoadGameScene()
     {
+        StopAllCoroutines();
         topContainer.Clear();
+        score = 0;
+        lives = 3;
+        seenImages.Clear();
+
+        // Stats Container
+        var statsContainer = new VisualElement { style = { flexDirection = FlexDirection.Row, justifyContent = Justify.SpaceBetween, marginBottom = 10 } };
+        scoreLabel = new Label($"Score: {score}");
+        scoreLabel.AddToClassList("text-basic");
+        livesLabel = new Label($"Lives: {lives}");
+        livesLabel.AddToClassList("text-basic");
+        statsContainer.Add(scoreLabel);
+        statsContainer.Add(livesLabel);
+        topContainer.Add(statsContainer);
 
         var imageContainer = new VisualElement();
         imageContainer.AddToClassList("image-container");
+        imageContainer.style.flexGrow = 1;
 
-        // Set the image container to fit the screen size
-        imageContainer.style.width = Length.Percent(100);
-        imageContainer.style.height = Length.Percent(100);
-
+        // Click detection on the image container
+        imageContainer.RegisterCallback<ClickEvent>(OnImageClicked);
         topContainer.Add(imageContainer);
 
         var sprites = Resources.LoadAll<Sprite>("Sprites");
@@ -70,73 +98,125 @@ public class HowToPlay : MonoBehaviour
         var progressBar = new ProgressBar();
         progressBar.name = "progress-bar";
         progressBar.style.visibility = Visibility.Visible;
-        progressBar.style.position = Position.Absolute;
-        progressBar.style.bottom = 0;
-        progressBar.style.left = 0;
-        progressBar.style.right = 0;
-        progressBar.value = 30; // Set initial value to 30
+        progressBar.value = 100; // Reset progress bar
         topContainer.Add(progressBar);
+    }
+
+    private void OnImageClicked(ClickEvent evt)
+    {
+        if (clickedThisTurn || currentImageNumber == -1) return;
+
+        clickedThisTurn = true;
+        bool isRepeat = seenImages.Contains(currentImageNumber);
+
+        if (isRepeat)
+        {
+            score += 10;
+            Debug.Log("Correct! Score: " + score);
+        }
+        else
+        {
+            lives--;
+            Debug.Log("Wrong! Life lost. Lives: " + lives);
+        }
+
+        UpdateStats();
+
+        if (lives <= 0)
+        {
+            GameOver("Game Over - No Lives Left");
+        }
+    }
+
+    private void UpdateStats()
+    {
+        if (scoreLabel != null) scoreLabel.text = $"Score: {score}";
+        if (livesLabel != null) livesLabel.text = $"Lives: {lives}";
     }
 
     private IEnumerator ChangeSprite(VisualElement imageContainer, Sprite[] sprites)
     {
         Dictionary<int, int> imageUsage = new Dictionary<int, int>();
-        for (int i = 1; i <= 22; i++)
-        {
-            imageUsage[i] = 0;
-        }
+        for (int i = 1; i <= 22; i++) imageUsage[i] = 0;
 
         var random = new System.Random();
 
-        while (true)
+        while (lives > 0)
         {
             var availableImages = new List<int>();
             foreach (var kvp in imageUsage)
             {
-                if (kvp.Value < 2)
-                {
-                    availableImages.Add(kvp.Key);
-                }
+                if (kvp.Value < 2) availableImages.Add(kvp.Key);
             }
 
             if (availableImages.Count == 0)
             {
-               
-                // All images have been used twice. Display game over on the screen.
-                GameOver();
-                // Stop the coroutine
-                StopCoroutine(ChangeSprite(imageContainer, sprites));
+                GameOver("Victory! All images cleared.");
                 yield break;
-
             }
 
             int randomIndex = random.Next(availableImages.Count);
             int selectedImageNumber = availableImages[randomIndex];
+            currentImageNumber = selectedImageNumber;
+            clickedThisTurn = false;
 
             var sprite = System.Array.Find(sprites, s => s.name.StartsWith(selectedImageNumber.ToString()));
-            Debug.Log($"Selected Image File: {sprite.name}, Usage: {imageUsage[selectedImageNumber]}");
-
             if (sprite != null)
             {
                 imageContainer.style.backgroundImage = new StyleBackground(sprite);
-                imageUsage[selectedImageNumber]++;
             }
 
-            yield return new WaitForSeconds(spriteChangeInterval);
-        }
+            // Wait for interval or click
+            float timer = 0;
+            var progressBar = topContainer.Q<ProgressBar>("progress-bar");
+            while (timer < spriteChangeInterval && !clickedThisTurn)
+            {
+                timer += Time.deltaTime;
+                if (progressBar != null) progressBar.value = (1 - (timer / spriteChangeInterval)) * 100;
+                yield return null;
+            }
 
+            // End of turn logic
+            bool isRepeat = seenImages.Contains(selectedImageNumber);
+            if (isRepeat && !clickedThisTurn)
+            {
+                lives--;
+                Debug.Log("Missed a repeat! Lives: " + lives);
+                UpdateStats();
+                if (lives <= 0)
+                {
+                    GameOver("Game Over - Missed too many");
+                    yield break;
+                }
+            }
+
+            // Record that we've seen this image
+            seenImages.Add(selectedImageNumber);
+            imageUsage[selectedImageNumber]++;
+
+            // Short pause between images
+            imageContainer.style.backgroundImage = null;
+            yield return new WaitForSeconds(0.2f);
+        }
     }
-    private void GameOver()
+
+    private void GameOver(string message)
     {
+        StopAllCoroutines();
         topContainer.Clear();
-        var gameOverLabel = new Label("Game Over");
+        var gameOverLabel = new Label($"{message}\nFinal Score: {score}");
         gameOverLabel.AddToClassList("game-over");
+        gameOverLabel.style.fontSize = 30;
         topContainer.Add(gameOverLabel);
+
+        // Reset state
+        currentImageNumber = -1;
     }
+
     private void OnDisable()
     {
-        startButton.UnregisterCallback<ClickEvent>(evt => LoadGameScene());
-        quitButton.UnregisterCallback<ClickEvent>(evt => Application.Quit());
-        buttonHowToPlay.UnregisterCallback<ClickEvent>(ShowHowToPlay);
+        if (startButton != null) startButton.UnregisterCallback(startAction);
+        if (quitButton != null) quitButton.UnregisterCallback(quitAction);
+        if (buttonHowToPlay != null) buttonHowToPlay.UnregisterCallback(howAction);
     }
 }
