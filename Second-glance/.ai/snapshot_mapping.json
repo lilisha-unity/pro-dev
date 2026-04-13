@@ -161,6 +161,12 @@
       "conversation_id": "8b83710f-ca17-457a-b014-60f204432c1a",
       "content": "I have fixed the issue where the incorrect-click visual feedback (the red flash) could persist after the game ends.\n\n### Changes:\n- **`ClearVisualFeedback` Method**: Added a dedicated method to remove all flash-related classes (`flash-correct` and `flash-incorrect`) from the game's UI container.\n- **Robust Cleanup**: Integrated calls to `ClearVisualFeedback` in the following game state transitions:\n    - **`GameOver`**: Ensures any active flash is cleared immediately when the player loses or wins.\n    - **`LoadGameScene`**: Resets the visual state before starting a new round.\n    - **`ShowMainMenu` & `ShowHowToPlay`**: Guarantees a clean UI state when navigating between screens.\n- **Animation Safety**: Since these transitions now happen alongside `StopAllCoroutines()`, the UI state is guaranteed to be clean regardless of when the player clicks or the game ends.\n\nThe game's visual feedback is now much more reliable and won't \"stick\" between rounds!",
       "snapshot_message_type": 1
+    },
+    {
+      "message_id": "57f0ad6e-acaa-4838-96aa-c3c9d254605a",
+      "conversation_id": "8b83710f-ca17-457a-b014-60f204432c1a",
+      "content": "I have renamed all the sprites in `Assets/Resources/Sprites` to remove the numeric prefixes and underscores. Additionally, I've handled duplicate names by appending a suffix.\n\n### Sprite Renaming Summary:\n*   **Prefixes Removed**: `1_car.png` is now `car.png`, `10_flower.png` is now `flower.png`, etc.\n*   **Duplicates Handled**: Since there were multiple files for certain objects, I've renamed them uniquely:\n    *   `dog.png` and `dog_2.png`\n    *   `fish.png` and `fish_2.png`\n    *   `house.png` and `house_2.png`\n    *   `bird.png` and `bird_2.png`\n    *   ...and so on.\n\nThe game logic in `HowToPlay.cs` has already been optimized to dynamically load all sprites from the folder regardless of their names, so the game will continue to function perfectly with these cleaner filenames.",
+      "snapshot_message_type": 1
     }
   ]
 }
