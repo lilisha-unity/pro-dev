@@ -53,7 +53,7 @@ public class HowToPlay : MonoBehaviour
         // Audio Setup
         audioSource = GetComponent<AudioSource>();
         LoadAudioAssets();
-        PlayBackgroundMusic();
+        // PlayBackgroundMusic(); // Music now starts on game start button
     }
 
     private void LoadAudioAssets()
@@ -68,6 +68,8 @@ public class HowToPlay : MonoBehaviour
     {
         if (audioSource != null && backgroundMusic != null)
         {
+            if (audioSource.clip == backgroundMusic && audioSource.isPlaying) return;
+            
             audioSource.clip = backgroundMusic;
             audioSource.loop = true;
             audioSource.volume = 0.5f; // Keep music volume balanced
@@ -108,6 +110,7 @@ public class HowToPlay : MonoBehaviour
 
     private void LoadGameScene()
     {
+        PlayBackgroundMusic();
         StopAllCoroutines();
         topContainer.Clear();
         score = 0;
