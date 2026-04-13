@@ -231,6 +231,7 @@ public class HowToPlay : MonoBehaviour
         {
             score += 10;
             PlaySFX(correctSound);
+            StartCoroutine(FlashVisualFeedback("flash-correct"));
         }
         else
         {
@@ -238,10 +239,20 @@ public class HowToPlay : MonoBehaviour
             lives--;
             score = Mathf.Max(0, score - 5);
             PlaySFX(penaltySound);
+            StartCoroutine(FlashVisualFeedback("flash-incorrect"));
         }
         
         UpdateStats();
         if (lives <= 0) GameOver("Game Over - No Lives Left");
+    }
+
+    private IEnumerator FlashVisualFeedback(string className)
+    {
+        if (topContainer == null) yield break;
+        
+        topContainer.AddToClassList(className);
+        yield return new WaitForSeconds(0.15f);
+        topContainer.RemoveFromClassList(className);
     }
 
     private void UpdateStats()
@@ -285,6 +296,7 @@ public class HowToPlay : MonoBehaviour
                 lives--;
                 score = Mathf.Max(0, score - 5);
                 PlaySFX(penaltySound);
+                StartCoroutine(FlashVisualFeedback("flash-incorrect"));
                 UpdateStats();
                 if (lives <= 0) { GameOver("Game Over - Missed too many"); yield break; }
             }

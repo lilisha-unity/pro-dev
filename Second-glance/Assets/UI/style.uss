@@ -27,7 +27,19 @@
     padding: 30px;
     margin-bottom: 20px;
     overflow: hidden;
-    }
+    transition-property: border-color, background-color;
+    transition-duration: 0.15s;
+}
+
+.flash-correct {
+    border-color: var(--accent-color);
+    background-color: rgba(0, 255, 150, 0.1);
+}
+
+.flash-incorrect {
+    border-color: var(--danger-color);
+    background-color: rgba(255, 80, 80, 0.1);
+}
 
 .bottom-container {
     flex-grow: 1;
