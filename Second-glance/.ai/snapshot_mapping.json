@@ -143,6 +143,12 @@
       "conversation_id": "8b83710f-ca17-457a-b014-60f204432c1a",
       "content": "I have re-evaluated the game logic against your instructions and updated the script to be fully compliant.\n\n### Logic Verification & Updates:\n1.  **Select Start to begin**: The `LoadGameScene` method is correctly triggered by the Start button.\n2.  **Automatic card changes**: The `ChangeSprite` coroutine now handles the automatic cycling of images.\n3.  **Score for repeated objects**: Clicking an object that has appeared before (tracked in `seenImages`) now awards **+10 points**.\n4.  **Avoid clicking new objects**: Clicking a new object now results in a penalty, as per the rules.\n5.  **Penalty System (Score & Lives)**:\n    *   **Clicking a new object**: Deducts **1 life** and **5 points**.\n    *   **Missing a repeated object**: If you fail to click a repeat before the timer ends, you now lose **1 life** and **5 points** (Instruction #6).\n6.  **Progressive Difficulty (Speed Increase)**:\n    *   Added logic to increase the game's speed over time (Instruction #7).\n    *   Every **5 cards** shown, the display interval decreases by **0.1 seconds**, down to a minimum of **0.8 seconds**.\n7.  **End of Game**: The game correctly triggers the `GameOver` screen when your lives reach zero (Instruction #8).\n\n### UI Refinements:\n*   Fixed a bug where menu buttons could overlap with the game screen.\n*   Added a **\"RESTART\"** button on the Game Over screen that takes you back to the main menu.\n*   Enforced the **48px bold** font for instructions to ensure they are perfectly readable.\n\nThe game now strictly follows the provided rules and provides a challenging, polished experience!",
       "snapshot_message_type": 1
+    },
+    {
+      "message_id": "ea85f186-4b60-417e-af83-e6b173a1838e",
+      "conversation_id": "8b83710f-ca17-457a-b014-60f204432c1a",
+      "content": "The bold styling has been removed from the **How to Play** instructional text in the stylesheet, while maintaining the clear 48px font size for readability.",
+      "snapshot_message_type": 1
     }
   ]
 }
