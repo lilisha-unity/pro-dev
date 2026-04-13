@@ -18,7 +18,10 @@ public class HowToPlay : MonoBehaviour
     private Label scoreLabel;
     private Label livesLabel;
 
-    private float spriteChangeInterval = 2f;
+    private float baseSpriteChangeInterval = 2f;
+    private float minSpriteChangeInterval = 0.8f;
+    private float currentInterval;
+    
     private int score = 0;
     private int lives = 3;
     private HashSet<string> seenImages = new HashSet<string>();
@@ -126,7 +129,6 @@ public class HowToPlay : MonoBehaviour
         imageContainer.Add(label);
         topContainer.Add(imageContainer);
         
-        // Show start/how buttons if they were hidden
         startButton.style.display = DisplayStyle.Flex;
         quitButton.style.display = DisplayStyle.Flex;
         buttonHowToPlay.style.display = DisplayStyle.Flex;
@@ -159,11 +161,10 @@ public class HowToPlay : MonoBehaviour
         scrollView.Add(backButton);
         topContainer.Add(scrollView);
 
-        // Hide main buttons while viewing instructions
         startButton.style.display = DisplayStyle.None;
         quitButton.style.display = DisplayStyle.None;
         buttonHowToPlay.style.display = DisplayStyle.None;
-    }
+        }
 
     private void LoadGameScene()
     {
@@ -173,6 +174,7 @@ public class HowToPlay : MonoBehaviour
 
         score = 0;
         lives = 3;
+        currentInterval = baseSpriteChangeInterval;
         seenImages.Clear();
         currentImageName = "";
 
@@ -215,7 +217,6 @@ public class HowToPlay : MonoBehaviour
         var progressBar = new ProgressBar { name = "progress-bar", value = 100 };
         topContainer.Add(progressBar);
 
-        // Hide main buttons during game
         startButton.style.display = DisplayStyle.None;
         quitButton.style.display = DisplayStyle.None;
         buttonHowToPlay.style.display = DisplayStyle.None;
@@ -225,6 +226,7 @@ public class HowToPlay : MonoBehaviour
     {
         if (clickedThisTurn || string.IsNullOrEmpty(currentImageName)) return;
         clickedThisTurn = true;
+        
         if (seenImages.Contains(currentImageName))
         {
             score += 10;
@@ -232,9 +234,12 @@ public class HowToPlay : MonoBehaviour
         }
         else
         {
+            // Penalty for clicking new objects (as per instruction 6)
             lives--;
+            score = Mathf.Max(0, score - 5);
             PlaySFX(penaltySound);
         }
+        
         UpdateStats();
         if (lives <= 0) GameOver("Game Over - No Lives Left");
     }
@@ -247,33 +252,45 @@ public class HowToPlay : MonoBehaviour
 
     private IEnumerator ChangeSprite(VisualElement imageContainer, List<Sprite> gameDeck)
     {
+        int count = 0;
         foreach (Sprite sprite in gameDeck)
         {
             if (lives <= 0) yield break;
+            
+            // Speed up mechanic (instruction 7)
+            count++;
+            if (count % 5 == 0)
+            {
+                currentInterval = Mathf.Max(minSpriteChangeInterval, currentInterval - 0.1f);
+            }
+
             currentImageName = sprite.name;
             clickedThisTurn = false;
             imageContainer.style.backgroundImage = new StyleBackground(sprite);
-            yield return StartCoroutine(AnimateOpacity(imageContainer, 0, 1, 0.3f));
+            yield return StartCoroutine(AnimateOpacity(imageContainer, 0, 1, 0.2f));
 
             float timer = 0;
             var progressBar = topContainer.Q<ProgressBar>("progress-bar");
-            while (timer < spriteChangeInterval && !clickedThisTurn)
+            while (timer < currentInterval && !clickedThisTurn)
             {
                 timer += Time.deltaTime;
-                if (progressBar != null) progressBar.value = (1 - (timer / spriteChangeInterval)) * 100;
+                if (progressBar != null) progressBar.value = (1 - (timer / currentInterval)) * 100;
                 yield return null;
             }
 
+            // End of turn logic
             if (seenImages.Contains(currentImageName) && !clickedThisTurn)
             {
+                // Penalty for missing repeats (as per instruction 6)
                 lives--;
+                score = Mathf.Max(0, score - 5);
                 PlaySFX(penaltySound);
                 UpdateStats();
                 if (lives <= 0) { GameOver("Game Over - Missed too many"); yield break; }
             }
 
             seenImages.Add(currentImageName);
-            yield return StartCoroutine(AnimateOpacity(imageContainer, 1, 0, 0.2f));
+            yield return StartCoroutine(AnimateOpacity(imageContainer, 1, 0, 0.1f));
             imageContainer.style.backgroundImage = null;
             currentImageName = "";
             yield return new WaitForSeconds(0.1f);
