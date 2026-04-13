@@ -1,12 +1,13 @@
 {
   "dependencies": {
+    "com.unity.ai.assistant": "2.5.0-pre.2",
     "com.unity.collab-proxy": "2.5.2",
     "com.unity.feature.2d": "2.0.1",
+    "com.unity.game-data-collection": "file:/Users/lisha.li/Downloads/package",
     "com.unity.ide.rider": "3.0.34",
     "com.unity.ide.visualstudio": "2.0.22",
-    "com.unity.inputsystem": "1.11.2",
+    "com.unity.inputsystem": "1.19.0",
     "com.unity.multiplayer.center": "1.0.0",
-    "com.unity.muse.sprite": "1.1.1",
     "com.unity.render-pipelines.universal": "17.0.3",
     "com.unity.test-framework": "1.4.5",
     "com.unity.timeline": "1.8.7",
