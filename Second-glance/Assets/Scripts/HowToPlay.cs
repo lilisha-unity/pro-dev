@@ -118,6 +118,7 @@ public class HowToPlay : MonoBehaviour
     private void ShowMainMenu()
     {
         StopAllCoroutines();
+        ClearVisualFeedback();
         topContainer.Clear();
         
         var imageContainer = new VisualElement();
@@ -137,6 +138,7 @@ public class HowToPlay : MonoBehaviour
     private void ShowHowToPlay()
     {
         StopAllCoroutines();
+        ClearVisualFeedback();
         topContainer.Clear();
 
         var scrollView = new ScrollView(ScrollViewMode.Vertical)
@@ -164,11 +166,12 @@ public class HowToPlay : MonoBehaviour
         startButton.style.display = DisplayStyle.None;
         quitButton.style.display = DisplayStyle.None;
         buttonHowToPlay.style.display = DisplayStyle.None;
-        }
+    }
 
     private void LoadGameScene()
     {
         StopAllCoroutines();
+        ClearVisualFeedback();
         topContainer.Clear();
         PlayBackgroundMusic();
 
@@ -255,6 +258,13 @@ public class HowToPlay : MonoBehaviour
         topContainer.RemoveFromClassList(className);
     }
 
+    private void ClearVisualFeedback()
+    {
+        if (topContainer == null) return;
+        topContainer.RemoveFromClassList("flash-correct");
+        topContainer.RemoveFromClassList("flash-incorrect");
+    }
+
     private void UpdateStats()
     {
         if (scoreLabel != null) scoreLabel.text = $"Score: {score}";
@@ -326,6 +336,7 @@ public class HowToPlay : MonoBehaviour
     {
         if (musicSource != null) musicSource.Stop();
         StopAllCoroutines();
+        ClearVisualFeedback();
         topContainer.Clear();
         var gameOverLabel = new Label($"{message}\nFinal Score: {score}");
         gameOverLabel.AddToClassList("game-over");

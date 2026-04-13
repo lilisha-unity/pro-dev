@@ -155,6 +155,12 @@
       "conversation_id": "8b83710f-ca17-457a-b014-60f204432c1a",
       "content": "I have added visual feedback for player actions to make the gameplay more reactive and satisfying.\n\n### Visual Feedback Added:\n*   **Correct Match (Green Flash)**: When you correctly click on a repeated object, the game frame's border will briefly flash green and a soft green glow will fill the background.\n*   **Incorrect Click (Red Flash)**: If you click on a new object by mistake, the frame will flash red.\n*   **Missed Opportunity (Red Flash)**: If a repeated object appears and you fail to click it before the timer runs out, the frame will also flash red to indicate the lost life and points.\n*   **Smooth Transitions**: These flashes use CSS transitions to fade in and out quickly, ensuring the feedback is punchy without being jarring.\n\nThis visual system works alongside the existing sound effects to provide a clear sense of success or failure for every action you take in \"Second Glance.\"",
       "snapshot_message_type": 1
+    },
+    {
+      "message_id": "43ddedbc-a682-43e4-878f-ca8e77afa9e5",
+      "conversation_id": "8b83710f-ca17-457a-b014-60f204432c1a",
+      "content": "I have fixed the issue where the incorrect-click visual feedback (the red flash) could persist after the game ends.\n\n### Changes:\n- **`ClearVisualFeedback` Method**: Added a dedicated method to remove all flash-related classes (`flash-correct` and `flash-incorrect`) from the game's UI container.\n- **Robust Cleanup**: Integrated calls to `ClearVisualFeedback` in the following game state transitions:\n    - **`GameOver`**: Ensures any active flash is cleared immediately when the player loses or wins.\n    - **`LoadGameScene`**: Resets the visual state before starting a new round.\n    - **`ShowMainMenu` & `ShowHowToPlay`**: Guarantees a clean UI state when navigating between screens.\n- **Animation Safety**: Since these transitions now happen alongside `StopAllCoroutines()`, the UI state is guaranteed to be clean regardless of when the player clicks or the game ends.\n\nThe game's visual feedback is now much more reliable and won't \"stick\" between rounds!",
+      "snapshot_message_type": 1
     }
   ]
 }
