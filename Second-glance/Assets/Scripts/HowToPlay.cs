@@ -179,7 +179,7 @@ public class HowToPlay : MonoBehaviour
     private IEnumerator ChangeSprite(VisualElement imageContainer, Sprite[] sprites)
     {
         Dictionary<int, int> imageUsage = new Dictionary<int, int>();
-        for (int i = 1; i <= 22; i++) imageUsage[i] = 0;
+        for (int i = 1; i <= 25; i++) imageUsage[i] = 0;
 
         var random = new System.Random();
 

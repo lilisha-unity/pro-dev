@@ -1,0 +1,27 @@
+{
+    "asset": "f63ec216794dc4450a4af44bd136864d",
+    "fileName": "019d8893-9b53-778d-a9da-1c932d12ee9a.png",
+    "prompt": "Stylized, clean, hand-painted 2D sprite of a yellow rubber duck, three-quarter view, solid color blocks, soft shading, white background, matching a toy-like 3D-to-2D rendered aesthetic. No details in background.",
+    "negativePrompt": "",
+    "model": "856245a7-19a9-46f3-864c-899b31fd5f9f",
+    "modelName": "Nano Banana - T2i",
+    "customSeed": -1,
+    "w3CTraceId": "03c1963f9735487572245f51eb24e057",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 1024,
+        "height": 1024
+    },
+    "spriteSheet": false,
+    "duration": 0.0
+}

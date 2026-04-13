@@ -1,10 +1,12 @@
 fileFormatVersion: 2
-guid: d3bbffc6375dc4d85b3da2ca31b34dc1
+guid: f63ec216794dc4450a4af44bd136864d
+labels:
+- UnityAI
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1577495200511547394
-    second: a cute little dog with a white coat on a transpare_0
+      213: -4905921623695254423
+    second: 22_rubber_duck_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,12 +48,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 1024
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,7 +102,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 22_dog
+      name: 22_rubber_duck_0
       rect:
         serializedVersion: 2
         x: 0
@@ -108,15 +110,15 @@ TextureImporter:
         width: 1024
         height: 1024
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ef720aa197c9b1ae0800000000000000
-      internalID: -1577495200511547394
+      spriteID: 96c9cb3a64aaaebb0800000000000000
+      internalID: -4905921623695254423
       vertices: []
       indices: 
       edges: []
@@ -125,7 +127,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b93dc0e21143648d086da8ef5771b165
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +137,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      22_dog: -1577495200511547394
+      22_rubber_duck_0: -4905921623695254423
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
