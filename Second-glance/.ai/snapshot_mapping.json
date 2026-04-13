@@ -1,0 +1,10 @@
+{
+  "mappings": [
+    {
+      "message_id": "INT_1",
+      "conversation_id": "8b83710f-ca17-457a-b014-60f204432c1a",
+      "content": "auto-adjust the image size when the screen size changes.",
+      "snapshot_message_type": 0
+    }
+  ]
+}
