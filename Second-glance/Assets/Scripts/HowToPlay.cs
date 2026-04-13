@@ -248,6 +248,7 @@ public class HowToPlay : MonoBehaviour
 
     private void GameOver(string message)
     {
+        if (audioSource != null) audioSource.Stop();
         StopAllCoroutines();
         topContainer.Clear();
         var gameOverLabel = new Label($"{message}\nFinal Score: {score}");
