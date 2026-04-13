@@ -95,6 +95,12 @@
       "conversation_id": "8b83710f-ca17-457a-b014-60f204432c1a",
       "content": "The text size for the score and lives are too small, make them much larger",
       "snapshot_message_type": 0
+    },
+    {
+      "message_id": "f6bb3b27-13bf-4011-8e45-819df05c4952",
+      "conversation_id": "8b83710f-ca17-457a-b014-60f204432c1a",
+      "content": "I've increased the font size for the \"Score\" and \"Lives\" labels to make them much easier to read during gameplay.\n\n### Changes:\n*   **New USS Class**: Created a `.stats-text` class in `style.uss` with a font size of **36px** and set it to **Bold**.\n*   **Script Update**: Updated `HowToPlay.cs` to apply this new `.stats-text` class to the score and lives labels when the game starts.\n\nThe stats should now be much more prominent at the top of the screen.",
+      "snapshot_message_type": 1
     }
   ]
 }

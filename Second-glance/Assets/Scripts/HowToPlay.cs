@@ -153,9 +153,9 @@ public class HowToPlay : MonoBehaviour
         // Stats Container
         var statsContainer = new VisualElement { style = { flexDirection = FlexDirection.Row, justifyContent = Justify.SpaceBetween, marginBottom = 10 } };
         scoreLabel = new Label($"Score: {score}");
-        scoreLabel.AddToClassList("text-basic");
+        scoreLabel.AddToClassList("stats-text");
         livesLabel = new Label($"Lives: {lives}");
-        livesLabel.AddToClassList("text-basic");
+        livesLabel.AddToClassList("stats-text");
         statsContainer.Add(scoreLabel);
         statsContainer.Add(livesLabel);
         topContainer.Add(statsContainer);
