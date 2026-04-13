@@ -1,0 +1,14 @@
+{
+    "asset": "39875252f3fd149a2912d063011ecfe5",
+    "fileName": "019d8908-cb5f-778c-9d52-cd63be466758.wav",
+    "prompt": "A triumphant, short orchestral victory fanfare, brass and bells, high-quality.",
+    "negativePrompt": "",
+    "model": "5de0686a-fb27-40e5-9df0-28ae810d70ca",
+    "modelName": "ElevenLabs Sound Effects V2",
+    "customSeed": -1,
+    "w3CTraceId": "506aea12142a43410b9a8fb94e0d8a2a",
+    "feedback": 0,
+    "duration": 3.0,
+    "autoTrim": false,
+    "hasReference": false
+}

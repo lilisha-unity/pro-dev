@@ -40,6 +40,7 @@ public class HowToPlay : MonoBehaviour
     private AudioClip correctSound;
     private AudioClip penaltySound;
     private AudioClip backgroundMusic;
+    private AudioClip victoryFanfare;
 
     private void OnEnable()
     {
@@ -82,17 +83,11 @@ public class HowToPlay : MonoBehaviour
         correctSound = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/correct.wav");
         penaltySound = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/penalty.wav");
         backgroundMusic = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/background_music.wav");
+        victoryFanfare = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/victory_fanfare.wav");
 #endif
-        // Cache instructions
         string path = "Assets/Resources/Files/HowToPlay.txt";
-        if (File.Exists(path))
-        {
-            instructionsText = File.ReadAllText(path);
-        }
-        else
-        {
-            instructionsText = "Instructions file not found at " + path;
-        }
+        if (File.Exists(path)) instructionsText = File.ReadAllText(path);
+        else instructionsText = "Instructions file not found at " + path;
     }
 
     private void PlayBackgroundMusic()
@@ -181,7 +176,6 @@ public class HowToPlay : MonoBehaviour
         seenImages.Clear();
         currentImageName = "";
 
-        // Stats Container
         var statsContainer = new VisualElement { style = { flexDirection = FlexDirection.Row, justifyContent = Justify.SpaceBetween, marginBottom = 10 } };
         scoreLabel = new Label($"Score: {score}");
         scoreLabel.AddToClassList("stats-text");
@@ -238,7 +232,6 @@ public class HowToPlay : MonoBehaviour
         }
         else
         {
-            // Penalty for clicking new objects (as per instruction 6)
             lives--;
             score = Mathf.Max(0, score - 5);
             PlaySFX(penaltySound);
@@ -246,13 +239,12 @@ public class HowToPlay : MonoBehaviour
         }
         
         UpdateStats();
-        if (lives <= 0) GameOver("Game Over - No Lives Left");
+        if (lives <= 0) GameOver("GAME OVER", "You ran out of lives.");
     }
 
     private IEnumerator FlashVisualFeedback(string className)
     {
         if (topContainer == null) yield break;
-        
         topContainer.AddToClassList(className);
         yield return new WaitForSeconds(0.15f);
         topContainer.RemoveFromClassList(className);
@@ -278,12 +270,8 @@ public class HowToPlay : MonoBehaviour
         {
             if (lives <= 0) yield break;
             
-            // Speed up mechanic (instruction 7)
             count++;
-            if (count % 5 == 0)
-            {
-                currentInterval = Mathf.Max(minSpriteChangeInterval, currentInterval - 0.1f);
-            }
+            if (count % 5 == 0) currentInterval = Mathf.Max(minSpriteChangeInterval, currentInterval - 0.1f);
 
             currentImageName = sprite.name;
             clickedThisTurn = false;
@@ -299,16 +287,14 @@ public class HowToPlay : MonoBehaviour
                 yield return null;
             }
 
-            // End of turn logic
             if (seenImages.Contains(currentImageName) && !clickedThisTurn)
             {
-                // Penalty for missing repeats (as per instruction 6)
                 lives--;
                 score = Mathf.Max(0, score - 5);
                 PlaySFX(penaltySound);
                 StartCoroutine(FlashVisualFeedback("flash-incorrect"));
                 UpdateStats();
-                if (lives <= 0) { GameOver("Game Over - Missed too many"); yield break; }
+                if (lives <= 0) { GameOver("GAME OVER", "A repeat was missed."); yield break; }
             }
 
             seenImages.Add(currentImageName);
@@ -317,7 +303,7 @@ public class HowToPlay : MonoBehaviour
             currentImageName = "";
             yield return new WaitForSeconds(0.1f);
         }
-        if (lives > 0) GameOver("Victory! All images cleared.");
+        if (lives > 0) Victory();
     }
 
     private IEnumerator AnimateOpacity(VisualElement element, float from, float to, float duration)
@@ -332,25 +318,97 @@ public class HowToPlay : MonoBehaviour
         element.style.opacity = to;
     }
 
-    private void GameOver(string message)
+    private void Victory()
     {
         if (musicSource != null) musicSource.Stop();
         StopAllCoroutines();
         ClearVisualFeedback();
         topContainer.Clear();
-        var gameOverLabel = new Label($"{message}\nFinal Score: {score}");
+        PlaySFX(victoryFanfare);
+
+        var titleLabel = new Label("CONGRATULATIONS!");
+        titleLabel.AddToClassList("victory-title");
+        
+        var subTitleLabel = new Label($"Victory Achieved with {lives} Lives Remaining!\nFinal Score: {score}");
+        subTitleLabel.AddToClassList("victory-subtitle");
+        subTitleLabel.AddToClassList("text-basic");
+
+        var backButton = new Button(() => { PlaySFX(clickSound); ShowMainMenu(); }) { text = "PLAY AGAIN" };
+        backButton.AddToClassList("button");
+        backButton.AddToClassList("text-basic");
+        backButton.style.width = 250;
+        backButton.style.height = 70;
+        backButton.style.alignSelf = Align.Center;
+        backButton.style.marginTop = 30;
+
+        topContainer.Add(titleLabel);
+        topContainer.Add(subTitleLabel);
+        topContainer.Add(backButton);
+
+        StartCoroutine(ConfettiBurstRoutine());
+    }
+
+    private IEnumerator ConfettiBurstRoutine()
+    {
+        Color[] colors = { Color.yellow, Color.cyan, Color.magenta, Color.green, Color.white };
+        for (int i = 0; i < 50; i++)
+        {
+            var confetti = new VisualElement();
+            confetti.AddToClassList("confetti");
+            confetti.style.backgroundColor = colors[Random.Range(0, colors.Length)];
+            confetti.style.left = Length.Percent(Random.Range(0, 100));
+            confetti.style.top = Length.Percent(Random.Range(0, 50));
+            topContainer.Add(confetti);
+
+            StartCoroutine(AnimateConfetti(confetti));
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    private IEnumerator AnimateConfetti(VisualElement c)
+    {
+        float duration = Random.Range(1.5f, 3f);
+        float elapsed = 0;
+        float drift = Random.Range(-100, 100);
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            c.style.top = Length.Percent(t * 100);
+            c.style.left = Length.Percent(c.style.left.value.value + drift * Time.deltaTime);
+            c.style.opacity = 1 - t;
+            yield return null;
+        }
+        c.RemoveFromHierarchy();
+    }
+
+    private void GameOver(string title, string message)
+    {
+        if (musicSource != null) musicSource.Stop();
+        StopAllCoroutines();
+        ClearVisualFeedback();
+        topContainer.Clear();
+        
+        var gameOverLabel = new Label(title);
         gameOverLabel.AddToClassList("game-over");
-        gameOverLabel.style.fontSize = 30;
+        
+        var messageLabel = new Label($"{message}\nFinal Score: {score}");
+        messageLabel.AddToClassList("text-basic");
+        messageLabel.style.fontSize = 24;
+        messageLabel.style.alignSelf = Align.Center;
+        messageLabel.style.marginTop = 10;
         
         var backButton = new Button(() => { PlaySFX(clickSound); ShowMainMenu(); }) { text = "RESTART" };
         backButton.AddToClassList("button");
         backButton.AddToClassList("text-basic");
-        backButton.style.width = 200;
-        backButton.style.height = 60;
+        backButton.style.width = 220;
+        backButton.style.height = 70;
         backButton.style.alignSelf = Align.Center;
-        backButton.style.marginTop = 20;
+        backButton.style.marginTop = 30;
 
         topContainer.Add(gameOverLabel);
+        topContainer.Add(messageLabel);
         topContainer.Add(backButton);
         currentImageName = "";
     }

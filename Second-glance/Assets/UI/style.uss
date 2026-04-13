@@ -161,3 +161,28 @@
     -unity-font-style: bold;
     text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
 }
+
+.victory-title {
+    font-size: 72px;
+    color: gold;
+    -unity-text-align: middle-center;
+    -unity-font-style: bold;
+    text-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
+    transition-property: scale;
+    transition-duration: 0.5s;
+}
+
+.victory-subtitle {
+    font-size: 32px;
+    color: white;
+    -unity-text-align: middle-center;
+    margin-top: 10px;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    background-color: gold;
+}
