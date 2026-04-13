@@ -101,6 +101,12 @@
       "conversation_id": "8b83710f-ca17-457a-b014-60f204432c1a",
       "content": "I've increased the font size for the \"Score\" and \"Lives\" labels to make them much easier to read during gameplay.\n\n### Changes:\n*   **New USS Class**: Created a `.stats-text` class in `style.uss` with a font size of **36px** and set it to **Bold**.\n*   **Script Update**: Updated `HowToPlay.cs` to apply this new `.stats-text` class to the score and lives labels when the game starts.\n\nThe stats should now be much more prominent at the top of the screen.",
       "snapshot_message_type": 1
+    },
+    {
+      "message_id": "ba1735e2-2bd9-43a0-981e-d11a5af61ff2",
+      "conversation_id": "8b83710f-ca17-457a-b014-60f204432c1a",
+      "content": "I have updated the UI stylesheet to make the \"Start\", \"Quit\", and \"How to Play\" buttons much larger and more readable.\n\n### Changes:\n*   **Button Size**: \n    - Increased **START** and **QUIT** buttons to **200px x 80px** with a **30px** font size.\n    - Increased the **HOW TO PLAY** button to **300px x 60px** with a **26px** font size.\n*   **Container Adjustments**: \n    - Expanded the height of the button containers and the overall `bottom-container` to accommodate the larger buttons without clipping.\n*   **Spacing**: Added margins between the Start and Quit buttons to ensure they are visually balanced.\n\nThe main menu buttons should now be much more prominent and easier to click.",
+      "snapshot_message_type": 1
     }
   ]
 }
