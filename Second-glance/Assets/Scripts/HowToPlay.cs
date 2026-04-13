@@ -4,7 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
-[RequireComponent(typeof(AudioSource))]
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 public class HowToPlay : MonoBehaviour
 {
     private Button startButton;
@@ -26,7 +29,8 @@ public class HowToPlay : MonoBehaviour
     private EventCallback<ClickEvent> howAction;
 
     [Header("Audio")]
-    private AudioSource audioSource;
+    private AudioSource musicSource;
+    private AudioSource sfxSource;
     private AudioClip clickSound;
     private AudioClip correctSound;
     private AudioClip penaltySound;
@@ -40,9 +44,9 @@ public class HowToPlay : MonoBehaviour
         quitButton = uiDocument.rootVisualElement.Q("quit") as Button;
         buttonHowToPlay = uiDocument.rootVisualElement.Q("how") as Button;
 
-        startAction = evt => { PlaySound(clickSound); LoadGameScene(); };
-        quitAction = evt => { PlaySound(clickSound); Application.Quit(); };
-        howAction = evt => { PlaySound(clickSound); ShowHowToPlay(evt); };
+        startAction = evt => { PlaySFX(clickSound); LoadGameScene(); };
+        quitAction = evt => { PlaySFX(clickSound); Application.Quit(); };
+        howAction = evt => { PlaySFX(clickSound); ShowHowToPlay(evt); };
 
         startButton.RegisterCallback(startAction);
         quitButton.RegisterCallback(quitAction);
@@ -51,41 +55,63 @@ public class HowToPlay : MonoBehaviour
         topContainer = uiDocument.rootVisualElement.Q("top-container");
 
         // Audio Setup
-        audioSource = GetComponent<AudioSource>();
+        var sources = GetComponents<AudioSource>();
+        if (sources.Length >= 2)
+        {
+            musicSource = sources[0];
+            sfxSource = sources[1];
+        }
+        else if (sources.Length == 1)
+        {
+            musicSource = sources[0];
+            sfxSource = gameObject.AddComponent<AudioSource>();
+        }
+        else
+        {
+            musicSource = gameObject.AddComponent<AudioSource>();
+            sfxSource = gameObject.AddComponent<AudioSource>();
+        }
+
         LoadAudioAssets();
     }
 
     private void LoadAudioAssets()
     {
-        clickSound = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/click.wav");
-        correctSound = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/correct.wav");
-        penaltySound = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/penalty.wav");
-        backgroundMusic = UnityEditor.AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/background_music.wav");
+#if UNITY_EDITOR
+        clickSound = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/click.wav");
+        correctSound = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/correct.wav");
+        penaltySound = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/penalty.wav");
+        backgroundMusic = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/background_music.wav");
+#endif
     }
 
     private void PlayBackgroundMusic()
     {
-        if (audioSource != null && backgroundMusic != null)
+        if (musicSource != null && backgroundMusic != null)
         {
-            // Only play if it's not already playing this specific clip
-            if (audioSource.clip == backgroundMusic && audioSource.isPlaying)
+            // If already playing, don't restart
+            if (musicSource.clip == backgroundMusic && musicSource.isPlaying)
             {
                 return;
             }
 
-            audioSource.clip = backgroundMusic;
-            audioSource.loop = true;
-            audioSource.volume = 0.5f;
-            audioSource.Play();
-            Debug.Log("Playing background music.");
+            musicSource.clip = backgroundMusic;
+            musicSource.loop = true;
+            musicSource.volume = 0.5f;
+            musicSource.Play();
+            Debug.Log("Playing background music on musicSource.");
+        }
+        else
+        {
+            Debug.LogWarning($"Cannot play music: musicSource={musicSource != null}, backgroundMusic={backgroundMusic != null}");
         }
     }
 
-    private void PlaySound(AudioClip clip)
+    private void PlaySFX(AudioClip clip)
     {
-        if (audioSource != null && clip != null)
+        if (sfxSource != null && clip != null)
         {
-            audioSource.PlayOneShot(clip);
+            sfxSource.PlayOneShot(clip);
         }
     }
 
@@ -162,13 +188,13 @@ public class HowToPlay : MonoBehaviour
         if (isRepeat)
         {
             score += 10;
-            PlaySound(correctSound);
+            PlaySFX(correctSound);
             Debug.Log("Correct! Score: " + score);
         }
         else
         {
             lives--;
-            PlaySound(penaltySound);
+            PlaySFX(penaltySound);
             Debug.Log("Wrong! Life lost. Lives: " + lives);
         }
 
@@ -233,7 +259,7 @@ public class HowToPlay : MonoBehaviour
             if (isRepeat && !clickedThisTurn)
             {
                 lives--;
-                PlaySound(penaltySound);
+                PlaySFX(penaltySound);
                 Debug.Log("Missed a repeat! Lives: " + lives);
                 UpdateStats();
                 if (lives <= 0)
@@ -255,7 +281,7 @@ public class HowToPlay : MonoBehaviour
 
     private void GameOver(string message)
     {
-        if (audioSource != null) audioSource.Stop();
+        if (musicSource != null) musicSource.Stop();
         StopAllCoroutines();
         topContainer.Clear();
         var gameOverLabel = new Label($"{message}\nFinal Score: {score}");
@@ -273,9 +299,7 @@ public class HowToPlay : MonoBehaviour
         if (quitButton != null) quitButton.UnregisterCallback(quitAction);
         if (buttonHowToPlay != null) buttonHowToPlay.UnregisterCallback(howAction);
         
-        if (audioSource != null)
-        {
-            audioSource.Stop();
-        }
+        if (musicSource != null) musicSource.Stop();
+        if (sfxSource != null) sfxSource.Stop();
     }
 }
