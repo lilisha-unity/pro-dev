@@ -158,6 +158,7 @@ public class HowToPlay : MonoBehaviour
         var imageContainer = new VisualElement();
         imageContainer.AddToClassList("image-container");
         imageContainer.style.flexGrow = 1;
+        imageContainer.style.opacity = 0; // Start invisible for fade in
 
         imageContainer.RegisterCallback<ClickEvent>(OnImageClicked);
         topContainer.Add(imageContainer);
@@ -169,12 +170,10 @@ public class HowToPlay : MonoBehaviour
             return;
         }
 
-        // Create a deck with 2 of each sprite and shuffle it
         List<Sprite> gameDeck = new List<Sprite>();
         gameDeck.AddRange(sprites);
         gameDeck.AddRange(sprites);
         
-        // Fisher-Yates shuffle
         System.Random rnd = new System.Random();
         for (int i = gameDeck.Count - 1; i > 0; i--)
         {
@@ -204,13 +203,11 @@ public class HowToPlay : MonoBehaviour
         {
             score += 10;
             PlaySFX(correctSound);
-            Debug.Log($"Correct! {currentImageName} was a repeat. Score: {score}");
         }
         else
         {
             lives--;
             PlaySFX(penaltySound);
-            Debug.Log($"Wrong! {currentImageName} was new. Lives: {lives}");
         }
 
         UpdateStats();
@@ -237,6 +234,9 @@ public class HowToPlay : MonoBehaviour
             clickedThisTurn = false;
 
             imageContainer.style.backgroundImage = new StyleBackground(sprite);
+            
+            // Fade in animation
+            yield return StartCoroutine(AnimateOpacity(imageContainer, 0, 1, 0.3f));
 
             float timer = 0;
             var progressBar = topContainer.Q<ProgressBar>("progress-bar");
@@ -249,13 +249,10 @@ public class HowToPlay : MonoBehaviour
 
             // End of turn logic
             bool isRepeat = seenImages.Contains(currentImageName);
-            
-            // Penalty if user missed a repeat
             if (isRepeat && !clickedThisTurn)
             {
                 lives--;
                 PlaySFX(penaltySound);
-                Debug.Log($"Missed a repeat of {currentImageName}! Lives: {lives}");
                 UpdateStats();
                 if (lives <= 0)
                 {
@@ -264,19 +261,32 @@ public class HowToPlay : MonoBehaviour
                 }
             }
 
-            // After showing it, add to seenImages
             seenImages.Add(currentImageName);
 
-            // Short pause between images
+            // Fade out animation
+            yield return StartCoroutine(AnimateOpacity(imageContainer, 1, 0, 0.2f));
+
             imageContainer.style.backgroundImage = null;
             currentImageName = "";
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.1f);
         }
 
         if (lives > 0)
         {
             GameOver("Victory! All images cleared.");
         }
+    }
+
+    private IEnumerator AnimateOpacity(VisualElement element, float from, float to, float duration)
+    {
+        float elapsed = 0;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            element.style.opacity = Mathf.Lerp(from, to, elapsed / duration);
+            yield return null;
+        }
+        element.style.opacity = to;
     }
 
     private void GameOver(string message)
