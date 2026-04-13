@@ -107,6 +107,12 @@
       "conversation_id": "8b83710f-ca17-457a-b014-60f204432c1a",
       "content": "I have updated the UI stylesheet to make the \"Start\", \"Quit\", and \"How to Play\" buttons much larger and more readable.\n\n### Changes:\n*   **Button Size**: \n    - Increased **START** and **QUIT** buttons to **200px x 80px** with a **30px** font size.\n    - Increased the **HOW TO PLAY** button to **300px x 60px** with a **26px** font size.\n*   **Container Adjustments**: \n    - Expanded the height of the button containers and the overall `bottom-container` to accommodate the larger buttons without clipping.\n*   **Spacing**: Added margins between the Start and Quit buttons to ensure they are visually balanced.\n\nThe main menu buttons should now be much more prominent and easier to click.",
       "snapshot_message_type": 1
+    },
+    {
+      "message_id": "1e89ecac-f640-4664-8fff-7a96d987df6c",
+      "conversation_id": "8b83710f-ca17-457a-b014-60f204432c1a",
+      "content": "I have updated the game logic in `HowToPlay.cs` to dynamically load and sequence the images as requested.\n\n### Key Improvements:\n*   **Dynamic Loading**: The game now automatically detects and loads **every** sprite in the `Resources/Sprites` folder. It no longer relies on hardcoded indices (1–25), so any new images you add to the folder will be included in the game automatically.\n*   **The \"Game Deck\" Logic**: \n    - At the start of a game, a \"deck\" is created that contains each sprite exactly twice.\n    - This deck is then shuffled using a **Fisher-Yates shuffle**, ensuring a randomized but fair experience.\n    - The game continues until you have seen every item in the deck twice (Victory!) or you lose all your lives.\n*   **Name-Based Recognition**: Switched from using numbers to using **sprite names** to track seen images. This makes the logic more reliable and eliminates errors caused by filenames that don't follow a specific numeric format.\n*   **Robust Game Loop**: \n    - **First Sight**: If it's the first time an image appears, the player should **not** click. Clicking costs a life.\n    - **Second Sight**: If it's the second time an image appears (a repeat), the player **must** click to earn points. Failing to click before the timer runs out costs a life.\n    - **Victory**: If you successfully cycle through the entire shuffled deck with lives remaining, you win!\n\nThese changes make the game much more scalable and ensure that every item in your collection is seen exactly twice per round.",
+      "snapshot_message_type": 1
     }
   ]
 }

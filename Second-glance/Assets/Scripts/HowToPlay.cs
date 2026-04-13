@@ -3,6 +3,7 @@ using UnityEngine.UIElements;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -20,9 +21,9 @@ public class HowToPlay : MonoBehaviour
     private float spriteChangeInterval = 2f;
     private int score = 0;
     private int lives = 3;
-    private HashSet<int> seenImages = new HashSet<int>();
+    private HashSet<string> seenImages = new HashSet<string>();
     private bool clickedThisTurn = false;
-    private int currentImageNumber = -1;
+    private string currentImageName = "";
 
     private EventCallback<ClickEvent> startAction;
     private EventCallback<ClickEvent> quitAction;
@@ -89,7 +90,6 @@ public class HowToPlay : MonoBehaviour
     {
         if (musicSource != null && backgroundMusic != null)
         {
-            // If already playing, don't restart
             if (musicSource.clip == backgroundMusic && musicSource.isPlaying)
             {
                 return;
@@ -99,11 +99,7 @@ public class HowToPlay : MonoBehaviour
             musicSource.loop = true;
             musicSource.volume = 0.5f;
             musicSource.Play();
-            Debug.Log("Playing background music on musicSource.");
-        }
-        else
-        {
-            Debug.LogWarning($"Cannot play music: musicSource={musicSource != null}, backgroundMusic={backgroundMusic != null}");
+            Debug.Log("Playing background music.");
         }
     }
 
@@ -120,7 +116,6 @@ public class HowToPlay : MonoBehaviour
         StopAllCoroutines();
         topContainer.Clear();
 
-        // Load the text from the file
         string howToPlayText = File.ReadAllText("Assets/Resources/Files/HowToPlay.txt");
 
         var scrollView = new ScrollView(ScrollViewMode.Vertical)
@@ -143,12 +138,12 @@ public class HowToPlay : MonoBehaviour
         StopAllCoroutines();
         topContainer.Clear();
         
-        // Ensure background music is playing
         PlayBackgroundMusic();
 
         score = 0;
         lives = 3;
         seenImages.Clear();
+        currentImageName = "";
 
         // Stats Container
         var statsContainer = new VisualElement { style = { flexDirection = FlexDirection.Row, justifyContent = Justify.SpaceBetween, marginBottom = 10 } };
@@ -164,38 +159,58 @@ public class HowToPlay : MonoBehaviour
         imageContainer.AddToClassList("image-container");
         imageContainer.style.flexGrow = 1;
 
-        // Click detection on the image container
         imageContainer.RegisterCallback<ClickEvent>(OnImageClicked);
         topContainer.Add(imageContainer);
 
         var sprites = Resources.LoadAll<Sprite>("Sprites");
-        StartCoroutine(ChangeSprite(imageContainer, sprites));
+        if (sprites.Length == 0)
+        {
+            Debug.LogError("No sprites found in Resources/Sprites!");
+            return;
+        }
+
+        // Create a deck with 2 of each sprite and shuffle it
+        List<Sprite> gameDeck = new List<Sprite>();
+        gameDeck.AddRange(sprites);
+        gameDeck.AddRange(sprites);
+        
+        // Fisher-Yates shuffle
+        System.Random rnd = new System.Random();
+        for (int i = gameDeck.Count - 1; i > 0; i--)
+        {
+            int j = rnd.Next(i + 1);
+            Sprite temp = gameDeck[i];
+            gameDeck[i] = gameDeck[j];
+            gameDeck[j] = temp;
+        }
+
+        StartCoroutine(ChangeSprite(imageContainer, gameDeck));
 
         var progressBar = new ProgressBar();
         progressBar.name = "progress-bar";
         progressBar.style.visibility = Visibility.Visible;
-        progressBar.value = 100; // Reset progress bar
+        progressBar.value = 100;
         topContainer.Add(progressBar);
     }
 
     private void OnImageClicked(ClickEvent evt)
     {
-        if (clickedThisTurn || currentImageNumber == -1) return;
+        if (clickedThisTurn || string.IsNullOrEmpty(currentImageName)) return;
 
         clickedThisTurn = true;
-        bool isRepeat = seenImages.Contains(currentImageNumber);
+        bool isRepeat = seenImages.Contains(currentImageName);
 
         if (isRepeat)
         {
             score += 10;
             PlaySFX(correctSound);
-            Debug.Log("Correct! Score: " + score);
+            Debug.Log($"Correct! {currentImageName} was a repeat. Score: {score}");
         }
         else
         {
             lives--;
             PlaySFX(penaltySound);
-            Debug.Log("Wrong! Life lost. Lives: " + lives);
+            Debug.Log($"Wrong! {currentImageName} was new. Lives: {lives}");
         }
 
         UpdateStats();
@@ -212,39 +227,17 @@ public class HowToPlay : MonoBehaviour
         if (livesLabel != null) livesLabel.text = $"Lives: {lives}";
     }
 
-    private IEnumerator ChangeSprite(VisualElement imageContainer, Sprite[] sprites)
+    private IEnumerator ChangeSprite(VisualElement imageContainer, List<Sprite> gameDeck)
     {
-        Dictionary<int, int> imageUsage = new Dictionary<int, int>();
-        for (int i = 1; i <= 25; i++) imageUsage[i] = 0;
-
-        var random = new System.Random();
-
-        while (lives > 0)
+        foreach (Sprite sprite in gameDeck)
         {
-            var availableImages = new List<int>();
-            foreach (var kvp in imageUsage)
-            {
-                if (kvp.Value < 2) availableImages.Add(kvp.Key);
-            }
+            if (lives <= 0) yield break;
 
-            if (availableImages.Count == 0)
-            {
-                GameOver("Victory! All images cleared.");
-                yield break;
-            }
-
-            int randomIndex = random.Next(availableImages.Count);
-            int selectedImageNumber = availableImages[randomIndex];
-            currentImageNumber = selectedImageNumber;
+            currentImageName = sprite.name;
             clickedThisTurn = false;
 
-            var sprite = System.Array.Find(sprites, s => s.name.StartsWith(selectedImageNumber.ToString()));
-            if (sprite != null)
-            {
-                imageContainer.style.backgroundImage = new StyleBackground(sprite);
-            }
+            imageContainer.style.backgroundImage = new StyleBackground(sprite);
 
-            // Wait for interval or click
             float timer = 0;
             var progressBar = topContainer.Q<ProgressBar>("progress-bar");
             while (timer < spriteChangeInterval && !clickedThisTurn)
@@ -255,12 +248,14 @@ public class HowToPlay : MonoBehaviour
             }
 
             // End of turn logic
-            bool isRepeat = seenImages.Contains(selectedImageNumber);
+            bool isRepeat = seenImages.Contains(currentImageName);
+            
+            // Penalty if user missed a repeat
             if (isRepeat && !clickedThisTurn)
             {
                 lives--;
                 PlaySFX(penaltySound);
-                Debug.Log("Missed a repeat! Lives: " + lives);
+                Debug.Log($"Missed a repeat of {currentImageName}! Lives: {lives}");
                 UpdateStats();
                 if (lives <= 0)
                 {
@@ -269,13 +264,18 @@ public class HowToPlay : MonoBehaviour
                 }
             }
 
-            // Record that we've seen this image
-            seenImages.Add(selectedImageNumber);
-            imageUsage[selectedImageNumber]++;
+            // After showing it, add to seenImages
+            seenImages.Add(currentImageName);
 
             // Short pause between images
             imageContainer.style.backgroundImage = null;
+            currentImageName = "";
             yield return new WaitForSeconds(0.2f);
+        }
+
+        if (lives > 0)
+        {
+            GameOver("Victory! All images cleared.");
         }
     }
 
@@ -289,8 +289,7 @@ public class HowToPlay : MonoBehaviour
         gameOverLabel.style.fontSize = 30;
         topContainer.Add(gameOverLabel);
 
-        // Reset state
-        currentImageNumber = -1;
+        currentImageName = "";
     }
 
     private void OnDisable()
