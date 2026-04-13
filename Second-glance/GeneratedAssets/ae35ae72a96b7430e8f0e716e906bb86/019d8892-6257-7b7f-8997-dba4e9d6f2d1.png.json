@@ -1,0 +1,27 @@
+{
+    "asset": "ae35ae72a96b7430e8f0e716e906bb86",
+    "fileName": "019d8892-6257-7b7f-8997-dba4e9d6f2d1.png",
+    "prompt": "Stylized green apple sprite, white background, matching hand-painted aesthetic.",
+    "negativePrompt": "",
+    "model": "856245a7-19a9-46f3-864c-899b31fd5f9f",
+    "modelName": "Nano Banana - T2i",
+    "customSeed": -1,
+    "w3CTraceId": "e13d496421cff775e097ee493634c885",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 1024,
+        "height": 1024
+    },
+    "spriteSheet": false,
+    "duration": 0.0
+}

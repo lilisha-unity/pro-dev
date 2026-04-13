@@ -1,0 +1,27 @@
+{
+    "asset": "f40054cc4a0604c7e9d89f39b77298ea",
+    "fileName": "019d887c-1e2b-757a-a84f-175047cfaf14.png",
+    "prompt": "Stylized, clean, hand-painted 2D sprite of a red bicycle, three-quarter view, solid color blocks, soft shading, white background, matching a toy-like 3D-to-2D rendered aesthetic. No details in background.",
+    "negativePrompt": "",
+    "model": "856245a7-19a9-46f3-864c-899b31fd5f9f",
+    "modelName": "Nano Banana - T2i",
+    "customSeed": -1,
+    "w3CTraceId": "2ef2bab23c4682fe6c9a266f08686219",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 1024,
+        "height": 1024
+    },
+    "spriteSheet": false,
+    "duration": 0.0
+}
