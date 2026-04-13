@@ -119,6 +119,12 @@
       "conversation_id": "8b83710f-ca17-457a-b014-60f204432c1a",
       "content": "I have implemented smooth fade transitions for the game's images to make the gameplay experience more polished.\n\n### Changes:\n- **Image Transitions**: \n    - Added a `Fade In` effect (0.3 seconds) whenever a new image appears.\n    - Added a `Fade Out` effect (0.2 seconds) before an image changes.\n- **Improved Game Loop**:\n    - Integrated the animations directly into the `ChangeSprite` coroutine, ensuring they sync perfectly with the progress bar and sprite changes.\n- **Custom Animation Helper**: \n    - Added a new `AnimateOpacity` coroutine to `HowToPlay.cs` that smoothly interpolates the `opacity` property of UI elements over time.\n\nThe transitions now provide clear visual cues for when an image is about to change, improving the overall feel of the memory game.",
       "snapshot_message_type": 1
+    },
+    {
+      "message_id": "a3ecd3b7-0789-420b-848c-aa3626789712",
+      "conversation_id": "8b83710f-ca17-457a-b014-60f204432c1a",
+      "content": "I have updated the \"How to Play\" instructions to be much larger and more user-friendly.\n\n### Key Improvements:\n1.  **Text Readability**:\n    - Created a `.how-to-play-text` class in `style.uss` with a **32px** font size and added padding to ensure the text doesn't touch the screen edges.\n    - Set the text to wrap normally within the ScrollView.\n2.  **Logic Optimization**:\n    - **Caching**: The instruction text is now loaded from the file only once when the script starts, reducing file access during gameplay.\n    - **Navigation**: Added a **\"BACK\"** button to the instructions screen and a **\"RESTART\"** button to the Game Over screen. This allows you to return to the main menu without reloading the entire scene.\n    - **Clean UI**: The main menu buttons (Start, Quit, How to Play) are now automatically hidden while you're reading instructions or playing the game to keep the screen focused.\n3.  **Visual Feedback**:\n    - The new buttons use the same enlarged styling as the main menu buttons for consistency.\n    - Click sound effects are integrated into the \"Back\" and \"Restart\" actions.",
+      "snapshot_message_type": 1
     }
   ]
 }
