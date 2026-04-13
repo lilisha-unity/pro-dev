@@ -5,6 +5,12 @@
       "conversation_id": "8b83710f-ca17-457a-b014-60f204432c1a",
       "content": "auto-adjust the image size when the screen size changes.",
       "snapshot_message_type": 0
+    },
+    {
+      "message_id": "dd877fdf-4d11-4325-a339-4f81e5611fab",
+      "conversation_id": "8b83710f-ca17-457a-b014-60f204432c1a",
+      "content": "I have updated the project to ensure the UI and its images automatically adjust when the screen size changes.\n\n### Changes Made:\n\n1.  **Panel Settings Update**: \n    - Updated `Assets/UI Toolkit/PanelSettings.asset` to use **Scale With Screen Size** (Reference Resolution: 1920x1080). This ensures the entire UI scales proportionally to the screen's resolution and aspect ratio.\n2.  **Flexible Layout**:\n    - Removed fixed `max-width` (480px) and `max-height` (800px) constraints from the `.main-container` in `Assets/UI/style.uss`. This allows the UI to expand and fill the available screen space.\n3.  **Responsive Images**:\n    - Changed the `.image-container` to use `background-size: contain`. This ensures that the images displayed (such as the game's sprites) are always fully visible and scale to fit within their container without being cropped.\n    - Updated `.game-name` and `.game-over` labels to use `flex-grow: 1` instead of fixed pixel dimensions, making them adapt to the screen size.\n4.  **USS Cleanup**:\n    - Fixed an invalid `cursor: pointer` property in the stylesheet that was causing Unity compiler warnings.",
+      "snapshot_message_type": 1
     }
   ]
 }
