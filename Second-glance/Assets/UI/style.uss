@@ -154,34 +154,38 @@
     -unity-text-align: middle-center;
     -unity-font-style: bold;
     text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+    width: 100%;
 }
 
 .game-over {
-    font-size: 80px;
+    font-size: 64px;
     color: var(--danger-color);
     -unity-text-align: middle-center;
     -unity-font-style: bold;
     text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+    width: 100%;
 }
 
 .victory-title {
-    font-size: 96px;
+    font-size: 64px;
     color: gold;
     -unity-text-align: middle-center;
     -unity-font-style: bold;
     text-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
     transition-property: scale;
     transition-duration: 0.5s;
+    width: 100%;
 }
 
 .congratulations-text {
-    font-size: 110px;
+    font-size: 72px;
     color: var(--accent-color);
     -unity-text-align: middle-center;
     -unity-font-style: bold;
     text-shadow: 0 0 20px var(--accent-color);
-    margin-bottom: 40px;
-    letter-spacing: 5px;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    width: 100%;
 }
 
 .victory-subtitle {
