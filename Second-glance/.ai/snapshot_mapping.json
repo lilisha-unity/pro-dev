@@ -179,6 +179,12 @@
       "conversation_id": "60fd5fa4-20c9-47b0-9b36-ed6530875936",
       "content": "Create three game levels: Level 1 displays 8 cards, Level 2 displays 16 cards, and Level 3 displays 25 cards. Each level runs faster than the previous one. The games starts at Level 1. If the player has one or more lives remaining after all 8 cards are shown, award the score and let the player choose to end the game or continue to the next level. Repeat for each level.",
       "snapshot_message_type": 0
+    },
+    {
+      "message_id": "INT_1",
+      "conversation_id": "6affce9f-5457-4cef-aaa3-809eed38f4a7",
+      "content": "Can you change my project to use Input System instead of Input Manager.",
+      "snapshot_message_type": 0
     }
   ]
 }
