@@ -301,10 +301,10 @@ public class GameController : MonoBehaviour
         
         var title = new Label($"LEVEL {currentLevel} COMPLETE!");
         title.AddToClassList("victory-title");
-        title.style.fontSize = 48;
         
         var scoreInfo = new Label($"Score: {score} | Lives: {lives}");
         scoreInfo.AddToClassList("victory-subtitle");
+        scoreInfo.style.marginTop = 20;
 
         var buttonContainer = new VisualElement { style = { flexDirection = FlexDirection.Row, justifyContent = Justify.Center, marginTop = 30 } };
 
@@ -362,9 +362,10 @@ public class GameController : MonoBehaviour
         
         var messageLabel = new Label($"{message}\nFinal Score: {score}");
         messageLabel.AddToClassList("text-basic");
-        messageLabel.style.fontSize = 24;
+        messageLabel.style.fontSize = 36;
         messageLabel.style.alignSelf = Align.Center;
-        messageLabel.style.marginTop = 10;
+        messageLabel.style.marginTop = 20;
+        messageLabel.style.unityTextAlign = TextAnchor.MiddleCenter;
         
         var backButton = new Button(() => { PlaySFX(clickSound); ShowMainMenu(); }) { text = "RESTART" };
         backButton.AddToClassList("button");

@@ -29,6 +29,8 @@
     overflow: hidden;
     transition-property: border-color, background-color;
     transition-duration: 0.15s;
+    align-items: center;
+    justify-content: center;
 }
 
 .flash-correct {
@@ -155,7 +157,7 @@
 }
 
 .game-over {
-    font-size: 48px;
+    font-size: 80px;
     color: var(--danger-color);
     -unity-text-align: middle-center;
     -unity-font-style: bold;
@@ -163,7 +165,7 @@
 }
 
 .victory-title {
-    font-size: 72px;
+    font-size: 96px;
     color: gold;
     -unity-text-align: middle-center;
     -unity-font-style: bold;
@@ -173,7 +175,7 @@
 }
 
 .victory-subtitle {
-    font-size: 32px;
+    font-size: 40px;
     color: white;
     -unity-text-align: middle-center;
     margin-top: 10px;

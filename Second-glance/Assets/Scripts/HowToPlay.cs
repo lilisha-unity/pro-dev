@@ -395,14 +395,15 @@ public class HowToPlay : MonoBehaviour
         
         var messageLabel = new Label($"{message}\nFinal Score: {score}");
         messageLabel.AddToClassList("text-basic");
-        messageLabel.style.fontSize = 24;
+        messageLabel.style.fontSize = 36;
         messageLabel.style.alignSelf = Align.Center;
-        messageLabel.style.marginTop = 10;
-        
+        messageLabel.style.marginTop = 20;
+        messageLabel.style.unityTextAlign = TextAnchor.MiddleCenter;
+
         var backButton = new Button(() => { PlaySFX(clickSound); ShowMainMenu(); }) { text = "RESTART" };
         backButton.AddToClassList("button");
         backButton.AddToClassList("text-basic");
-        backButton.style.width = 220;
+        backButton.style.width = 250;
         backButton.style.height = 70;
         backButton.style.alignSelf = Align.Center;
         backButton.style.marginTop = 30;
