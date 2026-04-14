@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 #if UNITY_EDITOR
@@ -77,16 +76,21 @@ public class GameController : MonoBehaviour
 
     private void LoadAssets()
     {
-#if UNITY_EDITOR
-        clickSound = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/click.wav");
-        correctSound = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/correct.wav");
-        penaltySound = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/penalty.wav");
-        backgroundMusic = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/background_music.wav");
-        victoryFanfare = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/victory_fanfare.wav");
-#endif
-        string path = "Assets/Resources/Files/HowToPlay.txt";
-        if (File.Exists(path)) instructionsText = File.ReadAllText(path);
-        else instructionsText = "Each card is shown for a brief moment. Click the card if you have seen it before in the current level! If you miss a repeat or click a new card, you lose a life.";
+        clickSound = Resources.Load<AudioClip>("Audio/click");
+        correctSound = Resources.Load<AudioClip>("Audio/correct");
+        penaltySound = Resources.Load<AudioClip>("Audio/penalty");
+        backgroundMusic = Resources.Load<AudioClip>("Audio/background_music");
+        victoryFanfare = Resources.Load<AudioClip>("Audio/victory_fanfare");
+
+        TextAsset instructionsAsset = Resources.Load<TextAsset>("Files/HowToPlay");
+        if (instructionsAsset != null)
+        {
+            instructionsText = instructionsAsset.text;
+        }
+        else
+        {
+            instructionsText = "Each card is shown for a brief moment. Click the card if you have seen it before in the current level! If you miss a repeat or click a new card, you lose a life.";
+        }
     }
 
     private void PlayBackgroundMusic()
