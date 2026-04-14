@@ -209,6 +209,12 @@
       "conversation_id": "a7ddcefb-272d-42e0-a4c3-83f619448e33",
       "content": "I have updated the game UI to center the game-over and level-completion screens and made the text significantly larger.\n\n### Summary of Changes:\n1.  **Centered Layout**: Modified the `top-container` style in `style.uss` to use `align-items: center` and `justify-content: center`. This ensures all elements on the end-game and victory screens are centered both horizontally and vertically.\n2.  **Increased Font Sizes**:\n    *   **Game Over Title**: Increased from 48px to **80px**.\n    *   **Level/Victory Title**: Increased from 72px to **96px**.\n    *   **Score/Lives Subtitle**: Increased from 32px to **40px**.\n    *   **Message Text**: Increased from 24px to **36px** in the script code.\n3.  **Removed Overrides**: Removed several hardcoded `fontSize` overrides in the scripts to allow the CSS classes in `style.uss` to correctly control the styling, making it easier to adjust in the future.\n4.  **Refined Spacing**: Added extra margins between the titles and messages to improve readability on larger screens.\n\nThe game UI will now be more prominent and clearly centered when a player wins or loses.",
       "snapshot_message_type": 1
+    },
+    {
+      "message_id": "INT_1",
+      "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
+      "content": "When player passes a level, shows congralutaion with firworks, etc.",
+      "snapshot_message_type": 0
     }
   ]
 }
