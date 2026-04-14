@@ -287,6 +287,12 @@
       "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
       "content": "If I publish my game, can I hide it from showing up by search? I only want it be available by a shared link because I am still working on it",
       "snapshot_message_type": 0
+    },
+    {
+      "message_id": "35395bd4-bef4-4a8c-8c1b-e6a09dc4c0d4",
+      "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
+      "content": "Yes, you can absolutely do that! When you publish to Unity Play, you have full control over who can see your game.\n\n### How to hide your game from search:\n1.  **Publish your build**: After you click **Publish** in the Unity Editor and the browser tab opens to your game's page on [play.unity.com](https://play.unity.com/), look for the **Visibility** section.\n2.  **Select \"Unlisted\"**: You will see three options: **Public**, **Private**, and **Unlisted**. \n    *   **Unlisted** is the exact setting you want. It hides the game from all search results and public listings on Unity Play, but anyone with the **direct URL link** can still play it.\n3.  **Update**: Scroll to the bottom and click the **Update** button to save your changes.\n\nThis is a very common workflow for developers who want to share a \"work in progress\" with friends or testers without making it globally discoverable yet. You can change this setting to **Public** later whenever you're ready for the world to see it! \n\nFor a detailed walkthrough, you can follow the official [Publish on Unity Play tutorial](https://learn.unity.com/tutorial/publish-on-unity-play) which covers these visibility settings in the \"Finalize the Project\" section.",
+      "snapshot_message_type": 1
     }
   ]
 }
