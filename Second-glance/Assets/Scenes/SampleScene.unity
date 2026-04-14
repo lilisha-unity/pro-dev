@@ -129,9 +129,9 @@ GameObject:
   m_Component:
   - component: {fileID: 216223494}
   - component: {fileID: 216223493}
-  - component: {fileID: 216223495}
   - component: {fileID: 216223496}
   - component: {fileID: 216223497}
+  - component: {fileID: 216223498}
   m_Layer: 5
   m_Name: UIDocument
   m_TagString: Untagged
@@ -177,18 +177,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &216223495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 216223492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84a88b6c5fe2d4bc4b293486169201ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &216223496
 AudioSource:
   m_ObjectHideFlags: 0
@@ -383,6 +371,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &216223498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216223492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01f25d30580140deac4fa9005e3850d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameController
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
