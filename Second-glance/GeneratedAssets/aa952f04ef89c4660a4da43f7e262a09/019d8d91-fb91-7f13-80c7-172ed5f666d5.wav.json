@@ -1,0 +1,14 @@
+{
+    "asset": "aa952f04ef89c4660a4da43f7e262a09",
+    "fileName": "019d8d91-fb91-7f13-80c7-172ed5f666d5.wav",
+    "prompt": "A quick firework explosion pop sound, followed by a slight sparkle sizzle, bright and celebratory",
+    "negativePrompt": "",
+    "model": "5de0686a-fb27-40e5-9df0-28ae810d70ca",
+    "modelName": "ElevenLabs Sound Effects V2",
+    "customSeed": -1,
+    "w3CTraceId": "a6861dacf40b7038caa70738fa8c1d97",
+    "feedback": 0,
+    "duration": 2.0,
+    "autoTrim": false,
+    "hasReference": false
+}

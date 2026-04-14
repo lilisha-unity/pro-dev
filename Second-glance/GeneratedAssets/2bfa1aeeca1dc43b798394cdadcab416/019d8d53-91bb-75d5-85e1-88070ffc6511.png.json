@@ -1,0 +1,27 @@
+{
+    "asset": "2bfa1aeeca1dc43b798394cdadcab416",
+    "fileName": "019d8d53-91bb-75d5-85e1-88070ffc6511.png",
+    "prompt": "A glowing neon firework burst particle, bright cyan and white, circular explosion, stylized, transparent background",
+    "negativePrompt": "",
+    "model": "856245a7-19a9-46f3-864c-899b31fd5f9f",
+    "modelName": "Nano Banana - T2i",
+    "customSeed": -1,
+    "w3CTraceId": "6fe02fffd131f9b492be0983e3ce5949",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 1024,
+        "height": 1024
+    },
+    "spriteSheet": false,
+    "duration": 0.0
+}

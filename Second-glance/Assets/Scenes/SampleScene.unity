@@ -383,6 +383,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01f25d30580140deac4fa9005e3850d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameController
+--- !u!1 &312558137
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 312558139}
+  - component: {fileID: 312558138}
+  m_Layer: 0
+  m_Name: FireworksController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &312558138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312558137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d3331c43e28b4672bed29e4e12e127f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FireworksController
+  fireworkPrefab: {fileID: 4733015401841279965, guid: cea74579784ff401dac6f33cbb59e010, type: 3}
+  fireworkPopSound: {fileID: 8300000, guid: aa952f04ef89c4660a4da43f7e262a09, type: 3}
+  burstCount: 8
+  delayBetweenBursts: 0.25
+  spawnAreaMin: {x: -6, y: -4}
+  spawnAreaMax: {x: 6, y: 4}
+--- !u!4 &312558139
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312558137}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,3 +661,4 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 216223494}
+  - {fileID: 312558139}

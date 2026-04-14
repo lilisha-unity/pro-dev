@@ -298,6 +298,16 @@ public class GameController : MonoBehaviour
         StopAllCoroutines();
         ClearVisualFeedback();
         topContainer.Clear();
+
+        // Trigger Fireworks
+        if (FireworksController.Instance != null)
+        {
+            FireworksController.Instance.PlayFireworks();
+        }
+        
+        var congrats = new Label("CONGRATULATIONS!");
+        congrats.AddToClassList("congratulations-text");
+        topContainer.Add(congrats);
         
         var title = new Label($"LEVEL {currentLevel} COMPLETE!");
         title.AddToClassList("victory-title");

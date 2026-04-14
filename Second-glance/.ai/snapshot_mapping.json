@@ -215,6 +215,12 @@
       "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
       "content": "When player passes a level, shows congralutaion with firworks, etc.",
       "snapshot_message_type": 0
+    },
+    {
+      "message_id": "c35a65d7-c59d-4fb9-920a-17e7b0e1339c",
+      "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
+      "content": "I've implemented a celebratory \"Level Complete\" sequence for your game. Here's a summary of the additions:\n\n### 1. Celebratory UI\n*   **Congratulations Message**: Added a large, glowing \"CONGRATULATIONS!\" label to the Level Complete screen.\n*   **UI Styling**: Created a new `.congratulations-text` class in `style.uss` with a neon-cyan glow, bold font, and wide letter spacing to match your game's aesthetic.\n\n### 2. Fireworks Visuals\n*   **Custom Particle Sprite**: Generated a new `firework_burst.png` sprite for a stylized, high-quality look.\n*   **Firework Prefab**: Created a `Firework` particle system prefab that bursts in a sphere with neon colors and fades out over time.\n*   **Fireworks Controller**: Added a `FireworksController` script and GameObject to the scene. It automatically spawns several bursts in a random area when triggered, creating a dynamic fireworks show.\n\n### 3. Sound Effects\n*   **Celebratory Pop**: Generated a `firework_pop.wav` sound effect.\n*   **Audio Integration**: The `FireworksController` now plays this pop sound for each burst, adding satisfying audio feedback to the victory.\n\n### 4. Code Integration\n*   Modified the `LevelComplete()` method in `GameController.cs` to:\n    1.  Trigger the `FireworksController` to start the show.\n    2.  Display the new \"CONGRATULATIONS!\" label alongside the level and score info.\n\nThe effects will now trigger automatically every time the player passes a level or completes the game.",
+      "snapshot_message_type": 1
     }
   ]
 }

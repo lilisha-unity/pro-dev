@@ -174,6 +174,16 @@
     transition-duration: 0.5s;
 }
 
+.congratulations-text {
+    font-size: 110px;
+    color: var(--accent-color);
+    -unity-text-align: middle-center;
+    -unity-font-style: bold;
+    text-shadow: 0 0 20px var(--accent-color);
+    margin-bottom: 40px;
+    letter-spacing: 5px;
+}
+
 .victory-subtitle {
     font-size: 40px;
     color: white;
