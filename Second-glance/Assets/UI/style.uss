@@ -133,19 +133,30 @@
 }
 
 .unity-progress-bar {
-    height: 12px;
+    height: 30px;
+    width: 100%;
+    align-self: stretch;
     margin-top: 20px;
+    border-radius: 15px;
 }
 
 .unity-progress-bar__background {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
-    border-width: 0;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.1);
+    flex-direction: row-reverse;
 }
 
 .unity-progress-bar__progress {
     background-color: var(--accent-color);
-    border-radius: 6px;
+    border-radius: 15px;
+    transition-property: width;
+    transition-duration: 0.1s;
+}
+
+.unity-progress-bar__label {
+    display: none;
 }
 
 .game-name {
