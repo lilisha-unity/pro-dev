@@ -197,6 +197,12 @@
       "conversation_id": "a7ddcefb-272d-42e0-a4c3-83f619448e33",
       "content": "Fix that when the player clicks the correct or wrong image that a background color flashes but won't go away issue.",
       "snapshot_message_type": 0
+    },
+    {
+      "message_id": "f10471e8-0ed0-44aa-b697-1db694d32492",
+      "conversation_id": "a7ddcefb-272d-42e0-a4c3-83f619448e33",
+      "content": "I have fixed the issue where the background color flash (for correct or wrong clicks) would occasionally get stuck and not disappear.\n\n### The Fix\nThe issue occurred because the game uses coroutines to add and then remove the visual feedback classes. When a game state transition happens (like a \"Game Over\" or moving to the next level), `StopAllCoroutines()` is called to clean up the game logic. If a flash coroutine was active at that moment, it would be stopped *before* it could remove the color class, leaving the background stuck in its flashed state.\n\nI implemented the following changes in `GameController.cs`:\n1.  **Added a `ClearVisualFeedback()` method** that explicitly removes both `flash-correct` and `flash-incorrect` classes from the UI.\n2.  **Integrated this cleanup** into all major screen transitions (`ShowMainMenu`, `ShowHowToPlay`, `LoadLevel`, `LevelComplete`, and `GameOver`), ensuring the UI is reset whenever the game state changes or coroutines are stopped.\n\nThis ensures that the background color always returns to its default state, regardless of how quickly the player clicks or how the game ends.",
+      "snapshot_message_type": 1
     }
   ]
 }

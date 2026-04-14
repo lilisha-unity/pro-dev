@@ -112,6 +112,7 @@ public class GameController : MonoBehaviour
     private void ShowMainMenu()
     {
         StopAllCoroutines();
+        ClearVisualFeedback();
         topContainer.Clear();
         
         var imageContainer = new VisualElement();
@@ -131,6 +132,7 @@ public class GameController : MonoBehaviour
     private void ShowHowToPlay()
     {
         StopAllCoroutines();
+        ClearVisualFeedback();
         topContainer.Clear();
 
         var scrollView = new ScrollView(ScrollViewMode.Vertical) { style = { flexGrow = 1 } };
@@ -163,6 +165,7 @@ public class GameController : MonoBehaviour
     private void LoadLevel(int level)
     {
         StopAllCoroutines();
+        ClearVisualFeedback();
         topContainer.Clear();
         PlayBackgroundMusic();
 
@@ -293,6 +296,7 @@ public class GameController : MonoBehaviour
     private void LevelComplete()
     {
         StopAllCoroutines();
+        ClearVisualFeedback();
         topContainer.Clear();
         
         var title = new Label($"LEVEL {currentLevel} COMPLETE!");
@@ -325,6 +329,13 @@ public class GameController : MonoBehaviour
         topContainer.Add(buttonContainer);
     }
 
+    private void ClearVisualFeedback()
+    {
+        if (topContainer == null) return;
+        topContainer.RemoveFromClassList("flash-correct");
+        topContainer.RemoveFromClassList("flash-incorrect");
+    }
+
     private void UpdateStats()
     {
         if (scoreLabel != null) scoreLabel.text = $"Score: {score}";
@@ -343,6 +354,7 @@ public class GameController : MonoBehaviour
     {
         if (musicSource != null) musicSource.Stop();
         StopAllCoroutines();
+        ClearVisualFeedback();
         topContainer.Clear();
         
         var gameOverLabel = new Label(title);
