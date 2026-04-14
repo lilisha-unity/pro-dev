@@ -173,6 +173,12 @@
       "conversation_id": "8b83710f-ca17-457a-b014-60f204432c1a",
       "content": "I have successfully implemented the celebration screen and fixed the code to ensure it compiles correctly.\n\n### Celebration Features:\n*   **Victory Fanfare**: A triumphant brass-and-bells sound plays upon winning.\n*   **Gold Visuals**: The victory screen uses a gold theme with a \"CONGRATULATIONS!\" title.\n*   **Dynamic Confetti**: Colorful particles rain down the screen using a custom UI Toolkit animation system.\n*   **Ranking**: Displays remaining lives and final score prominently.\n\n### Technical Fixes:\n*   Ensured the `Length` properties in `HowToPlay.cs` are assigned using `Length.Percent()` to comply with C# requirements for UI Toolkit.\n*   The UI now properly clears all visual feedback (flashes and confetti) when navigating back to the menu or restarting.\n\nThe game is now much more rewarding and polished! Happy gaming!",
       "snapshot_message_type": 1
+    },
+    {
+      "message_id": "INT_1",
+      "conversation_id": "60fd5fa4-20c9-47b0-9b36-ed6530875936",
+      "content": "Create three game levels: Level 1 displays 8 cards, Level 2 displays 16 cards, and Level 3 displays 25 cards. Each level runs faster than the previous one. The games starts at Level 1. If the player has one or more lives remaining after all 8 cards are shown, award the score and let the player choose to end the game or continue to the next level. Repeat for each level.",
+      "snapshot_message_type": 0
     }
   ]
 }
