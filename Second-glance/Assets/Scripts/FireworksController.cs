@@ -23,6 +23,7 @@ public class FireworksController : MonoBehaviour
 
     public void PlayFireworks()
     {
+        Debug.Log("Playing Fireworks!");
         if (this == null) return;
         StartCoroutine(FireworksRoutine());
     }
@@ -34,21 +35,24 @@ public class FireworksController : MonoBehaviour
             Vector3 spawnPos = new Vector3(
                 Random.Range(spawnAreaMin.x, spawnAreaMax.x),
                 Random.Range(spawnAreaMin.y, spawnAreaMax.y),
-                0
+                -1f // Slightly closer to the camera to avoid any potential background clipping
             );
 
             if (fireworkPrefab != null)
             {
                 GameObject fw = Instantiate(fireworkPrefab, spawnPos, Quaternion.identity);
-                Destroy(fw, 2f);
+                // Ensure it plays
+                var ps = fw.GetComponent<ParticleSystem>();
+                if (ps != null) ps.Play();
+                Destroy(fw, 3f);
             }
             
             if (fireworkPopSound != null && audioSource != null)
             {
-                audioSource.PlayOneShot(fireworkPopSound, 0.4f);
+                audioSource.PlayOneShot(fireworkPopSound, 0.6f);
             }
             
             yield return new WaitForSeconds(delayBetweenBursts);
         }
     }
-}
+    }

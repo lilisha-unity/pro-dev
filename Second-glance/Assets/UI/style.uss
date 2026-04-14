@@ -1,6 +1,6 @@
 :root {
-    --bg-color: rgb(20, 20, 25);
-    --panel-bg: rgb(30, 30, 35);
+    --bg-color: rgba(20, 20, 25, 0.5);
+    --panel-bg: rgba(30, 30, 35, 0.6);
     --accent-color: rgb(0, 255, 150);
     --danger-color: rgb(255, 80, 80);
     --text-color: rgb(240, 240, 240);
@@ -10,7 +10,7 @@
 
 .main-container {
     flex-grow: 1;
-    background-color: var(--bg-color);
+    background-color: rgba(20, 20, 25, 0.3);
     padding: 2%;
     align-items: center;
     justify-content: center;

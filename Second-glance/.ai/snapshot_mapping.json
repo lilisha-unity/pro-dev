@@ -227,6 +227,12 @@
       "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
       "content": "I've updated the UI styling to make the congratulations and victory text more proportional and responsive.\n\n### Changes:\n*   **Reduced Font Sizes**: \n    *   \"CONGRATULATIONS!\" text was reduced from **110px** to **72px**.\n    *   \"LEVEL COMPLETE!\" text was reduced from **96px** to **64px**.\n    *   \"GAME OVER\" text was reduced from **80px** to **64px**.\n*   **Improved Scaling**: Verified that the UI uses `PanelSettings` set to \"Scale With Screen Size\" (with a 1920x1080 reference). By reducing the base font size, the words are much less likely to overflow or appear \"too big\" on smaller resolutions.\n*   **Layout Safety**: Added `width: 100%` to these headers and reduced `letter-spacing` to ensure they fit cleanly within their containers across different aspect ratios.\n\nThe text will now appear much more balanced on the screen while still maintaining its celebratory look.",
       "snapshot_message_type": 1
+    },
+    {
+      "message_id": "aee14783-a174-4fa9-ba98-85cc6f1225b1",
+      "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
+      "content": "I've identified and fixed several potential reasons why the fireworks weren't appearing:\n\n1.  **UI Opacity**: The game's UI had a solid dark background that was covering the entire screen, effectively hiding the world-space fireworks behind it. I've updated the `style.uss` to make the UI containers semi-transparent (using `rgba` values), allowing the fireworks to be seen \"through\" the background.\n2.  **Particle Visibility**: The original firework particles were quite small. I've updated the `Firework` prefab to use much larger particles (**1.0f** instead of **0.3f**) and increased the burst count to **150** per explosion.\n3.  **Additive Rendering**: I changed the firework material to use a **URP Additive Particles** shader. This makes the fireworks glow much brighter and \"pop\" against the dark background.\n4.  **Layering and Depth**: The fireworks now spawn at `Z = -1` (closer to the camera than other world objects) and use a high `Sorting Order` (100) to ensure they render correctly.\n5.  **Robust Spawning**: I updated `FireworksController.cs` to include a manual `ps.Play()` call upon instantiation to guarantee they start immediately.\n\nTry completing a level now—you should see bright, neon-cyan bursts behind the semi-transparent \"CONGRATULATIONS!\" screen!",
+      "snapshot_message_type": 1
     }
   ]
 }
