@@ -82,6 +82,9 @@ public class GameController : MonoBehaviour
         backgroundMusic = Resources.Load<AudioClip>("Audio/background_music");
         victoryFanfare = Resources.Load<AudioClip>("Audio/victory_fanfare");
 
+        if (backgroundMusic == null) Debug.LogError("Failed to load background_music from Resources/Audio/background_music");
+        if (victoryFanfare == null) Debug.LogError("Failed to load victory_fanfare from Resources/Audio/victory_fanfare");
+
         TextAsset instructionsAsset = Resources.Load<TextAsset>("Files/HowToPlay");
         if (instructionsAsset != null)
         {
@@ -102,6 +105,12 @@ public class GameController : MonoBehaviour
             musicSource.loop = true;
             musicSource.volume = 0.5f;
             musicSource.Play();
+            Debug.Log("Started playing background music: " + backgroundMusic.name);
+        }
+        else
+        {
+            if (musicSource == null) Debug.LogWarning("PlayBackgroundMusic failed: musicSource is null");
+            if (backgroundMusic == null) Debug.LogWarning("PlayBackgroundMusic failed: backgroundMusic clip is null");
         }
     }
 
