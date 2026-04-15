@@ -335,6 +335,12 @@
       "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
       "content": "I have updated the voice-over to match your instructions exactly and switched it to a clear, high-pitched female voice.\n\n### Improvements:\n*   **Accurate Content**: I split your `HowToPlay.txt` instructions into 4 segments to ensure every point is read clearly and accurately. The voice-over now follows the 1-9 steps exactly as they appear in the file.\n*   **Female Voice**: Re-generated all audio clips using a **\"high-pitched, young female English voice\"** prompt to ensure it fits the style you wanted.\n*   **Sequential Playback**: Since the instructions are too long for a single audio file, I've updated the code in both `GameController.cs` and `HowToPlay.cs` to play the 4 clips in a continuous sequence.\n*   **Gap Control**: Added a subtle **0.4s gap** between the segments so the reading feels natural and gives the player time to absorb each section.\n*   **Audio Cleanup**: I removed the old, singular voice file and replaced it with the new `how_to_play_vo_1` through `how_to_play_vo_4` files in your `Resources` folder.\n\nYou can now test this by clicking the **How to Play** button—the full guide will be read to the player in a clear female voice while the text is displayed on the screen!",
       "snapshot_message_type": 1
+    },
+    {
+      "message_id": "5aad4588-fd25-4b63-b815-bbf07d65172d",
+      "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
+      "content": "I've re-generated and updated the voice-over files to remove any descriptive phrases. The audio now begins directly with your instructions.\n\n### Updates:\n*   **Direct Audio**: I've re-created the clips using only the instructional text (e.g., *\"1. Select Start to begin...\"*). There are no more introductory descriptions being read.\n*   **Female Voice**: All clips have been updated using a female voice-over to ensure they fit the style you're looking for.\n*   **File Sync**: The existing `how_to_play_vo_1` through `how_to_play_vo_4` files in your `Assets/Resources/Audio` folder have been replaced with these clean versions.\n\nYou can now click the **How to Play** button to hear the instructions read clearly and directly!",
+      "snapshot_message_type": 1
     }
   ]
 }
