@@ -311,6 +311,12 @@
       "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
       "content": "I've reduced the \"How to Play\" text size from **56px** to **32px** in the styling.\n\nThis provides a much more balanced look that allows the full instructions to fit comfortably within the container without being overwhelming. All other UI elements like the \"Back\" button and headers have been preserved. 100% synchronized to match this updated scale.",
       "snapshot_message_type": 1
+    },
+    {
+      "message_id": "0ae739cb-31d8-49d1-bcea-218f58957582",
+      "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
+      "content": "The \"How to Play\" text has been updated to left-align. It will now be easier to read as a standard block of text.",
+      "snapshot_message_type": 1
     }
   ]
 }
