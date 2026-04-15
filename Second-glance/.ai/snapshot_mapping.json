@@ -365,6 +365,12 @@
       "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
       "content": "Create a game splash screen, it uses the default Unity logo right now",
       "snapshot_message_type": 0
+    },
+    {
+      "message_id": "d05427d3-a210-44c7-85e9-3e789bdab78e",
+      "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
+      "content": "I've generated a professional splash screen for **Second Glance** and automatically configured it for your game's build settings!\n\n### What I did:\n1.  **Generated Image**: Created a high-quality 16:9 splash screen (`Assets/Sprites/SplashScreen.png`) with a **neon-cyan \"SECOND GLANCE\" logo** on a dark, arcade-style background.\n2.  **Configured Build Settings**: Updated your **Player Settings** to use this image as the main splash screen logo.\n3.  **Visual Polish**: Set the background to **solid black** for a sleek, cinematic transition before the game starts.\n\nNow, when you build your game (for WebGL or any other platform), this splash screen will automatically appear as the game loads! You have everything ready for a polished release!\n\nIs there anything else you'd like to add or adjust before you do your final build?",
+      "snapshot_message_type": 1
     }
   ]
 }
