@@ -40,10 +40,10 @@ public class HowToPlay : MonoBehaviour
     private AudioClip penaltySound;
     private AudioClip backgroundMusic;
     private AudioClip victoryFanfare;
-    private AudioClip howToPlayVO;
+    private List<AudioClip> howToPlayVOs = new List<AudioClip>();
 
     private void OnEnable()
-{
+    {
         var uiDocument = GetComponent<UIDocument>();
 
         startButton = uiDocument.rootVisualElement.Q("start") as Button;
@@ -83,10 +83,16 @@ public class HowToPlay : MonoBehaviour
         penaltySound = Resources.Load<AudioClip>("Audio/penalty");
         backgroundMusic = Resources.Load<AudioClip>("Audio/background_music");
         victoryFanfare = Resources.Load<AudioClip>("Audio/victory_fanfare");
-        howToPlayVO = Resources.Load<AudioClip>("Audio/how_to_play_vo");
+        
+        howToPlayVOs.Clear();
+        for (int i = 1; i <= 4; i++)
+        {
+            var vo = Resources.Load<AudioClip>($"Audio/how_to_play_vo_{i}");
+            if (vo != null) howToPlayVOs.Add(vo);
+        }
 
         TextAsset instructionsAsset = Resources.Load<TextAsset>("Files/HowToPlay");
-if (instructionsAsset != null)
+    if (instructionsAsset != null)
         {
             instructionsText = instructionsAsset.text;
         }
@@ -143,16 +149,13 @@ imageContainer.AddToClassList("image-container");
         ClearVisualFeedback();
         topContainer.Clear();
 
-        if (musicSource != null && howToPlayVO != null)
+        if (musicSource != null && howToPlayVOs.Count > 0)
         {
-            musicSource.clip = howToPlayVO;
-            musicSource.loop = false;
-            musicSource.volume = 1.0f;
-            musicSource.Play();
+            StartCoroutine(PlayVOSequence());
         }
 
         var scrollView = new ScrollView(ScrollViewMode.Vertical)
-{
+        {
             verticalScrollerVisibility = ScrollerVisibility.Auto,
             style = { flexGrow = 1 }
         };
@@ -176,6 +179,22 @@ imageContainer.AddToClassList("image-container");
         startButton.style.display = DisplayStyle.None;
         quitButton.style.display = DisplayStyle.None;
         buttonHowToPlay.style.display = DisplayStyle.None;
+    }
+
+    private IEnumerator PlayVOSequence()
+    {
+        if (musicSource == null) yield break;
+        musicSource.Stop();
+        musicSource.loop = false;
+        musicSource.volume = 1.0f;
+
+        foreach (var clip in howToPlayVOs)
+        {
+            musicSource.clip = clip;
+            musicSource.Play();
+            while (musicSource.isPlaying) yield return null;
+            yield return new WaitForSeconds(0.4f);
+        }
     }
 
     private void LoadGameScene()

@@ -39,7 +39,7 @@ public class GameController : MonoBehaviour
     private AudioClip penaltySound;
     private AudioClip backgroundMusic;
     private AudioClip victoryFanfare;
-    private AudioClip howToPlayVO;
+    private List<AudioClip> howToPlayVOs = new List<AudioClip>();
 
     private void OnEnable()
 {
@@ -82,7 +82,12 @@ public class GameController : MonoBehaviour
         penaltySound = Resources.Load<AudioClip>("Audio/penalty");
         backgroundMusic = Resources.Load<AudioClip>("Audio/background_music");
         victoryFanfare = Resources.Load<AudioClip>("Audio/victory_fanfare");
-        howToPlayVO = Resources.Load<AudioClip>("Audio/how_to_play_vo");
+        howToPlayVOs.Clear();
+        for (int i = 1; i <= 4; i++)
+        {
+            var vo = Resources.Load<AudioClip>($"Audio/how_to_play_vo_{i}");
+            if (vo != null) howToPlayVOs.Add(vo);
+        }
 
         if (backgroundMusic == null) Debug.LogError("Failed to load background_music from Resources/Audio/background_music");
 if (victoryFanfare == null) Debug.LogError("Failed to load victory_fanfare from Resources/Audio/victory_fanfare");
@@ -151,21 +156,18 @@ imageContainer.AddToClassList("image-container");
         ClearVisualFeedback();
         topContainer.Clear();
 
-        if (musicSource != null && howToPlayVO != null)
+        if (musicSource != null && howToPlayVOs.Count > 0)
         {
-            musicSource.clip = howToPlayVO;
-            musicSource.loop = false;
-            musicSource.volume = 1.0f;
-            musicSource.Play();
+            StartCoroutine(PlayVOSequence());
         }
 
         var scrollView = new ScrollView(ScrollViewMode.Vertical) { style = { flexGrow = 1 } };
-var label = new Label(instructionsText);
+        var label = new Label(instructionsText);
         label.AddToClassList("how-to-play-text");
         label.style.whiteSpace = WhiteSpace.Normal;
 
         var backButton = new Button(() => { PlaySFX(clickSound); ShowMainMenu(); }) { text = "BACK" };
-backButton.AddToClassList("button");
+        backButton.AddToClassList("button");
         backButton.style.alignSelf = Align.Center;
 
         scrollView.Add(label);
@@ -175,6 +177,22 @@ backButton.AddToClassList("button");
         startButton.style.display = DisplayStyle.None;
         quitButton.style.display = DisplayStyle.None;
         buttonHowToPlay.style.display = DisplayStyle.None;
+    }
+
+    private IEnumerator PlayVOSequence()
+    {
+        if (musicSource == null) yield break;
+        musicSource.Stop();
+        musicSource.loop = false;
+        musicSource.volume = 1.0f;
+
+        foreach (var clip in howToPlayVOs)
+        {
+            musicSource.clip = clip;
+            musicSource.Play();
+            while (musicSource.isPlaying) yield return null;
+            yield return new WaitForSeconds(0.4f); // Small gap between points
+        }
     }
 
     private void StartGame()

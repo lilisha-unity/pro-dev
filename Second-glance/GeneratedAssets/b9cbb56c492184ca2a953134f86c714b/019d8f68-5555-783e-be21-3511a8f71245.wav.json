@@ -1,0 +1,14 @@
+{
+    "asset": "b9cbb56c492184ca2a953134f86c714b",
+    "fileName": "019d8f68-5555-783e-be21-3511a8f71245.wav",
+    "prompt": "A high-pitched, young female English voice reading: '6. You earn points for selecting repeated images. 7. You lose points for selecting new images or missing repeated images.'",
+    "negativePrompt": "",
+    "model": "6be7790d-b2f4-4fe0-8ca2-76ddaaf94361",
+    "modelName": "ElevenLabs Multilingual V2",
+    "customSeed": -1,
+    "w3CTraceId": "540c07ca881f7828f5122bf99805e884",
+    "feedback": 0,
+    "duration": 10.0,
+    "autoTrim": false,
+    "hasReference": false
+}
