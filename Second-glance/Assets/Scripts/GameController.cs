@@ -83,11 +83,9 @@ public class GameController : MonoBehaviour
         penaltySound = Resources.Load<AudioClip>("Audio/penalty");
         backgroundMusic = Resources.Load<AudioClip>("Audio/background_music");
         victoryFanfare = Resources.Load<AudioClip>("Audio/victory_fanfare");
-        gameLogo = Resources.Load<Sprite>("Sprites/SplashScreen");
-gameLogo = Resources.Load<Sprite>("Sprites/SplashScreen");
-gameLogo = Resources.Load<Sprite>("Sprites/SplashScreen");
-howToPlayVOs.Clear();
-        for (int i = 1; i <= 4; i++)
+        gameLogo = Resources.Load<Sprite>("Logo/SplashScreen");
+        howToPlayVOs.Clear();
+for (int i = 1; i <= 4; i++)
         {
             var vo = Resources.Load<AudioClip>($"Audio/how_to_play_vo_{i}");
             if (vo != null) howToPlayVOs.Add(vo);
