@@ -1,8 +1,9 @@
-1. Select <b>Start</b> to begin.
-2. The card will change automatically after a few seconds to show a new object.
-3. If the object on the card has appeared before, select the card to score points.
-4. If it’s a new object, don’t click — just wait for the next card.
-5. Gain points for clicking on repeated objects.
-6. Lost points for clicking on new objects or missing repeated ones.
-7. As the game continues, the card changes more quickly, making it harder to remember past objects!
-8. The game ends when you run out of lives.
+1. Select Start to begin.
+2. The screen shows an image.
+3. You have a few seconds to memorize the image before it changes.
+4. If the image has appeared before, select the card to earn points.
+5. If the image is new, do not select it. Wait for the next card.
+6. You earn points for selecting repeated images.
+7. You lose points for selecting new images or missing repeated images.
+8. As the game continues, the card changes more quickly, making it harder to remember previous images.
+9. You start with three lives. The game ends when you run out of lives.
