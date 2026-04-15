@@ -1,0 +1,14 @@
+{
+    "asset": "ddcf5bba4cfb448ce83e19fae3908f0e",
+    "fileName": "019d8f61-c983-782c-b112-3267e809a923.wav",
+    "prompt": "A calm, clear, and professional English female voice reading the following: 'Select start to begin. Click the image if you have seen it before in the current level to earn points. If it is new, wait for the next card. You start with three lives, and the game ends if you lose them all.'",
+    "negativePrompt": "",
+    "model": "6be7790d-b2f4-4fe0-8ca2-76ddaaf94361",
+    "modelName": "ElevenLabs Multilingual V2",
+    "customSeed": -1,
+    "w3CTraceId": "c93003dc56161623cbc754a64010ac31",
+    "feedback": 0,
+    "duration": 10.0,
+    "autoTrim": false,
+    "hasReference": false
+}

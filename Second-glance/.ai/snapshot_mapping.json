@@ -323,6 +323,12 @@
       "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
       "content": "I've updated the game's audio logic to ensure the music only plays during active gameplay.\n\n### Changes:\n*   **Main Menu**: Background music now stops immediately when you return to the Main Menu (using the \"Restart,\" \"End Game,\" or \"Back\" buttons).\n*   **Victory Fanfare**: When you complete the final level (Level 3), the background music is silenced to allow the **Victory Fanfare** to play clearly.\n*   **Consistency**: Applied these fixes across both `GameController.cs` and `HowToPlay.cs` to ensure the behavior is consistent no matter which screen the player is on.\n\nThis creates a much cleaner audio experience where the music acts as a \"tension\" element that only exists while the game is actually running.",
       "snapshot_message_type": 1
+    },
+    {
+      "message_id": "9c974bbd-c73a-41c7-929a-2a419d6f857f",
+      "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
+      "content": "I've added a professional English voice-over (VO) to your \"How to Play\" screen!\n\n### Changes:\n*   **Voice-Over Generation**: I generated a high-quality, clear English female voice-over using the ElevenLabs model. It reads a concise summary of your instructions: *\"Select start to begin. Click the image if you have seen it before in the current level to earn points. If it is new, wait for the next card. You start with three lives, and the game ends if you lose them all.\"*\n*   **Automatic Playback**: The voice-over now automatically starts playing as soon as the player clicks the **How to Play** button and the instructions appear on the screen.\n*   **Clean Transitions**: \n    *   The background music is silenced while the instructions are being read to ensure the voice is perfectly audible.\n    *   The voice-over will immediately stop if the player clicks \"BACK\" or starts the game, preventing overlapping audio.\n*   **Resource Management**: The new audio clip (`how_to_play_vo.wav`) has been added to your `Assets/Resources/Audio` folder, ensuring it works perfectly in your WebGL build.\n\nYour game now has a much more interactive and accessible tutorial experience! Feel free to give it a \"Second Glance\" (and a first listen) in your next build.",
+      "snapshot_message_type": 1
     }
   ]
 }

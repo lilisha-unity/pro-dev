@@ -39,9 +39,10 @@ public class GameController : MonoBehaviour
     private AudioClip penaltySound;
     private AudioClip backgroundMusic;
     private AudioClip victoryFanfare;
+    private AudioClip howToPlayVO;
 
     private void OnEnable()
-    {
+{
         var uiDocument = GetComponent<UIDocument>();
         var root = uiDocument.rootVisualElement;
 
@@ -81,9 +82,10 @@ public class GameController : MonoBehaviour
         penaltySound = Resources.Load<AudioClip>("Audio/penalty");
         backgroundMusic = Resources.Load<AudioClip>("Audio/background_music");
         victoryFanfare = Resources.Load<AudioClip>("Audio/victory_fanfare");
+        howToPlayVO = Resources.Load<AudioClip>("Audio/how_to_play_vo");
 
         if (backgroundMusic == null) Debug.LogError("Failed to load background_music from Resources/Audio/background_music");
-        if (victoryFanfare == null) Debug.LogError("Failed to load victory_fanfare from Resources/Audio/victory_fanfare");
+if (victoryFanfare == null) Debug.LogError("Failed to load victory_fanfare from Resources/Audio/victory_fanfare");
 
         TextAsset instructionsAsset = Resources.Load<TextAsset>("Files/HowToPlay");
         if (instructionsAsset != null)
@@ -149,8 +151,16 @@ imageContainer.AddToClassList("image-container");
         ClearVisualFeedback();
         topContainer.Clear();
 
+        if (musicSource != null && howToPlayVO != null)
+        {
+            musicSource.clip = howToPlayVO;
+            musicSource.loop = false;
+            musicSource.volume = 1.0f;
+            musicSource.Play();
+        }
+
         var scrollView = new ScrollView(ScrollViewMode.Vertical) { style = { flexGrow = 1 } };
-        var label = new Label(instructionsText);
+var label = new Label(instructionsText);
         label.AddToClassList("how-to-play-text");
         label.style.whiteSpace = WhiteSpace.Normal;
 

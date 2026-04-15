@@ -40,9 +40,10 @@ public class HowToPlay : MonoBehaviour
     private AudioClip penaltySound;
     private AudioClip backgroundMusic;
     private AudioClip victoryFanfare;
+    private AudioClip howToPlayVO;
 
     private void OnEnable()
-    {
+{
         var uiDocument = GetComponent<UIDocument>();
 
         startButton = uiDocument.rootVisualElement.Q("start") as Button;
@@ -82,9 +83,10 @@ public class HowToPlay : MonoBehaviour
         penaltySound = Resources.Load<AudioClip>("Audio/penalty");
         backgroundMusic = Resources.Load<AudioClip>("Audio/background_music");
         victoryFanfare = Resources.Load<AudioClip>("Audio/victory_fanfare");
+        howToPlayVO = Resources.Load<AudioClip>("Audio/how_to_play_vo");
 
         TextAsset instructionsAsset = Resources.Load<TextAsset>("Files/HowToPlay");
-        if (instructionsAsset != null)
+if (instructionsAsset != null)
         {
             instructionsText = instructionsAsset.text;
         }
@@ -141,8 +143,16 @@ imageContainer.AddToClassList("image-container");
         ClearVisualFeedback();
         topContainer.Clear();
 
-        var scrollView = new ScrollView(ScrollViewMode.Vertical)
+        if (musicSource != null && howToPlayVO != null)
         {
+            musicSource.clip = howToPlayVO;
+            musicSource.loop = false;
+            musicSource.volume = 1.0f;
+            musicSource.Play();
+        }
+
+        var scrollView = new ScrollView(ScrollViewMode.Vertical)
+{
             verticalScrollerVisibility = ScrollerVisibility.Auto,
             style = { flexGrow = 1 }
         };
