@@ -1,0 +1,27 @@
+{
+    "asset": "e557d3129b74240c188e6da6fc8a10a7",
+    "fileName": "019d92c6-7045-72d6-b242-a73a05377c1e.jpg",
+    "prompt": "Cinematic game title card for 'SECOND GLANCE'. The words 'SECOND GLANCE' are large, centered, and glowing in vibrant neon cyan. Sci-fi digital font. Dark obsidian background with subtle light streaks. 16:9 aspect ratio, 1920x1080. High visibility text.",
+    "negativePrompt": "",
+    "model": "f722aea3-8760-4eb1-a516-e2fce6476303",
+    "modelName": "Seedream 4",
+    "customSeed": -1,
+    "w3CTraceId": "1e47996e77db20c9071407ef3a17fc7d",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 1024,
+        "height": 1024
+    },
+    "spriteSheet": false,
+    "duration": 0.0
+}

@@ -407,6 +407,12 @@
       "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
       "content": "the splash screen only shows the image with two lights not showing the image with the second glance words",
       "snapshot_message_type": 0
+    },
+    {
+      "message_id": "ef59a963-eba0-4c42-bbfc-bf39fb5c3388",
+      "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
+      "content": "I've re-generated the splash screen with a much stronger emphasis on the game title text. \n\nThe previous version likely focused too much on the \"neon lights\" and missed the words, so I used a specialized text-rendering model for this new version (`Assets/Sprites/SplashScreen_Final.png`).\n\n### What’s updated:\n*   **High-Visibility Text**: The new image features large, bold **\"SECOND GLANCE\"** text in a glowing neon-cyan sci-fi font.\n*   **Sequential Display**: I've set the build to **\"All Sequential\"** mode. This means the default Unity logo will show up first, followed by your custom \"Second Glance\" screen on a pure black background.\n*   **Clean Project**: I've removed the older, incorrect splash images to keep your project organized.\n\nYou can preview the result in **Project Settings > Player > Splash Image** by clicking the **Preview** button at the bottom. The text should now be very clear and professional!",
+      "snapshot_message_type": 1
     }
   ]
 }
