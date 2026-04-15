@@ -443,6 +443,12 @@
       "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
       "content": "I've updated the project to reflect the new folder structure!\n\n### Changes:\n1.  **Moved Asset**: I successfully moved `SplashScreen.png` from the `Resources` root into your new `Assets/Resources/Logo/` folder.\n2.  **Updated Code**: I updated `GameController.cs` to load the logo from the new subfolder (`Logo/SplashScreen`).\n3.  **Cleaned Up Script**: I also took the opportunity to clean up some redundant code lines in your `LoadAssets` method to keep the script tidy.\n\nYour logo is now safely organized in its own folder, keeping your `Sprites` folder dedicated solely to gameplay images. This is a great practice for keeping your project manageable as it grows!\n\nEverything is set for your build. Just hit **File > Build Settings > WebGL > Build** whenever you're ready!",
       "snapshot_message_type": 1
+    },
+    {
+      "message_id": "44257c23-ced8-4ab7-a928-f5e346bba1ef",
+      "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
+      "content": "I've reverted the Main Menu to its previous look!\n\n### Changes:\n1.  **Main Menu Reversion**: Removed the code that displayed the `SplashScreen.png` image in the Main Menu container. It now shows the \"Second Glance\" text label again, exactly as it was before.\n2.  **Script Cleanup**: Removed the unused `gameLogo` variable and its loading logic from `GameController.cs` to keep your code clean and efficient.\n3.  **Preserved Assets**: Kept the `SplashScreen.png` file in the `Assets/Resources/Logo` folder, so it is still available for your build's splash screen settings without interfering with the in-game UI.\n\nYour game now has the classic \"Second Glance\" title screen back, but with all the other improvements like fireworks and voice-overs still active WebGL compatibility still in place. Ready for fireworks, WebGL, and voice-over still intact!",
+      "snapshot_message_type": 1
     }
   ]
 }
