@@ -1,0 +1,14 @@
+{
+    "asset": "29cc4c678219542b5a638c0b205ceb0e",
+    "fileName": "019d8f8d-8aaa-765f-8b5c-c3694e41a077.wav",
+    "prompt": "Clear, expressive female voice reading: '6. You earn points for selecting repeated images. 7. You lose points for selecting new images or missing repeated images.'",
+    "negativePrompt": "",
+    "model": "6be7790d-b2f4-4fe0-8ca2-76ddaaf94361",
+    "modelName": "ElevenLabs Multilingual V2",
+    "customSeed": -1,
+    "w3CTraceId": "2a90840cec51404b2a675cb11f2fa983",
+    "feedback": 0,
+    "duration": 10.0,
+    "autoTrim": false,
+    "hasReference": false
+}

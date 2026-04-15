@@ -1,0 +1,14 @@
+{
+    "asset": "3d59330a308e34c42bd9fd35cfc68c61",
+    "fileName": "019d8f91-618e-7474-8bf8-07b5203ad053.wav",
+    "prompt": "Clear, expressive female voice reading: '4. If the image has appeared before, select the card to earn points. 5. If the image is new, do not select it. Wait for the next card.'",
+    "negativePrompt": "",
+    "model": "6be7790d-b2f4-4fe0-8ca2-76ddaaf94361",
+    "modelName": "ElevenLabs Multilingual V2",
+    "customSeed": -1,
+    "w3CTraceId": "b9851218617e9e128fd63b3d85e34255",
+    "feedback": 0,
+    "duration": 10.0,
+    "autoTrim": false,
+    "hasReference": false
+}

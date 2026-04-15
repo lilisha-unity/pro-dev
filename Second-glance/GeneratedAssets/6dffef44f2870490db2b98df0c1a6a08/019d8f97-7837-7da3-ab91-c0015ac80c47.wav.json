@@ -1,0 +1,14 @@
+{
+    "asset": "6dffef44f2870490db2b98df0c1a6a08",
+    "fileName": "019d8f97-7837-7da3-ab91-c0015ac80c47.wav",
+    "prompt": "Clear, expressive female voice reading: '8. As the game continues, the card changes more quickly. 9. You start with three lives. The game ends when you run out of lives.'",
+    "negativePrompt": "",
+    "model": "6be7790d-b2f4-4fe0-8ca2-76ddaaf94361",
+    "modelName": "ElevenLabs Multilingual V2",
+    "customSeed": -1,
+    "w3CTraceId": "0a227f6beec80b732bc84cfa6c2b289e",
+    "feedback": 0,
+    "duration": 10.0,
+    "autoTrim": false,
+    "hasReference": false
+}

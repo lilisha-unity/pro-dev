@@ -1,0 +1,14 @@
+{
+    "asset": "b446462cb89314cb1859d6b52d3e34f1",
+    "fileName": "019d8f97-787f-7dfd-aa56-4c71e93d40a5.wav",
+    "prompt": "Clear, expressive female voice reading: '1. Select Start to begin. 2. The screen shows an image. 3. You have a few seconds to memorize the image before it changes.'",
+    "negativePrompt": "",
+    "model": "6be7790d-b2f4-4fe0-8ca2-76ddaaf94361",
+    "modelName": "ElevenLabs Multilingual V2",
+    "customSeed": -1,
+    "w3CTraceId": "c3cf7ca43dfec46abf46e8e28368b1e4",
+    "feedback": 0,
+    "duration": 10.0,
+    "autoTrim": false,
+    "hasReference": false
+}
