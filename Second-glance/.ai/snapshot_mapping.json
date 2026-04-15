@@ -317,6 +317,12 @@
       "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
       "content": "The \"How to Play\" text has been updated to left-align. It will now be easier to read as a standard block of text.",
       "snapshot_message_type": 1
+    },
+    {
+      "message_id": "c004910b-b70c-4ed9-9d5d-d6859e107755",
+      "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
+      "content": "I've updated the game's audio logic to ensure the music only plays during active gameplay.\n\n### Changes:\n*   **Main Menu**: Background music now stops immediately when you return to the Main Menu (using the \"Restart,\" \"End Game,\" or \"Back\" buttons).\n*   **Victory Fanfare**: When you complete the final level (Level 3), the background music is silenced to allow the **Victory Fanfare** to play clearly.\n*   **Consistency**: Applied these fixes across both `GameController.cs` and `HowToPlay.cs` to ensure the behavior is consistent no matter which screen the player is on.\n\nThis creates a much cleaner audio experience where the music acts as a \"tension\" element that only exists while the game is actually running.",
+      "snapshot_message_type": 1
     }
   ]
 }

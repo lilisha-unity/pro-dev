@@ -124,12 +124,13 @@ public class GameController : MonoBehaviour
 
     private void ShowMainMenu()
     {
+        if (musicSource != null) musicSource.Stop();
         StopAllCoroutines();
         ClearVisualFeedback();
         topContainer.Clear();
         
         var imageContainer = new VisualElement();
-        imageContainer.AddToClassList("image-container");
+imageContainer.AddToClassList("image-container");
         
         var label = new Label("Second Glance");
         label.AddToClassList("game-name");
@@ -338,6 +339,7 @@ backButton.AddToClassList("button");
         }
         else
         {
+            if (musicSource != null) musicSource.Stop();
             title.text = "GAME COMPLETE!";
             PlaySFX(victoryFanfare);
         }
