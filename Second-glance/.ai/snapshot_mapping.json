@@ -377,6 +377,12 @@
       "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
       "content": "Where exactly in the Player Settings to use this image?",
       "snapshot_message_type": 0
+    },
+    {
+      "message_id": "78cfc4f2-7889-4b65-8f7e-1c67cf6b786b",
+      "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
+      "content": "To see exactly where I linked your new splash screen in the Unity Editor, follow these steps:\n\n1.  **Open Project Settings**: Go to the top menu and select **Edit > Project Settings...**.\n2.  **Select Player**: In the list on the left side of the window, click on **Player**.\n3.  **Select the Platform Tab**: Since we’ve been optimizing for web, look at the row of icons at the top of the Player settings and click the **WebGL tab** (the HTML5 logo). \n    *   *Note: This setting is shared across platforms, but it's best to check it under the one you are building for.*\n4.  **Open the Splash Image Section**: Scroll down until you see the foldout named **Splash Image** and click to open it.\n\n### What you will see there:\n*   **Logos List**: Under the \"Logos\" section, you will see a list. I have already added your `SplashScreen.png` sprite to this list.\n*   **Background Color**: I set this to **Black** to match your neon arcade aesthetic.\n*   **Preview Button**: At the bottom of that section (or in the Game view), you can click the **Preview** button to see exactly how your game will look when it starts up!\n\nYou can now manually swap that image or adjust the \"Logo Duration\" (how long it stays on screen) directly from this menu whenever you like!",
+      "snapshot_message_type": 1
     }
   ]
 }
