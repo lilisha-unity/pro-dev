@@ -1,0 +1,27 @@
+{
+    "asset": "5dd99d962e9c341a8b8629dd93f49c50",
+    "fileName": "019d92be-a3f7-7406-920d-18775d69e469.jpg",
+    "prompt": "A cinematic game splash screen for 'Second Glance'. Glowing neon-cyan text 'SECOND GLANCE' on a high-tech dark background with cyan light streaks and bokeh particles. 16:9 aspect ratio, 1920x1080 resolution, professional game branding. No black borders.",
+    "negativePrompt": "",
+    "model": "f722aea3-8760-4eb1-a516-e2fce6476303",
+    "modelName": "Seedream 4",
+    "customSeed": -1,
+    "w3CTraceId": "6769e72857d74dc7399754e7aff8aad4",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 1024,
+        "height": 1024
+    },
+    "spriteSheet": false,
+    "duration": 0.0
+}
