@@ -305,6 +305,12 @@
       "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
       "content": "No problem at all! **\"Second Glance\"** is a classic, clear name that perfectly describes the split-second decision making your players have to do.\n\nI've left all the UI and code exactly as it is. Since we've already:\n*   Added the **high-quality neon fireworks** and \"CONGRATULATIONS!\" screen.\n*   Updated the **progress bar** to be bigger and fill from right-to-left.\n*   Fixed the **WebGL compatibility** and optimized your build settings.\n*   Confirmed your **Unity Play visibility** settings for unlisted sharing.\n\nYour project is in great shape for its first web build! Is there anything else you'd like to tweak before you try building it?",
       "snapshot_message_type": 1
+    },
+    {
+      "message_id": "6839609e-9941-4ce1-a8f9-bb9029fe2f83",
+      "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
+      "content": "I've reduced the \"How to Play\" text size from **56px** to **32px** in the styling.\n\nThis provides a much more balanced look that allows the full instructions to fit comfortably within the container without being overwhelming. All other UI elements like the \"Back\" button and headers have been preserved. 100% synchronized to match this updated scale.",
+      "snapshot_message_type": 1
     }
   ]
 }
