@@ -14,8 +14,9 @@ public class GameController : MonoBehaviour
     private Button quitButton;
     private Button buttonHowToPlay;
     private VisualElement topContainer;
+    private VisualElement root;
     private Label scoreLabel;
-    private Label livesLabel;
+private Label livesLabel;
     private Label levelLabel;
 
     private int score = 0;
@@ -42,12 +43,12 @@ public class GameController : MonoBehaviour
     private List<AudioClip> howToPlayVOs = new List<AudioClip>();
 
     private void OnEnable()
-{
+    {
         var uiDocument = GetComponent<UIDocument>();
-        var root = uiDocument.rootVisualElement;
+        root = uiDocument.rootVisualElement;
 
         startButton = root.Q<Button>("start");
-        quitButton = root.Q<Button>("quit");
+quitButton = root.Q<Button>("quit");
         buttonHowToPlay = root.Q<Button>("how");
 
         startAction = evt => { PlaySFX(clickSound); StartGame(); };
@@ -136,18 +137,29 @@ if (victoryFanfare == null) Debug.LogError("Failed to load victory_fanfare from 
         ClearVisualFeedback();
         topContainer.Clear();
         
-        var imageContainer = new VisualElement();
-        imageContainer.AddToClassList("image-container");
-        
-        var label = new Label("Second Glance");
-        label.AddToClassList("game-name");
-        
-        imageContainer.Add(label);
-        topContainer.Add(imageContainer);
-        
+        // Hide the original bottom container where buttons were stored
+        var bottomContainer = root.Q("bottom-container");
+        if (bottomContainer != null) bottomContainer.style.display = DisplayStyle.None;
+
+        var menuContainer = new VisualElement { style = { flexGrow = 1, justifyContent = Justify.Center, alignItems = Align.Center } };
+
+        // Ensure buttons are visible and styled for the menu
         startButton.style.display = DisplayStyle.Flex;
-        quitButton.style.display = DisplayStyle.Flex;
         buttonHowToPlay.style.display = DisplayStyle.Flex;
+        quitButton.style.display = DisplayStyle.Flex;
+        
+        #if UNITY_WEBGL && !UNITY_EDITOR
+        quitButton.style.display = DisplayStyle.None;
+        #endif
+        
+        startButton.style.marginBottom = 20;
+buttonHowToPlay.style.marginBottom = 20;
+        
+        menuContainer.Add(startButton);
+        menuContainer.Add(buttonHowToPlay);
+        menuContainer.Add(quitButton);
+        
+        topContainer.Add(menuContainer);
     }
 
     private void ShowHowToPlay()

@@ -449,6 +449,12 @@
       "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
       "content": "I've reverted the Main Menu to its previous look!\n\n### Changes:\n1.  **Main Menu Reversion**: Removed the code that displayed the `SplashScreen.png` image in the Main Menu container. It now shows the \"Second Glance\" text label again, exactly as it was before.\n2.  **Script Cleanup**: Removed the unused `gameLogo` variable and its loading logic from `GameController.cs` to keep your code clean and efficient.\n3.  **Preserved Assets**: Kept the `SplashScreen.png` file in the `Assets/Resources/Logo` folder, so it is still available for your build's splash screen settings without interfering with the in-game UI.\n\nYour game now has the classic \"Second Glance\" title screen back, but with all the other improvements like fireworks and voice-overs still active WebGL compatibility still in place. Ready for fireworks, WebGL, and voice-over still intact!",
       "snapshot_message_type": 1
+    },
+    {
+      "message_id": "b2912332-d8df-42b2-b45d-e1fe521745e6",
+      "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
+      "content": "I've simplified your Main Menu screen by removing the text and moving the buttons to the main panel.\n\n### Changes:\n*   **Simplified Layout**: Removed the \"Second Glance\" text from the Main Menu. Since you already have a custom splash screen and logo settings, this makes the menu look much cleaner and more professional.\n*   **Button Centering**: Moved the **Start**, **How to Play**, and **Quit** buttons directly into the main central container (`top-container`). They are now vertically stacked and centered in the middle of the screen.\n*   **UI Polish**: The original bottom container is now hidden during the Main Menu phase to avoid layout clutter.\n*   **WebGL Optimized**: Added logic to automatically hide the \"Quit\" button when playing in a web browser (WebGL), as browsers typically don't allow web pages to close themselves.\n\nYour game now opens directly to a simple, focused menu with just the essential buttons in the center! Ready for your next build and is fully optimized for your next WebGL builds. Ready for your next test it out-of-the-box. Ready for your final build!",
+      "snapshot_message_type": 1
     }
   ]
 }
