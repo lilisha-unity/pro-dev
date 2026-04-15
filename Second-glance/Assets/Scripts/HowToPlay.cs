@@ -41,9 +41,10 @@ public class HowToPlay : MonoBehaviour
     private AudioClip backgroundMusic;
     private AudioClip victoryFanfare;
     private List<AudioClip> howToPlayVOs = new List<AudioClip>();
+    private Sprite gameLogo;
 
     private void OnEnable()
-    {
+{
         var uiDocument = GetComponent<UIDocument>();
 
         startButton = uiDocument.rootVisualElement.Q("start") as Button;
@@ -83,9 +84,10 @@ public class HowToPlay : MonoBehaviour
         penaltySound = Resources.Load<AudioClip>("Audio/penalty");
         backgroundMusic = Resources.Load<AudioClip>("Audio/background_music");
         victoryFanfare = Resources.Load<AudioClip>("Audio/victory_fanfare");
+        gameLogo = Resources.Load<Sprite>("Sprites/SplashScreen");
         
         howToPlayVOs.Clear();
-        for (int i = 1; i <= 4; i++)
+for (int i = 1; i <= 4; i++)
         {
             var vo = Resources.Load<AudioClip>($"Audio/how_to_play_vo_{i}");
             if (vo != null) howToPlayVOs.Add(vo);
@@ -129,14 +131,20 @@ public class HowToPlay : MonoBehaviour
         ClearVisualFeedback();
         topContainer.Clear();
         
-        var imageContainer = new VisualElement();
-imageContainer.AddToClassList("image-container");
-        
-        var label = new Label("Second Glance");
-        label.AddToClassList("game-name");
-        
-        imageContainer.Add(label);
-        topContainer.Add(imageContainer);
+        var logoContainer = new VisualElement();
+        logoContainer.AddToClassList("game-logo-container");
+        if (gameLogo != null)
+        {
+            logoContainer.style.backgroundImage = new StyleBackground(gameLogo);
+        }
+        else
+        {
+            var label = new Label("SplashScreen.png");
+            label.AddToClassList("game-name");
+            logoContainer.Add(label);
+        }
+
+        topContainer.Add(logoContainer);
         
         startButton.style.display = DisplayStyle.Flex;
         quitButton.style.display = DisplayStyle.Flex;
