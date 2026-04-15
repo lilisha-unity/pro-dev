@@ -3,7 +3,7 @@
     <engine:VisualElement name="main-container" class="main-container" style="-unity-text-generator: advanced;">
         <engine:VisualElement name="top-container" class="top-container">
             <engine:VisualElement name="image-container" class="image-container" style="background-image: none;">
-                <engine:Label text="Second Glance" name="game-name" class="game-name" style="background-image: resource(&quot;SplashScreen&quot;);"/>
+                <engine:Label text="Second Glance" name="game-name" class="game-name" style="background-image: none;"/>
             </engine:VisualElement>
             <engine:ProgressBar value="30" title="my-progress" low-value="0" high-value="100" name="progress-bar" style="visibility: hidden;"/>
         </engine:VisualElement>
