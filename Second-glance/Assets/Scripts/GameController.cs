@@ -85,6 +85,7 @@ public class GameController : MonoBehaviour
         victoryFanfare = Resources.Load<AudioClip>("Audio/victory_fanfare");
         gameLogo = Resources.Load<Sprite>("Sprites/SplashScreen");
 gameLogo = Resources.Load<Sprite>("Sprites/SplashScreen");
+gameLogo = Resources.Load<Sprite>("Sprites/SplashScreen");
 howToPlayVOs.Clear();
         for (int i = 1; i <= 4; i++)
         {

@@ -168,6 +168,14 @@
     margin-bottom: 20px;
 }
 
+.game-logo-container {
+    width: 600px;
+    height: 300px;
+    align-self: center;
+    -unity-background-scale-mode: scale-to-fit;
+    margin-bottom: 20px;
+}
+
 .game-name {
 font-size: 72px;
     color: var(--accent-color);
