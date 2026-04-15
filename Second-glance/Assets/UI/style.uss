@@ -77,9 +77,10 @@
 }
 
 .how-to-play-text {
-    font-size: 48px;
+    font-size: 56px;
     color: var(--text-color);
-    padding: 40px;
+    padding: 30px;
+    -unity-text-align: middle-center;
     -unity-font-definition: url("project://database/Library/unity%20default%20resources?fileID=10102&guid=0000000000000000e000000000000000&type=0#LegacyRuntime");
 }
 

@@ -152,10 +152,9 @@ public class GameController : MonoBehaviour
         var label = new Label(instructionsText);
         label.AddToClassList("how-to-play-text");
         label.style.whiteSpace = WhiteSpace.Normal;
-        label.style.fontSize = 24;
 
         var backButton = new Button(() => { PlaySFX(clickSound); ShowMainMenu(); }) { text = "BACK" };
-        backButton.AddToClassList("button");
+backButton.AddToClassList("button");
         backButton.style.alignSelf = Align.Center;
 
         scrollView.Add(label);
