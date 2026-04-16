@@ -479,6 +479,12 @@
       "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
       "content": "I have successfully moved the mute icon inside the central \"green box\" (the `top-container`) and ensured it remains visible during the \"How to Play\" screen and all other game states.\n\n### What I did:\n1.  **Hierarchy Update**: Moved the `mute-toggle` button in your `UI.uxml` to be a direct child of the `#top-container`. This ensures it stays within the styled borders of the main gameplay area.\n2.  **Persistent Visibility**: Updated the C# logic in `GameController.cs` to specifically protect the `mute-toggle` button from being cleared when the UI transitions. It will now stay on screen during:\n    *   The Main Menu\n    *   The \"How to Play\" instructions\n    *   Active Gameplay\n    *   Level Complete and Game Over screens\n3.  **Space Bar Integration**: Verified that the **Space bar** toggle remains active across all screens, allowing the player to mute the game at any time.\n\nThe mute icon will now always appear in the top-right corner *inside* the main panel. Ready for your build!",
       "snapshot_message_type": 1
+    },
+    {
+      "message_id": "ef6e2bf1-5acf-4e71-a94e-7c25ae566ccb",
+      "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
+      "content": "I've fixed the mute icon so it can be clicked on the \"How to Play\" screen (and all other screens)!\n\n### What I fixed:\n*   **Layering Issues**: When the instructions appeared, they were being added to the screen *after* the mute icon, which meant they were invisible \"on top\" of it and blocking your clicks. \n*   **Bring to Front**: I've updated the script to explicitly call `BringToFront()` on the mute button whenever a new UI screen (like \"How to Play,\" \"Level Complete,\" or \"Game Over\") is displayed. This ensures the icon is always the topmost element and stays clickable.\n*   **UXML Optimization**: I also moved the icon to the very end of the `#top-container` child list in your UXML, giving it the highest default priority.\n\nYou can now toggle the sound either by **clicking the icon** or pressing the **Space bar**, no matter which part of the game you're in! Ready for your build. Ready for your final build!",
+      "snapshot_message_type": 1
     }
   ]
 }
