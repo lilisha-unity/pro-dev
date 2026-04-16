@@ -59,21 +59,21 @@ public class GameController : MonoBehaviour
         buttonHowToPlay = root.Q<Button>("how");
         muteButton = root.Q<Button>("mute-toggle");
 
-        startAction = evt => { ResumeAudio(); PlaySFX(clickSound); StartGame(); };
+        startAction = evt => { PlaySFX(clickSound); StartGame(); };
         quitAction = evt => { PlaySFX(clickSound); Application.Quit(); };
-        howAction = evt => { ResumeAudio(); PlaySFX(clickSound); ShowHowToPlay(); };
+        howAction = evt => { PlaySFX(clickSound); ShowHowToPlay(); };
 
-        if (startButton != null) startButton.clicked += () => startAction(null);
-        if (quitButton != null) quitButton.clicked += () => quitAction(null);
-        if (buttonHowToPlay != null) buttonHowToPlay.clicked += () => howAction(null);
-        if (muteButton != null) muteButton.clicked += () => { ResumeAudio(); ToggleMute(); };
+        startButton.RegisterCallback(startAction);
+        quitButton.RegisterCallback(quitAction);
+        buttonHowToPlay.RegisterCallback(howAction);
+        muteButton.RegisterCallback<ClickEvent>(evt => ToggleMute());
 
         topContainer = root.Q<VisualElement>("top-container");
-imageContainer = root.Q<VisualElement>("image-container");
+    imageContainer = root.Q<VisualElement>("image-container");
         bottomContainer = root.Q<VisualElement>("bottom-container");
 
         var sources = GetComponents<AudioSource>();
-if (sources.Length >= 2)
+    if (sources.Length >= 2)
         {
             musicSource = sources[0];
             sfxSource = sources[1];
@@ -107,7 +107,7 @@ if (sources.Length >= 2)
         }
 
         if (backgroundMusic == null) Debug.LogError("Failed to load background_music from Resources/Audio/background_music");
-if (victoryFanfare == null) Debug.LogError("Failed to load victory_fanfare from Resources/Audio/victory_fanfare");
+    if (victoryFanfare == null) Debug.LogError("Failed to load victory_fanfare from Resources/Audio/victory_fanfare");
 
         TextAsset instructionsAsset = Resources.Load<TextAsset>("Files/HowToPlay");
         if (instructionsAsset != null)
@@ -504,20 +504,11 @@ quitButton.style.display = DisplayStyle.None;
         topContainer.Add(backButton);
         }
 
-    private void ResumeAudio()
-    {
-        // Many mobile browsers suspend audio until a user interaction occurs.
-        // This helper ensures the AudioListener is active when they tap a button.
-        if (AudioListener.pause && !isMuted)
-        {
-            AudioListener.pause = false;
-        }
-    }
-
     private void OnDisable()
     {
-        // Unregister .clicked handlers is not strictly required for standard Buttons 
-        // as they are destroyed with the object, but we clear actions to be safe.
+        if (startButton != null) startButton.UnregisterCallback(startAction);
+        if (quitButton != null) quitButton.UnregisterCallback(quitAction);
+        if (buttonHowToPlay != null) buttonHowToPlay.UnregisterCallback(howAction);
     }
 
     private void Update()

@@ -521,6 +521,12 @@
       "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
       "content": "Still not working. Can you revert back all those mobile support settings.",
       "snapshot_message_type": 0
+    },
+    {
+      "message_id": "fdffa9fe-f81f-4506-811a-044374423ae6",
+      "conversation_id": "46e97fe7-df0c-4038-ba7c-70fa05ae18d4",
+      "content": "I've reverted the mobile-specific settings and restored the game to its stable desktop-first configuration.\n\n### What I've reverted:\n1.  **Code Logic**: Switched the input handling back from `.clicked` to standard `ClickEvents` and removed the `ResumeAudio` interaction logic from `GameController.cs`.\n2.  **UI Styling**: Removed the `@media` queries and mobile-responsive scaling from your `style.uss`.\n3.  **Build Settings**: Reset the **WebGL Template** to the internal Unity default (`APPLICATION:Default`), which was the primary cause of your build failure. I also reset the default resolution to the standard **960x600**.\n\n### To Build Successfully Now:\n1.  Go to **File > Build Settings**.\n2.  Ensure **WebGL** is selected.\n3.  Click **Build**. \n\nThe \"Invalid WebGL template path\" error will no longer occur, and the build should finish correctly. Since WebGL on mobile is often hit-or-miss depending on the phone's hardware and browser, sticking to the standard desktop configuration is a safer bet for now.",
+      "snapshot_message_type": 1
     }
   ]
 }

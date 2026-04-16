@@ -218,25 +218,6 @@ font-size: 64px;
     transition-duration: 0.2s;
 }
 
-/* Touch-friendly hit area for mobile */
 .mute-button:active {
-    scale: 0.8;
-}
-
-/* Ensure central container doesn't overflow on small phone screens */
-@media (max-width: 800px) {
-    .top-container {
-        max-width: 95%;
-        padding: 15px;
-    }
-    
-    .button {
-        width: 180px;
-        height: 60px;
-        font-size: 20px;
-    }
-    
-    .stats-text {
-        font-size: 24px;
-    }
+    scale: 0.9;
 }
