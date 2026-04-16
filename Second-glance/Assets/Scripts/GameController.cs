@@ -140,15 +140,18 @@ if (victoryFanfare == null) Debug.LogError("Failed to load victory_fanfare from 
         StopAllCoroutines();
         ClearVisualFeedback();
         
-        // We only clear the children that were added dynamically (like stats or labels)
-        // But we must keep the imageContainer and bottomContainer!
+        // Remove dynamic elements (labels, dynamic buttons)
         foreach(var child in topContainer.Children().ToList()) {
             if (child != imageContainer && child.name != "progress-bar") {
                 child.RemoveFromHierarchy();
             }
         }
 
+        var progressBar = topContainer.Q<ProgressBar>("progress-bar");
+        if (progressBar != null) progressBar.style.display = DisplayStyle.None;
+
         if (imageContainer != null) {
+            imageContainer.style.display = DisplayStyle.Flex;
             imageContainer.style.backgroundImage = null;
             imageContainer.style.opacity = 1;
         }
@@ -174,6 +177,9 @@ if (victoryFanfare == null) Debug.LogError("Failed to load victory_fanfare from 
                 child.RemoveFromHierarchy();
             }
         }
+
+        var progressBar = topContainer.Q<ProgressBar>("progress-bar");
+        if (progressBar != null) progressBar.style.display = DisplayStyle.None;
 
         if (bottomContainer != null) bottomContainer.style.display = DisplayStyle.None;
         if (imageContainer != null) imageContainer.style.display = DisplayStyle.None;
@@ -267,6 +273,7 @@ if (victoryFanfare == null) Debug.LogError("Failed to load victory_fanfare from 
 
         var progressBar = topContainer.Q<ProgressBar>("progress-bar");
         if (progressBar != null) {
+            progressBar.style.display = DisplayStyle.Flex;
             progressBar.style.visibility = Visibility.Visible;
             progressBar.value = 100;
         }
@@ -379,6 +386,9 @@ if (victoryFanfare == null) Debug.LogError("Failed to load victory_fanfare from 
             }
         }
 
+        var progressBar = topContainer.Q<ProgressBar>("progress-bar");
+        if (progressBar != null) progressBar.style.display = DisplayStyle.None;
+
         if (bottomContainer != null) bottomContainer.style.display = DisplayStyle.None;
         if (imageContainer != null) imageContainer.style.display = DisplayStyle.None;
 
@@ -456,9 +466,12 @@ if (victoryFanfare == null) Debug.LogError("Failed to load victory_fanfare from 
             }
         }
 
+        var progressBar = topContainer.Q<ProgressBar>("progress-bar");
+        if (progressBar != null) progressBar.style.display = DisplayStyle.None;
+
         if (bottomContainer != null) bottomContainer.style.display = DisplayStyle.None;
         if (imageContainer != null) imageContainer.style.display = DisplayStyle.None;
-        
+
         var gameOverLabel = new Label(title);
         gameOverLabel.AddToClassList("game-over");
         
