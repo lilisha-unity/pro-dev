@@ -2,8 +2,19 @@
     <Style src="project://database/Assets/UI/style.uss?fileID=7433441132597879392&amp;guid=10c9bd921284649c9a6e2d4899a28504&amp;type=3#style"/>
     <engine:VisualElement name="main-container" class="main-container" style="-unity-text-generator: advanced;">
         <engine:VisualElement name="top-container" class="top-container">
-            <engine:ProgressBar value="30" title="my-progress" low-value="0" high-value="100" name="progress-bar" style="visibility: hidden;"/>
             <engine:Button name="mute-toggle" class="mute-button"/>
+            <engine:VisualElement name="image-container" class="image-container" style="background-image: none;">
+                <engine:VisualElement name="bottom-container" class="bottom-container">
+                    <engine:VisualElement name="start-quit-container" class="start-quit-container">
+                        <engine:Button text="START" name="start" class="button text-basic"/>
+                        <engine:Button text="QUIT" name="quit" class="button text-basic"/>
+                    </engine:VisualElement>
+                    <engine:VisualElement name="how-container" class="how-container">
+                        <engine:Button text="HOW TO PLAY" name="how" selectable="true" class="button text-basic how-button"/>
+                    </engine:VisualElement>
+                </engine:VisualElement>
             </engine:VisualElement>
-            </engine:VisualElement>
+            <engine:ProgressBar value="30" title="my-progress" low-value="0" high-value="100" name="progress-bar" style="visibility: hidden;"/>
+        </engine:VisualElement>
+    </engine:VisualElement>
 </engine:UXML>

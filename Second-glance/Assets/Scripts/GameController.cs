@@ -213,7 +213,6 @@ if (victoryFanfare == null) Debug.LogError("Failed to load victory_fanfare from 
         scrollView.Add(label);
         scrollView.Add(backButton);
         topContainer.Add(scrollView);
-        if (muteButton != null) muteButton.BringToFront();
 
         startButton.style.display = DisplayStyle.None;
 quitButton.style.display = DisplayStyle.None;
@@ -444,7 +443,6 @@ quitButton.style.display = DisplayStyle.None;
         topContainer.Add(title);
         topContainer.Add(scoreInfo);
         topContainer.Add(buttonContainer);
-        if (muteButton != null) muteButton.BringToFront();
         }
 
     private void ClearVisualFeedback()
@@ -504,7 +502,6 @@ quitButton.style.display = DisplayStyle.None;
         topContainer.Add(gameOverLabel);
         topContainer.Add(messageLabel);
         topContainer.Add(backButton);
-        if (muteButton != null) muteButton.BringToFront();
         }
 
     private void OnDisable()
