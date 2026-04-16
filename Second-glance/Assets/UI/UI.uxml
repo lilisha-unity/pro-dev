@@ -1,9 +1,9 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/style.uss?fileID=7433441132597879392&amp;guid=10c9bd921284649c9a6e2d4899a28504&amp;type=3#style"/>
     <engine:VisualElement name="main-container" class="main-container" style="-unity-text-generator: advanced;">
-        <engine:Button name="mute-toggle" class="mute-button"/>
         <engine:VisualElement name="top-container" class="top-container">
-<engine:VisualElement name="image-container" class="image-container" style="background-image: none;">
+            <engine:VisualElement name="image-container" class="image-container" style="background-image: none;">
+                <engine:Button name="mute-toggle" class="mute-button"/>
                 <engine:VisualElement name="bottom-container" class="bottom-container">
                     <engine:VisualElement name="start-quit-container" class="start-quit-container">
                         <engine:Button text="START" name="start" class="button text-basic"/>
