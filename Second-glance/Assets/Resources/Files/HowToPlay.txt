@@ -7,4 +7,5 @@
 7. You lose points for selecting new images or missing repeated images.
 8. As the game continues, the card changes more quickly, making it harder to remember previous images.
 9. You start with three lives. The game ends when you run out of lives.
-10. You can mute/unmute the speaker by pressing the space bar.
+
+You can mute/unmute the speaker by pressing the space bar.
