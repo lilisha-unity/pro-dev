@@ -168,25 +168,8 @@
     margin-bottom: 20px;
 }
 
-.game-logo-container {
-    width: 600px;
-    height: 300px;
-    align-self: center;
-    -unity-background-scale-mode: scale-to-fit;
-    margin-bottom: 20px;
-}
-
-.game-name {
-font-size: 72px;
-    color: var(--accent-color);
-    -unity-text-align: middle-center;
-    -unity-font-style: bold;
-    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
-    width: 100%;
-}
-
 .game-over {
-    font-size: 64px;
+font-size: 64px;
     color: var(--danger-color);
     -unity-text-align: middle-center;
     -unity-font-style: bold;

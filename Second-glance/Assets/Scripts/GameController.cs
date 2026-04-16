@@ -15,6 +15,8 @@ public class GameController : MonoBehaviour
     private Button buttonHowToPlay;
     private VisualElement topContainer;
     private VisualElement root;
+    private VisualElement imageContainer;
+    private VisualElement bottomContainer;
     private Label scoreLabel;
 private Label livesLabel;
     private Label levelLabel;
@@ -60,9 +62,11 @@ quitButton = root.Q<Button>("quit");
         buttonHowToPlay.RegisterCallback(howAction);
 
         topContainer = root.Q<VisualElement>("top-container");
+        imageContainer = root.Q<VisualElement>("image-container");
+        bottomContainer = root.Q<VisualElement>("bottom-container");
 
         var sources = GetComponents<AudioSource>();
-        if (sources.Length >= 2)
+if (sources.Length >= 2)
         {
             musicSource = sources[0];
             sfxSource = sources[1];
@@ -135,38 +139,44 @@ if (victoryFanfare == null) Debug.LogError("Failed to load victory_fanfare from 
         if (musicSource != null) musicSource.Stop();
         StopAllCoroutines();
         ClearVisualFeedback();
-        topContainer.Clear();
         
-        // Hide the original bottom container where buttons were stored
-        var bottomContainer = root.Q("bottom-container");
-        if (bottomContainer != null) bottomContainer.style.display = DisplayStyle.None;
+        // We only clear the children that were added dynamically (like stats or labels)
+        // But we must keep the imageContainer and bottomContainer!
+        foreach(var child in topContainer.Children().ToList()) {
+            if (child != imageContainer && child.name != "progress-bar") {
+                child.RemoveFromHierarchy();
+            }
+        }
 
-        var menuContainer = new VisualElement { style = { flexGrow = 1, justifyContent = Justify.Center, alignItems = Align.Center } };
+        if (imageContainer != null) {
+            imageContainer.style.backgroundImage = null;
+            imageContainer.style.opacity = 1;
+        }
 
-        // Ensure buttons are visible and styled for the menu
+        if (bottomContainer != null) bottomContainer.style.display = DisplayStyle.Flex;
+
         startButton.style.display = DisplayStyle.Flex;
         buttonHowToPlay.style.display = DisplayStyle.Flex;
         quitButton.style.display = DisplayStyle.Flex;
-        
+
         #if UNITY_WEBGL && !UNITY_EDITOR
         quitButton.style.display = DisplayStyle.None;
         #endif
-        
-        startButton.style.marginBottom = 20;
-buttonHowToPlay.style.marginBottom = 20;
-        
-        menuContainer.Add(startButton);
-        menuContainer.Add(buttonHowToPlay);
-        menuContainer.Add(quitButton);
-        
-        topContainer.Add(menuContainer);
     }
 
     private void ShowHowToPlay()
     {
         StopAllCoroutines();
         ClearVisualFeedback();
-        topContainer.Clear();
+        
+        foreach(var child in topContainer.Children().ToList()) {
+            if (child != imageContainer && child.name != "progress-bar") {
+                child.RemoveFromHierarchy();
+            }
+        }
+
+        if (bottomContainer != null) bottomContainer.style.display = DisplayStyle.None;
+        if (imageContainer != null) imageContainer.style.display = DisplayStyle.None;
 
         if (musicSource != null && howToPlayVOs.Count > 0)
         {
@@ -219,12 +229,21 @@ buttonHowToPlay.style.marginBottom = 20;
     {
         StopAllCoroutines();
         ClearVisualFeedback();
-        topContainer.Clear();
+        
+        // Remove dynamic elements
+        foreach(var child in topContainer.Children().ToList()) {
+            if (child != imageContainer && child.name != "progress-bar") {
+                child.RemoveFromHierarchy();
+            }
+        }
+
         PlayBackgroundMusic();
 
         seenImagesInLevel.Clear();
         currentImageName = "";
         clickedThisTurn = false;
+
+        if (bottomContainer != null) bottomContainer.style.display = DisplayStyle.None;
 
         // UI Setup
         var statsRow = new VisualElement { style = { flexDirection = FlexDirection.Row, justifyContent = Justify.SpaceBetween, marginBottom = 10 } };
@@ -238,16 +257,19 @@ buttonHowToPlay.style.marginBottom = 20;
         statsRow.Add(levelLabel);
         statsRow.Add(scoreLabel);
         statsRow.Add(livesLabel);
-        topContainer.Add(statsRow);
+        topContainer.Insert(0, statsRow); // Add at top
 
-        var imageContainer = new VisualElement();
-        imageContainer.AddToClassList("image-container");
-        imageContainer.style.flexGrow = 1;
-        imageContainer.RegisterCallback<ClickEvent>(OnImageClicked);
-        topContainer.Add(imageContainer);
+        if (imageContainer != null) {
+            imageContainer.style.display = DisplayStyle.Flex;
+            imageContainer.style.opacity = 0;
+            imageContainer.RegisterCallback<ClickEvent>(OnImageClicked);
+        }
 
-        var progressBar = new ProgressBar { name = "progress-bar", value = 100 };
-        topContainer.Add(progressBar);
+        var progressBar = topContainer.Q<ProgressBar>("progress-bar");
+        if (progressBar != null) {
+            progressBar.style.visibility = Visibility.Visible;
+            progressBar.value = 100;
+        }
 
         startButton.style.display = DisplayStyle.None;
         quitButton.style.display = DisplayStyle.None;
@@ -350,7 +372,15 @@ buttonHowToPlay.style.marginBottom = 20;
     {
         StopAllCoroutines();
         ClearVisualFeedback();
-        topContainer.Clear();
+        
+        foreach(var child in topContainer.Children().ToList()) {
+            if (child != imageContainer && child.name != "progress-bar") {
+                child.RemoveFromHierarchy();
+            }
+        }
+
+        if (bottomContainer != null) bottomContainer.style.display = DisplayStyle.None;
+        if (imageContainer != null) imageContainer.style.display = DisplayStyle.None;
 
         // Trigger Fireworks
         if (FireworksController.Instance != null)
@@ -419,7 +449,15 @@ buttonHowToPlay.style.marginBottom = 20;
         if (musicSource != null) musicSource.Stop();
         StopAllCoroutines();
         ClearVisualFeedback();
-        topContainer.Clear();
+        
+        foreach(var child in topContainer.Children().ToList()) {
+            if (child != imageContainer && child.name != "progress-bar") {
+                child.RemoveFromHierarchy();
+            }
+        }
+
+        if (bottomContainer != null) bottomContainer.style.display = DisplayStyle.None;
+        if (imageContainer != null) imageContainer.style.display = DisplayStyle.None;
         
         var gameOverLabel = new Label(title);
         gameOverLabel.AddToClassList("game-over");
