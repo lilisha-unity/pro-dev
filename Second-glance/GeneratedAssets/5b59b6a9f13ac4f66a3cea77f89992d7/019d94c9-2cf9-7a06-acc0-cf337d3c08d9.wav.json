@@ -1,0 +1,14 @@
+{
+  "asset": "5b59b6a9f13ac4f66a3cea77f89992d7",
+  "fileName": "019d94c9-2cf9-7a06-acc0-cf337d3c08d9.wav",
+  "prompt": "You can mute or unmute the speaker by pressing the space bar.",
+  "negativePrompt": "",
+  "model": "6be7790d-b2f4-4fe0-8ca2-76ddaaf94361",
+  "modelName": "ElevenLabs Multilingual V2",
+  "customSeed": -1,
+  "w3CTraceId": "b9d0a01c795a9fe9c17ba86d78a5aea9",
+  "feedback": 1,
+  "duration": 5.0,
+  "autoTrim": false,
+  "hasReference": false
+}
