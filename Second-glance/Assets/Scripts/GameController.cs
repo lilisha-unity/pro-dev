@@ -55,18 +55,18 @@ public class GameController : MonoBehaviour
         root = uiDocument.rootVisualElement;
 
         startButton = root.Q<Button>("start");
-    quitButton = root.Q<Button>("quit");
+        quitButton = root.Q<Button>("quit");
         buttonHowToPlay = root.Q<Button>("how");
         muteButton = root.Q<Button>("mute-toggle");
 
-        startAction = evt => { PlaySFX(clickSound); StartGame(); };
+        startAction = evt => { ResumeAudio(); PlaySFX(clickSound); StartGame(); };
         quitAction = evt => { PlaySFX(clickSound); Application.Quit(); };
-        howAction = evt => { PlaySFX(clickSound); ShowHowToPlay(); };
+        howAction = evt => { ResumeAudio(); PlaySFX(clickSound); ShowHowToPlay(); };
 
-        startButton.RegisterCallback(startAction);
-        quitButton.RegisterCallback(quitAction);
-        buttonHowToPlay.RegisterCallback(howAction);
-        muteButton.RegisterCallback<ClickEvent>(evt => ToggleMute());
+        if (startButton != null) startButton.clicked += () => startAction(null);
+        if (quitButton != null) quitButton.clicked += () => quitAction(null);
+        if (buttonHowToPlay != null) buttonHowToPlay.clicked += () => howAction(null);
+        if (muteButton != null) muteButton.clicked += () => { ResumeAudio(); ToggleMute(); };
 
         topContainer = root.Q<VisualElement>("top-container");
 imageContainer = root.Q<VisualElement>("image-container");
@@ -504,11 +504,20 @@ quitButton.style.display = DisplayStyle.None;
         topContainer.Add(backButton);
         }
 
+    private void ResumeAudio()
+    {
+        // Many mobile browsers suspend audio until a user interaction occurs.
+        // This helper ensures the AudioListener is active when they tap a button.
+        if (AudioListener.pause && !isMuted)
+        {
+            AudioListener.pause = false;
+        }
+    }
+
     private void OnDisable()
     {
-        if (startButton != null) startButton.UnregisterCallback(startAction);
-        if (quitButton != null) quitButton.UnregisterCallback(quitAction);
-        if (buttonHowToPlay != null) buttonHowToPlay.UnregisterCallback(howAction);
+        // Unregister .clicked handlers is not strictly required for standard Buttons 
+        // as they are destroyed with the object, but we clear actions to be safe.
     }
 
     private void Update()
