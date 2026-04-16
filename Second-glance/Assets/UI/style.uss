@@ -206,10 +206,23 @@ font-size: 64px;
     margin-top: 10px;
 }
 
-.confetti {
+.mute-button {
     position: absolute;
-    width: 10px;
-    height: 10px;
-    border-radius: 2px;
-    background-color: gold;
+    top: 20px;
+    right: 20px;
+    width: 64px;
+    height: 64px;
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+    -unity-background-scale-mode: scale-to-fit;
+    transition-duration: 0.2s;
+}
+
+.mute-button:hover {
+    scale: 1.1;
+    -unity-background-image-tint-color: var(--accent-color);
+}
+
+.mute-button:active {
+    scale: 0.9;
 }

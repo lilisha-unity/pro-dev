@@ -1,0 +1,27 @@
+{
+    "asset": "3efce2fa39dd248beafaa8588a7e399e",
+    "fileName": "019d93b4-bea6-7df5-813e-ded1ee9bf601.png",
+    "prompt": "A sleek, neon-cyan speaker icon for sound on, minimalist style, transparent background, glowing.",
+    "negativePrompt": "",
+    "model": "856245a7-19a9-46f3-864c-899b31fd5f9f",
+    "modelName": "Nano Banana - T2i",
+    "customSeed": -1,
+    "w3CTraceId": "8a327a61724dc36cc968bfff39caf61c",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 1024,
+        "height": 1024
+    },
+    "spriteSheet": false,
+    "duration": 0.0
+}

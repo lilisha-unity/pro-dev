@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.InputSystem;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +14,13 @@ public class GameController : MonoBehaviour
     private Button startButton;
     private Button quitButton;
     private Button buttonHowToPlay;
+    private Button muteButton;
     private VisualElement topContainer;
     private VisualElement root;
     private VisualElement imageContainer;
     private VisualElement bottomContainer;
     private Label scoreLabel;
-private Label livesLabel;
+    private Label livesLabel;
     private Label levelLabel;
 
     private int score = 0;
@@ -27,6 +29,7 @@ private Label livesLabel;
     
     private HashSet<string> seenImagesInLevel = new HashSet<string>();
     private bool clickedThisTurn = false;
+    private bool isMuted = false;
     private string currentImageName = "";
     private string instructionsText = "";
 
@@ -42,6 +45,8 @@ private Label livesLabel;
     private AudioClip penaltySound;
     private AudioClip backgroundMusic;
     private AudioClip victoryFanfare;
+    private Sprite soundOnIcon;
+    private Sprite soundOffIcon;
     private List<AudioClip> howToPlayVOs = new List<AudioClip>();
 
     private void OnEnable()
@@ -50,8 +55,9 @@ private Label livesLabel;
         root = uiDocument.rootVisualElement;
 
         startButton = root.Q<Button>("start");
-quitButton = root.Q<Button>("quit");
+    quitButton = root.Q<Button>("quit");
         buttonHowToPlay = root.Q<Button>("how");
+        muteButton = root.Q<Button>("mute-toggle");
 
         startAction = evt => { PlaySFX(clickSound); StartGame(); };
         quitAction = evt => { PlaySFX(clickSound); Application.Quit(); };
@@ -60,9 +66,10 @@ quitButton = root.Q<Button>("quit");
         startButton.RegisterCallback(startAction);
         quitButton.RegisterCallback(quitAction);
         buttonHowToPlay.RegisterCallback(howAction);
+        muteButton.RegisterCallback<ClickEvent>(evt => ToggleMute());
 
         topContainer = root.Q<VisualElement>("top-container");
-        imageContainer = root.Q<VisualElement>("image-container");
+imageContainer = root.Q<VisualElement>("image-container");
         bottomContainer = root.Q<VisualElement>("bottom-container");
 
         var sources = GetComponents<AudioSource>();
@@ -87,6 +94,11 @@ if (sources.Length >= 2)
         penaltySound = Resources.Load<AudioClip>("Audio/penalty");
         backgroundMusic = Resources.Load<AudioClip>("Audio/background_music");
         victoryFanfare = Resources.Load<AudioClip>("Audio/victory_fanfare");
+        soundOnIcon = Resources.Load<Sprite>("Logo/SoundOn");
+        soundOffIcon = Resources.Load<Sprite>("Logo/SoundOff");
+        
+        UpdateMuteIcon();
+
         howToPlayVOs.Clear();
 for (int i = 1; i <= 4; i++)
         {
@@ -498,4 +510,31 @@ if (victoryFanfare == null) Debug.LogError("Failed to load victory_fanfare from 
         if (quitButton != null) quitButton.UnregisterCallback(quitAction);
         if (buttonHowToPlay != null) buttonHowToPlay.UnregisterCallback(howAction);
     }
-}
+
+    private void Update()
+    {
+        if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            ToggleMute();
+        }
+    }
+
+    private void ToggleMute()
+    {
+        isMuted = !isMuted;
+        AudioListener.pause = isMuted;
+        UpdateMuteIcon();
+        Debug.Log("Game Muted: " + isMuted);
+    }
+
+    private void UpdateMuteIcon()
+    {
+        if (muteButton == null) return;
+        
+        Sprite targetIcon = isMuted ? soundOffIcon : soundOnIcon;
+        if (targetIcon != null)
+        {
+            muteButton.style.backgroundImage = new StyleBackground(targetIcon);
+        }
+    }
+    }
