@@ -3,7 +3,6 @@
     <engine:VisualElement name="main-container" class="main-container" style="-unity-text-generator: advanced;">
         <engine:VisualElement name="top-container" class="top-container">
             <engine:VisualElement name="image-container" class="image-container" style="background-image: none;">
-                <engine:Button name="mute-toggle" class="mute-button"/>
                 <engine:VisualElement name="bottom-container" class="bottom-container">
                     <engine:VisualElement name="start-quit-container" class="start-quit-container">
                         <engine:Button text="START" name="start" class="button text-basic"/>
@@ -16,5 +15,6 @@
             </engine:VisualElement>
             <engine:ProgressBar value="30" title="my-progress" low-value="0" high-value="100" name="progress-bar" style="visibility: hidden;"/>
         </engine:VisualElement>
+        <engine:Button name="mute-toggle" class="mute-button"/>
     </engine:VisualElement>
 </engine:UXML>
