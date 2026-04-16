@@ -100,7 +100,7 @@ if (sources.Length >= 2)
         UpdateMuteIcon();
 
         howToPlayVOs.Clear();
-for (int i = 1; i <= 4; i++)
+        for (int i = 1; i <= 5; i++)
         {
             var vo = Resources.Load<AudioClip>($"Audio/how_to_play_vo_{i}");
             if (vo != null) howToPlayVOs.Add(vo);

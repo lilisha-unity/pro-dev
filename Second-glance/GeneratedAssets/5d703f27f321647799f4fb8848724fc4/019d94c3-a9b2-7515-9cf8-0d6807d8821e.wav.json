@@ -1,0 +1,14 @@
+{
+    "asset": "5d703f27f321647799f4fb8848724fc4",
+    "fileName": "019d94c3-a9b2-7515-9cf8-0d6807d8821e.wav",
+    "prompt": "Female voice: '10. You can mute or unmute the speaker by pressing the space bar.'",
+    "negativePrompt": "",
+    "model": "6be7790d-b2f4-4fe0-8ca2-76ddaaf94361",
+    "modelName": "ElevenLabs Multilingual V2",
+    "customSeed": -1,
+    "w3CTraceId": "32bc5764c6b2f83b09974af1d3391188",
+    "feedback": 0,
+    "duration": 5.0,
+    "autoTrim": false,
+    "hasReference": false
+}
