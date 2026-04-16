@@ -154,7 +154,7 @@ if (victoryFanfare == null) Debug.LogError("Failed to load victory_fanfare from 
         
         // Remove dynamic elements (labels, dynamic buttons)
         foreach(var child in topContainer.Children().ToList()) {
-            if (child != imageContainer && child.name != "progress-bar") {
+            if (child != imageContainer && child.name != "progress-bar" && child.name != "mute-toggle") {
                 child.RemoveFromHierarchy();
             }
         }
@@ -185,7 +185,7 @@ if (victoryFanfare == null) Debug.LogError("Failed to load victory_fanfare from 
         ClearVisualFeedback();
         
         foreach(var child in topContainer.Children().ToList()) {
-            if (child != imageContainer && child.name != "progress-bar") {
+            if (child != imageContainer && child.name != "progress-bar" && child.name != "mute-toggle") {
                 child.RemoveFromHierarchy();
             }
         }
@@ -250,7 +250,7 @@ if (victoryFanfare == null) Debug.LogError("Failed to load victory_fanfare from 
         
         // Remove dynamic elements
         foreach(var child in topContainer.Children().ToList()) {
-            if (child != imageContainer && child.name != "progress-bar") {
+            if (child != imageContainer && child.name != "progress-bar" && child.name != "mute-toggle") {
                 child.RemoveFromHierarchy();
             }
         }
@@ -393,7 +393,7 @@ if (victoryFanfare == null) Debug.LogError("Failed to load victory_fanfare from 
         ClearVisualFeedback();
         
         foreach(var child in topContainer.Children().ToList()) {
-            if (child != imageContainer && child.name != "progress-bar") {
+            if (child != imageContainer && child.name != "progress-bar" && child.name != "mute-toggle") {
                 child.RemoveFromHierarchy();
             }
         }
@@ -473,7 +473,7 @@ if (victoryFanfare == null) Debug.LogError("Failed to load victory_fanfare from 
         ClearVisualFeedback();
         
         foreach(var child in topContainer.Children().ToList()) {
-            if (child != imageContainer && child.name != "progress-bar") {
+            if (child != imageContainer && child.name != "progress-bar" && child.name != "mute-toggle") {
                 child.RemoveFromHierarchy();
             }
         }
