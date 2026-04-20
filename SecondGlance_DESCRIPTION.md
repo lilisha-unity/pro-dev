@@ -1,6 +1,6 @@
 # Second Glance — game overview
 
-**Second Glance** is a Unity-based memory and reflex game built around a single card on screen. The card cycles through objects every few seconds. When an object appears **for the second time** (it has been shown before), the player taps the card to score. Wrong taps—when the object has never appeared before—cost points or lives. The game emphasizes memory, speed, and staying engaged.
+**Second Glance** is a UI Toolkit-based memory and reflex game built around a single card on screen. The card cycles through objects every few seconds. When an object appears **for the second time** (it has been shown before), the player taps the card to score. Wrong taps—when the object has never appeared before—cost points or lives. The game emphasizes memory, speed, and staying engaged.
 
 The following is the instructions for playing the game:
 

@@ -4,6 +4,9 @@
 [Oo]bj/
 [Bb]uild/
 [Bb]uilds/
+
+# Second Glance — exported build output (WebGL / players; Build, Build1, …)
+Second-glance/Build*/
 [Ll]ogs/
 UIElementsSchema/
 MemoryCaptures/
